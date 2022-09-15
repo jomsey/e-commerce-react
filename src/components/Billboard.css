@@ -1,0 +1,11 @@
+.billboard {
+    width: 90%;
+    height: 300px;
+    margin: 32px 0;
+    display: flex;
+    overflow: hidden;
+    background-color: var(--light);
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 10px;
+}

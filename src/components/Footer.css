@@ -1,0 +1,88 @@
+.footer {
+    padding: 20px 48px;
+    width: 100%;
+    background-color: var(--tertiary);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 2fr;
+    color: var(--lightgray);
+    font-weight: 300;
+    margin: 0 !important;
+}
+
+.footer .division {
+    padding: 16px;
+}
+
+.footer .division .links ul li:hover {
+    color: var(--primary);
+}
+
+.division .icons {
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+    margin: 16px 0;
+}
+
+.division .icons .fa-brands {
+    transition: all 0.2s linear;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.division .icons .fa-brands:hover {
+    color: var(--primary);
+}
+
+.division p {
+    font-size: 0.9rem;
+}
+
+.division .sub-form form {
+    margin: 24px 0;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    border: 1px solid var(--primary);
+}
+
+.division .sub-form input:focus {
+    outline: none;
+}
+
+.division .sub-form input {
+    height: 100%;
+    flex-grow: 3;
+    border: none;
+    background: transparent;
+    color: #fff;
+    padding: 0 30px;
+}
+
+.division .sub-form {
+    border: 1px solid var(-primary);
+}
+
+.division .sub-form .email-icon {
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    margin-left: 5px;
+}
+
+.division .sub-form button {
+    flex-grow: 1.5;
+    height: 100%;
+    background-color: var(--primary);
+    border: none;
+    border-left: 1px solid var(--primary);
+    color: var(--light);
+    transition: all 0.2s linear;
+}
+
+.division .sub-form button:hover {
+    color: var(--primary);
+    background-color: var(--light);
+}

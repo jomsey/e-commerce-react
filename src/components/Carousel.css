@@ -1,0 +1,10 @@
+.carousel {
+    width: 71%;
+    height: 400px;
+    position: absolute;
+    top: 130px;
+    left: 320px;
+    background-color: var(--light);
+    border-radius: 10px;
+    border: 1px solid var(--secondary);
+}

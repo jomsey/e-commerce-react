@@ -1,0 +1,23 @@
+.categories {
+    width: 220px;
+    height: 400px;
+    background-color: var(--light);
+    border-radius: 5px;
+    border: 0.8px solid var(--secondary);
+    padding: 10px;
+}
+
+.categories .category-item {
+    margin: 8px;
+    font-size: 12px;
+    color: var(--tertiary);
+}
+
+
+/* .category-item::after {
+    content: ">";
+} */
+
+.categories .category-item:hover {
+    color: var(--primary);
+}

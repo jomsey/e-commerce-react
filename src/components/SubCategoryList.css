@@ -1,0 +1,9 @@
+.sub-categories {
+    display: none;
+    width: 600px;
+    height: 400px;
+    border-top: 1px solid var(--secondary);
+    border-right: 1px solid var(--secondary);
+    border-bottom: 1px solid var(--secondary);
+    background-color: var(--light);
+}
