@@ -6,7 +6,7 @@
     grid-template-columns: 1fr 1fr 1fr 1fr 2fr;
     color: var(--lightgray);
     font-weight: 300;
-    margin: 0 !important;
+    overflow: hidden;
 }
 
 .footer .division {

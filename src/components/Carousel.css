@@ -2,7 +2,8 @@
     width: 71%;
     height: 400px;
     position: absolute;
-    top: 130px;
+    margin-top: 20px;
+    top: -19px;
     left: 320px;
     background-color: var(--light);
     border-radius: 10px;

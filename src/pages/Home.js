@@ -10,13 +10,10 @@ function Home() {
     <>
       <ProductCategories />
       <Carousel />
-
-      <div className="group">
-        <Billboard items={posters} />
-        <Collection title={"New This Year"} productsList={products} />
-        <Collection title={"Editor's choice"} productsList={products} />
-        <Collection title={"Brand New Day"} productsList={products} />
-      </div>
+      <Billboard items={posters} />
+      <Collection title={"New This Year"} productsList={products} />
+      <Collection title={"Editor's choice"} productsList={products} />
+      <Collection title={"Brand New Day"} productsList={products} />
     </>
   );
 }
