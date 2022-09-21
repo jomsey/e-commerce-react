@@ -10,6 +10,7 @@
     --primary: rgb(253, 45, 132);
     --secondary: rgb(153, 149, 149);
     --tertiary: rgb(27, 27, 27);
+    --tertiary-shade: rgb(43, 42, 42);
     --light: #fff;
     --lightgray: rgb(216, 216, 216);
 }

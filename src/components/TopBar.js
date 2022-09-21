@@ -3,6 +3,7 @@ import logo from "../assets/logo.jpg";
 import TopBarIcons from "./TopBarIcons";
 import Icon from "../ui/Icon";
 import { useState, useEffect } from "react";
+import MenuIcon from "../ui/MenuIcon";
 
 function TopBar() {
   const [displace, setDisplace] = useState(false);
@@ -20,8 +21,11 @@ function TopBar() {
   let topBarClasses = displace ? "top-bar displace-bar" : "top-bar";
   return (
     <div className={topBarClasses}>
-      <div className="logo">
-        <img src={logo} alt="logo" />
+      <div className="left">
+        <MenuIcon visible />
+        <div className="logo">
+          <img src={logo} alt="logo" />
+        </div>
       </div>
       <form action="">
         <input

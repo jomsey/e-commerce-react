@@ -1,0 +1,112 @@
+.product-details-page {
+    margin-top: 130px;
+}
+
+.product-details-page .details .image {
+    width: 50%;
+    min-width: 400px;
+    max-height: 420px;
+}
+
+.image img {
+    object-fit: contain;
+}
+
+.details {
+    margin: 16px 64px;
+    background-color: var(--light);
+    display: flex;
+    justify-content: space-between;
+}
+
+.product-details-page .info {
+    padding: 32px;
+    flex-grow: 1;
+    width: 50%;
+    min-width: 360px;
+}
+
+.product-details-page .details .info .description {
+    font-size: 0.9rem;
+    margin: 16px 0;
+    line-height: 1.5rem;
+    color: var(--tertiary-shade);
+}
+
+.product-details-page .details .info small {
+    color: var(--secondary);
+    cursor: pointer;
+}
+
+.product-details-page .details .info small:hover {
+    color: var(--primary);
+}
+
+.product-details-page .details .info .product-name {
+    margin: 8px 0;
+    font-size: 1.2rem;
+}
+
+.product-details-page .details .info .price {
+    font-size: 1.5rem;
+    font-weight: 200;
+}
+
+.product-details-page .details .info .price span {
+    color: #fff;
+    padding: 0 10px;
+    border-radius: 5px;
+    font-size: 0.7rem;
+    position: absolute;
+    background-color: turquoise;
+    top: 22px;
+}
+
+.product-details-page .details .info strike {
+    color: tomato;
+    margin-right: 4px;
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
+}
+
+.product-details-page .details .info .buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 24px 0;
+}
+
+.product-details-page .details .info .buttons .add-to-cart,
+.product-details-page .details .info .buttons .add-to-wishlist {
+    width: 240px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: none;
+    color: #fff;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.4s linear;
+}
+
+.product-details-page .details .info .buttons .add-to-cart {
+    background-image: linear-gradient( to left, darkturquoise, mediumturquoise, mediumturquoise);
+    background-image: -moz-linear-gradient( to left, darkturquoise, mediumturquoise, mediumturquoise);
+    background-image: -o-linear-gradient( to left, darkturquoise, mediumturquoise, mediumturquoise);
+    background-image: -webkit-linear-gradient( to left, darkturquoise, mediumturquoise, mediumturquoise);
+    --shadow-color: mediumturquoise;
+}
+
+.product-details-page .details .info .buttons .add-to-wishlist {
+    background-color: tomato;
+    background-image: linear-gradient(to left, tomato, rgb(241, 140, 122));
+    background-image: -moz-linear-gradient(to left, tomato, rgb(241, 140, 122));
+    background-image: -webkit-linear-gradient( to left, tomato, rgb(241, 140, 122));
+    background-image: -o-linear-gradient(to left, tomato, rgb(241, 140, 122));
+    --shadow-color: rgb(241, 140, 122);
+}
+
+.product-details-page .details .info .buttons .add-to-cart:hover,
+.product-details-page .details .info .buttons .add-to-wishlist:hover {
+    box-shadow: 2px 2px 10px var(--shadow-color);
+}

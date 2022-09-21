@@ -1,10 +1,6 @@
 import Icon from "../ui/Icon";
 import "./ProductCard.css";
 
-function handleCardDetailButtonClick(product) {
-  console.log("product clicked");
-}
-
 function addProductToCart(product) {
   console.log(product, " added to cart");
 }
@@ -30,9 +26,6 @@ function ProductCard({ image, name, price, discount }) {
           </strong>
         </small>
         <div className="buttons">
-          <button onClick={() => handleCardDetailButtonClick(name)}>
-            DETAILS
-          </button>
           <div className="add-btns">
             <Icon
               extra={"wish-icon"}

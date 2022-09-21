@@ -1,0 +1,8 @@
+.rack .fa-star {
+    color: var(--lightgray);
+    margin: 2px;
+}
+
+.rack .star-full {
+    color: tomato;
+}

@@ -22,6 +22,12 @@
     height: 95px;
 }
 
+.left {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .top-bar form {
     width: 700px;
     border: 1px solid var(--secondary);

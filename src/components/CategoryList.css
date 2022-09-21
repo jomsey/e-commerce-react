@@ -13,10 +13,9 @@
     color: var(--tertiary);
 }
 
-
-/* .category-item::after {
+.category-item::after {
     content: ">";
-} */
+}
 
 .categories .category-item:hover {
     color: var(--primary);

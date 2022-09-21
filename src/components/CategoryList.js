@@ -4,6 +4,11 @@ import { categories } from "./../utils/product_categories";
 import ListItem from "./../ui/ListItem";
 
 function HandleItemClick(item) {
+  // redirect to category page
+  console.log(item);
+}
+
+function HandleItemMouseHover(item) {
   console.log(item);
 }
 
@@ -17,6 +22,7 @@ function CategoryList() {
           itemStyle={"category-item"}
           text={category.name}
           onItemClick={() => HandleItemClick(category)}
+          onItemMouseOver={() => HandleItemMouseHover(category)}
         />
       ))}
     </div>

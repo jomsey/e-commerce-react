@@ -4,6 +4,7 @@
     border-radius: 5px;
     background-color: var(--light);
     box-shadow: 4px 4px 10px var(--lightgray);
+    transition: all 0.3s ease;
 }
 
 .product-card .product-image {
@@ -42,12 +43,13 @@
 
 .product-card .buttons {
     display: flex;
-    margin: 12px 0;
-    justify-content: space-between;
+    margin: 16px 0;
+    justify-content: right;
     align-items: center;
 }
 
-.product-card .buttons button {
+
+/* .product-card .buttons button {
     border: 1px solid var(--primary);
     background: transparent;
     border-radius: 16px;
@@ -57,7 +59,7 @@
     width: 50%;
     letter-spacing: 1.2px;
     outline: none;
-}
+} */
 
 .product-card .buttons .add-btns {
     width: 30%;
@@ -69,15 +71,20 @@
 .wish-icon,
 .cart-icon {
     color: var(--primary);
-    font-size: 20px;
+    font-size: 0.95rem;
+}
+
+.wish-icon:hover,
+.cart-icon:hover {
+    color: darkturquoise;
 }
 
 .product-card .product-price {
-    color: darkcyan;
+    color: darkturquoise;
     display: block;
     margin-top: 8px;
 }
 
 strike {
-    color: rgb(240, 36, 36);
+    color: tomato;
 }
