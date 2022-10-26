@@ -5,6 +5,7 @@
     margin-top: 20px;
     top: -19px;
     left: 320px;
+    overflow: hidden;
     background-color: var(--light);
     border-radius: 10px;
     border: 1px solid var(--secondary);

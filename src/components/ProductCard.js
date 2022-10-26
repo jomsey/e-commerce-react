@@ -1,5 +1,7 @@
 import Icon from "../ui/Icon";
 import "./ProductCard.css";
+// import increaseCartItemsNumber from "../redux-actions/cart";
+// import { useDispatch } from "react-redux";
 
 function addProductToCart(product) {
   console.log(product, " added to cart");

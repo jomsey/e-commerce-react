@@ -1,4 +1,6 @@
 import Icon from "./../ui/Icon";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 function HandleAccountIconClick() {
   console.log("AccountIconClicked");
@@ -13,16 +15,20 @@ function HandleQueryIconClick() {
 }
 
 function TopBarIcons() {
+  const cartNumber = useSelector(({ cartNumber }) => cartNumber.count);
+
   return (
     <>
       <Icon extra="icon" iconName="user" onIconClick={HandleAccountIconClick} />
-      <Icon
-        extra="icon"
-        iconName="shopping-cart"
-        onIconClick={HandleCartIconClick}
-      >
-        <span className="items-number">25</span>
-      </Icon>
+      <Link to={"/cart"}>
+        <Icon
+          extra="icon"
+          iconName="shopping-cart"
+          onIconClick={HandleCartIconClick}
+        >
+          <span className="items-number">{cartNumber}</span>
+        </Icon>
+      </Link>
       <Icon
         extra="icon"
         iconName="question"

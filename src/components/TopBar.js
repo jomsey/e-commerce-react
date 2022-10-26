@@ -3,6 +3,7 @@ import logo from "../assets/logo.jpg";
 import TopBarIcons from "./TopBarIcons";
 import Icon from "../ui/Icon";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import MenuIcon from "../ui/MenuIcon";
 
 function TopBar() {
@@ -23,9 +24,11 @@ function TopBar() {
     <div className={topBarClasses}>
       <div className="left">
         <MenuIcon visible />
-        <div className="logo">
-          <img src={logo} alt="logo" />
-        </div>
+        <Link to="/">
+          <div className="logo">
+            <img src={logo} alt="logo" />
+          </div>
+        </Link>
       </div>
       <form action="">
         <input

@@ -1,0 +1,21 @@
+.counter {
+    align-self: center;
+    display: flex;
+    align-items: center;
+}
+
+.counter .view {
+    border: 1px solid var(--lightgray);
+    padding: 5px 10px;
+    margin: 0 16px;
+}
+
+.count-icon {
+    padding: 8px;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.count-icon:hover {
+    box-shadow: 0 0 0 1px aquamarine;
+}

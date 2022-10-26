@@ -1,0 +1,24 @@
+.cart-item {
+    height: 100px;
+    width: 100%;
+    margin-top: 16px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cart-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.cart-group button {
+    background-color: transparent;
+    border: 1px solid var(--secondary);
+    padding: 8px 16px;
+}
+
+.cart-item .item-image {
+    width: 100px;
+    height: 100%;
+}
