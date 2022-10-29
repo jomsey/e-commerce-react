@@ -1,7 +1,9 @@
 import Icon from "../ui/Icon";
 import "./Login.css";
+import TopBar from './../components/TopBar';
 export default function Login() {
   return (
+    <><TopBar showToggler={false}/>
     <div className="login">
       <div className="login-container">
         <h1>Sign In</h1>
@@ -38,5 +40,6 @@ export default function Login() {
         </form>
       </div>
     </div>
+    </>
   );
 }

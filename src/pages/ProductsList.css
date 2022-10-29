@@ -1,0 +1,15 @@
+.group {
+    margin: auto;
+    margin-top: 120px;
+    margin-bottom: 60px;
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+}
+
+.products-list-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    width: max-content;
+    gap: 32px;
+}

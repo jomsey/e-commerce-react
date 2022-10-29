@@ -1,5 +1,4 @@
 .sub-categories {
-    visibility: hidden;
     width: 600px;
     height: 400px;
     border-top: 1px solid var(--secondary);
@@ -7,4 +6,5 @@
     border-bottom: 1px solid var(--secondary);
     background-color: var(--light);
     z-index: 2;
+    visibility: hidden;
 }

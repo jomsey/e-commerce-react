@@ -1,8 +1,11 @@
 import "./UserProfile.css";
 import ListItem from "../ui/ListItem";
+import TopBar from "../components/TopBar";
 
 export default function UserProfile() {
   return (
+    <>
+    <TopBar showToggler={true}/>
     <section className="profile-container">
       <aside>
         <div className="avatar">
@@ -39,5 +42,6 @@ export default function UserProfile() {
         </div>
       </main>
     </section>
+    </>
   );
 }

@@ -3,15 +3,12 @@ import PropTypes from "prop-types";
 import Icon from "./Icon";
 import "./MenuIcon.css";
 
-function HandleIconClick() {
-  console.log("clicked");
-}
 
-function MenuIcon({ visible = true }) {
+function MenuIcon({ visible = true,HandleMenuIconClick }) {
   return (
     <Icon
       iconName={"bars"}
-      onIconClick={HandleIconClick}
+      onIconClick={HandleMenuIconClick}
       extra={visible ? "menu-icon" : "not-visible"}
     />
   );
@@ -19,6 +16,7 @@ function MenuIcon({ visible = true }) {
 
 MenuIcon.propTypes = {
   visible: PropTypes.bool,
+  HandleMenuIconClick:PropTypes.func
 };
 
 export default MenuIcon;

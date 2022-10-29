@@ -2,9 +2,13 @@ import "./ProductDetails.css";
 import RatingRack from "./../ui/RatingRack";
 import Collection from "../components/Collection";
 import { products } from "./../utils/sample_products";
+import TopBar from "../components/TopBar";
 
 const ProductDetails = () => {
   return (
+    <>
+    <TopBar showToggler={true}/>
+    
     <div className="product-details-page">
       <div className="details">
         <div className="image">
@@ -48,6 +52,7 @@ const ProductDetails = () => {
       <Collection title={"You May Also Like"} productsList={products} />
       <Collection title={"Previously Viewed"} productsList={products} />
     </div>
+    </>
   );
 };
 

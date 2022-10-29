@@ -5,9 +5,11 @@ import { products } from "./../utils/sample_products";
 import "./Home.css";
 import Billboard from "./../components/Billboard";
 import { posters } from "../utils/posters";
+import TopBar from './../components/TopBar';
 function Home() {
   return (
     <>
+      <TopBar showToggler={false}/>
       <ProductCategories />
       <Carousel />
       <Billboard items={posters} />

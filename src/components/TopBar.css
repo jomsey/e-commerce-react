@@ -106,3 +106,37 @@
     padding-top: 2px;
     pointer-events: none;
 }
+
+.category-off-canvas {
+    width: min-content;
+    position: absolute;
+    top: 98px;
+    left: -20px;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.show-off-canvas {
+    visibility: visible;
+}
+
+.category-off-canvas::before {
+    content: " ";
+    background-color: var(--light);
+    border-top: 1px solid var(--secondary);
+    border-left: 1px solid var(--secondary);
+    width: 20px;
+    height: 20px;
+    display: block;
+    rotate: 45deg;
+    position: absolute;
+    left: 20px;
+    z-index: 10;
+    top: -10px;
+}
+
+.category-off-canvas .categories-container {
+    left: 0;
+    margin-top: 0;
+    margin-top: 0;
+}
