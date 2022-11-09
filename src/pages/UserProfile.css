@@ -1,55 +1,47 @@
 .profile-container {
     display: flex;
-    width: 100%;
-    height: max-content;
     padding: 120px 30px;
     gap: 32px;
 }
-
-
-/* .profile-container * {
-    border: 1px solid mediumaquamarine;
-} */
 
 .profile-container aside {
     background-color: var(--light);
     max-width: 400px;
     min-width: 300px;
     padding: 36px;
+    display: flex;
+    flex-direction: column;
 }
 
 .profile-container aside .cluster {
+   
     margin-top: 8px;
-    left: 24px;
+   width: 100%;
 }
-
+.profile-container .more {
+   
+ margin-top: 32px;
+}
 .profile-container .avatar {
     width: 150px;
     height: 150px;
-    border-radius: 50%;
     overflow: hidden;
+    margin-bottom: 24px;
+   
 }
-
-.profile-container aside h3,
-.profile-container aside h2 {
-    color: var(--secondary);
-}
-
-.profile-container aside h3 {
-    font-size: 1rem;
-}
-
-.info-cluster,
-.more {
-    margin: 16px 0;
+.info-cluster h4{
+     padding: 0;
+     margin: 0;
 }
 
 .profile-container aside .username {
     margin-bottom: 24px;
+    text-align: center;
 }
 
 .profile-container main {
     background-color: var(--light);
+    width: 100%;
 }
 
 .profile-container main .general-view .view-navs {

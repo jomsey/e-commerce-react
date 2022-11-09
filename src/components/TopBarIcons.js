@@ -1,6 +1,7 @@
 import Icon from "./../ui/Icon";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { ShopContext } from "../shop-context/ShopState";
+import { useContext } from "react";
 
 function HandleAccountIconClick() {
   console.log("AccountIconClicked");
@@ -15,7 +16,7 @@ function HandleQueryIconClick() {
 }
 
 function TopBarIcons() {
-  const cartNumber = useSelector(({ cartNumber }) => cartNumber.count);
+  let { cartNumber } = useContext(ShopContext);
 
   return (
     <>
@@ -26,7 +27,7 @@ function TopBarIcons() {
           iconName="shopping-cart"
           onIconClick={HandleCartIconClick}
         >
-          <span className="items-number">{cartNumber}</span>
+          {cartNumber>0 && <span className="items-number">{cartNumber }</span>}
         </Icon>
       </Link>
       <Icon

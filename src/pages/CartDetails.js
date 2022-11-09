@@ -1,17 +1,23 @@
 import CartItem from "../components/CartItem";
 import "./cartDetails.css";
-import cartProducts from "./../utils/cartItems";
-import { useState } from "react";
 import TopBar from "./../components/TopBar";
+import { products } from "./../utils/sample_products";
+import Collection from "./../components/Collection";
+import { useContext } from "react";
+import { ShopContext } from "../shop-context/ShopState";
 
-let cartItems = [...cartProducts];
 
 function CartDetails() {
-  const [items, setItems] = useState(cartItems);
+  
+ 
+  const {cartProducts,setCartProducts} = useContext(ShopContext);
+  
 
   const removeCartItem = (product) => {
-    setItems(items.filter((item) => item.id !== product.id));
+    setCartProducts(cartProducts.filter((item) => item.id !== product.id));
   };
+
+  
 
   return (
     <>
@@ -20,8 +26,8 @@ function CartDetails() {
         <div className="cart-items">
           <h4>Shopping Cart</h4>
 
-          {items.length > 0 ? (
-            items.map((product) => (
+          {cartProducts.length > 0 ? (
+            cartProducts.map((product) => ( 
               <CartItem
                 product={product}
                 key={product.id}
@@ -32,18 +38,18 @@ function CartDetails() {
             <h3>No Items To Display</h3>
           )}
         </div>
-        {items.length > 0 && (
+        {cartProducts.length> 0 && (
           <div className="cart-summary">
             <h4>Cart Summary</h4>
             <div className="summary">
               <div className="group">
                 <h5>ITEMS</h5>
-                <small>{items.length}</small>
+                <small>{cartProducts.length}</small>
               </div>
 
               <div className="group">
                 <h5>TOTAL</h5>
-                <small>KES 5000</small>
+                <small>KES 500</small>
               </div>
 
               <div className="group">
@@ -70,6 +76,7 @@ function CartDetails() {
           </div>
         )}
       </div>
+       <Collection title={"Recently Viewed"} productsList={products}/>
     </>
   );
 }

@@ -1,70 +1,70 @@
 export const products = [
-  {
+  {id:1,
     name: "TestProduct",
     image: "https://api.lorem.space/image/shoes",
     price: 200,
     discount: 20,
   },
-  {
+  {id:2,
     name: "TestProduct2",
     image: "https://api.lorem.space/image/shoes",
     price: 200,
     discount: 20,
   },
-  {
+  {id:3,
     name: "TestProduct3",
     image: "https://api.lorem.space/image/fashion",
     price: 200,
     discount: 20,
   },
-  {
+  {id:4,
     name: "TestProduct4",
     image: "https://api.lorem.space/image/shoes",
     price: 200,
     discount: 20,
   },
-  {
+  {id:5,
     name: "TestProduct5",
     image: "https://api.lorem.space/image/shoes",
     price: 200,
     discount: 20,
   },
-  {
+  {id:6,
     name: "TestProduct6",
     image: "https://api.lorem.space/image/shoes",
     price: 200,
     discount: 20,
   },
-  {
+  {id:7,
     name: "TestProduct7",
     image: "https://api.lorem.space/image/shoes",
     price: 200,
     discount: 20,
   },
 
-  {
+  {id:8,
     name: "TestProduct9",
     image: "https://api.lorem.space/image/shoes",
     price: 200,
     discount: 20,
   },
 
-  {
+  {id:9,
     name: "TestProduct10",
     image: "https://api.lorem.space/image/shoes",
     price: 200,
     discount: 20,
   },
 
-  {
+  {id:10,
     name: "TestProduct11",
     image: "https://api.lorem.space/image/shoes",
     price: 200,
     discount: 20,
   },
 
-  {
-    name: "TestProduct11",
+  {id:11,
+    name: "TestProduct12",
     image: "https://api.lorem.space/image/shoes",
     price: 200,
     discount: 20,
