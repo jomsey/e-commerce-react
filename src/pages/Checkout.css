@@ -1,0 +1,43 @@
+.check-out {
+    margin: 120px auto;
+    width: 80%;
+}
+.check-out .info{
+    background-color: var(--light);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 16px;
+    padding: 24px;
+    column-gap: 32px;
+}
+
+
+.check-out .info h4{
+    border-bottom: 1px solid var(--secondary);
+    padding: 0 0 5px 0;
+    margin: 8px 0 16px 0;
+
+}
+
+.check-out .info  .bunch span{
+    color: var(--secondary);
+    font-size: small;
+
+}
+
+.check-out .info h4+span{
+    color: var(--primary) !important;
+    position: absolute;
+    top: 0;
+    right: 5px;
+    cursor: pointer;
+}
+
+
+
+.check-out .info .personal-info small{
+    font-weight: 700;
+    font-size: x-small;
+
+
+}

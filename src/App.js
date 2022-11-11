@@ -9,6 +9,7 @@ import UserProfile from "./pages/UserProfile";
 import ProductsList from "./pages/ProductsList";
 import { ShopContext} from "./shop-context/ShopState"
 import {useState,useEffect} from"react"
+import CheckOut from "./pages/Checkout";
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
         <Route path="/auth/login" element={<Login />} />
         <Route path="/profile" element={<UserProfile />} />
         <Route path="/products" element={<ProductsList/>}/>
+        <Route path="/checkout"  element={<CheckOut/>}/>
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
