@@ -1,0 +1,23 @@
+.saved-product {
+    display: flex;
+    height: 100px;
+    margin: 16px 40px;
+    column-gap: 24px;
+    justify-content: space-between;
+    box-shadow: 4px 4px 15px rgb(209, 228, 244);
+}
+
+.saved-product button {
+    width: 150px;
+    background-color: var(--secondary);
+    color: var(--light);
+    border: none;
+    padding: 8px 16px;
+    margin: 16px;
+    border-radius: 5px;
+}
+
+.saved-product .buttons,
+.prod-info {
+    align-self: center;
+}

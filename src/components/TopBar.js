@@ -65,8 +65,11 @@ function TopBar({ showToggler }) {
         </form>
         <div className="top-bar-icons">
           <TopBarIcons />
+        
         </div>
+       
       </div>
+      
     </>
   );
 }

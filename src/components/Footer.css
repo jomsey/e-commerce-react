@@ -1,5 +1,5 @@
 .footer {
-    padding: 20px 48px;
+    padding: 24px 48px;
     width: 100%;
     background-color: var(--tertiary);
     display: grid;
@@ -85,4 +85,12 @@
 .division .sub-form button:hover {
     color: var(--primary);
     background-color: var(--light);
+}
+
+.copyright {
+    position: absolute;
+    bottom: 5px;
+    text-align: center;
+    color: aliceblue;
+    width: 100%;
 }

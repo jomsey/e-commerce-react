@@ -12,17 +12,17 @@ const links = {
     links: [
       { name: "Link1", to: "" },
       { name: "Link2", to: "" },
-      { name: "Link2", to: "" },
-      { name: "Link2", to: "" },
-      { name: "Link2", to: "" },
+      { name: "Link3", to: "" },
+      { name: "Link4", to: "" },
+      { name: "Link5", to: "" },
     ],
   },
   Help: {
     title: "Get Help",
     links: [
-      { name: "Link1", to: "" },
-      { name: "Link2", to: "" },
-      { name: "Link2", to: "" },
+      { name: "Link6", to: "" },
+      { name: "Link7", to: "" },
+      { name: "Link8", to: "" },
     ],
   },
   socialAccounts: {
@@ -37,21 +37,21 @@ const links = {
   moreInfo: {
     title: "More Info",
     links: [
-      { name: "Link1", to: "" },
-      { name: "Link2", to: "" },
-      { name: "Link2", to: "" },
-      { name: "Link2", to: "" },
-      { name: "Link2", to: "" },
+      { name: "Link9", to: "" },
+      { name: "Link10", to: "" },
+      { name: "Link11", to: "" },
+      { name: "Link12", to: "" },
+      { name: "Link13", to: "" },
     ],
   },
   trade: {
     title: "Trade With Us",
     links: [
-      { name: "Link1", to: "" },
-      { name: "Link2", to: "" },
-      { name: "Link2", to: "" },
-      { name: "Link2", to: "" },
-      { name: "Link2", to: "" },
+      { name: "Link14", to: "" },
+      { name: "Link15", to: "" },
+      { name: "Link16", to: "" },
+      { name: "Link17", to: "" },
+      { name: "Link18", to: "" },
     ],
   },
 };

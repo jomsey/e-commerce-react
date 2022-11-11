@@ -1,0 +1,33 @@
+.canvas {
+    position: absolute;
+    height: 100%;
+    background-color: var(--light);
+    top: 0;
+    right: 0;
+    transition: all 0.5s ease;
+    border: 1px solid rgb(215, 237, 255);
+    border-right: none;
+    overflow: hidden;
+    min-height: 500px;
+    padding-top: 32px;
+}
+
+.orders-off-canvas-hidden {
+    width: 0;
+}
+
+.orders-off-canvas-visible {
+    width: 50%;
+}
+
+.canvas .close-icon {
+    color: var(--primary);
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 24px;
+    opacity: 0.7;
+    cursor: pointer;
+    z-index: 100;
+    padding: 16px;
+}

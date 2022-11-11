@@ -8,16 +8,23 @@ import NotFound from "./pages/NotFound";
 import UserProfile from "./pages/UserProfile";
 import ProductsList from "./pages/ProductsList";
 import { ShopContext} from "./shop-context/ShopState"
-import {useState} from"react"
+import {useState,useEffect} from"react"
 
 
 function App() {
   const [cartNumber,setCartNumber] =  useState(0)
   const [cartProducts,setCartProducts] = useState([])
+  const [showOrderProducts,setShowOrderProducts] = useState(false)
+  const [user,setUser]=useState({username:"Jomsey",authenticated:true})
 
+   
+  useEffect(() => {
+    setCartNumber(cartProducts.length)
+  },[cartProducts.length]);
+  
   return (
     <div className="App">
-              <ShopContext.Provider value={{cartNumber,setCartNumber,cartProducts,setCartProducts}}>
+              <ShopContext.Provider value={{cartNumber,setCartNumber,user,setUser,cartProducts,setCartProducts,showOrderProducts,setShowOrderProducts}}>
 
       <Routes>
         <Route path="/" element={<Home />} />

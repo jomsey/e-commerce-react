@@ -21,7 +21,7 @@ function CartItem({product,onCartItemRemove}) {
       </div>
       <Counter count={count} onCountIncrease={HandleCountIncrease} onCountDecrease={HandleCountDecrease}/>
       <div className="cart-group">
-        <h5 className="price">Price: <span> {(product.price)*count}</span></h5>
+        <h5 className="price">Price<br/><span> {(product.price)*count}</span></h5>
       </div>
     </div>
   );

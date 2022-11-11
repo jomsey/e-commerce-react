@@ -1,11 +1,11 @@
 export const posters = [
   {
     posterImage:
-      "https://www.wepc.com/wp-content/uploads/2021/10/Best-Black-Friday-Iphone-13-Deals-768x432.jpg",
+      "https://www.91-cdn.com/hub/wp-content/uploads/2022/10/Infinix-Note-12-5G-Flipkart-Dussehra-Sale.jpg",
   },
   {
     posterImage:
-      "https://i.pcmag.com/imagery/articles/0618BTBt5ZLG4DHKsoHFMex-1..v1657185098.jpg",
+      "https://assetscdn1.paytm.com/images/catalog/view_item/787364/1617369686163.jpg?imwidth=480&impolicy=hq",
   },
   
 ];

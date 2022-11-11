@@ -35,7 +35,7 @@ function CartDetails() {
               />
             ))
           ) : (
-            <h3>No Items To Display</h3>
+            <h3 className="cart-empty-text">No Items To Display</h3>
           )}
         </div>
         {cartProducts.length> 0 && (

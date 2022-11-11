@@ -1,0 +1,31 @@
+.auth-box {
+    position: absolute;
+    background-color: var(--light);
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    padding: 16px 10px;
+    box-shadow: 3px 3px 10px var(--secondary);
+    border-radius: 5px;
+    left: -25px;
+    top: 55px;
+}
+
+.auth-box button {
+    background-color: var(--primary);
+    color: var(--light);
+    border: none;
+    padding: 5px 0;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.auth-box span {
+    cursor: pointer;
+}
+
+.auth-box span:hover,
+.auth-box small {
+    color: var(--primary);
+}

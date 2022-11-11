@@ -1,40 +1,36 @@
 import Icon from "./../ui/Icon";
-import { Link } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import { ShopContext } from "../shop-context/ShopState";
-import { useContext } from "react";
+import { useContext,useState } from "react";
+import AuthBox from "./AuthBox";
 
-function HandleAccountIconClick() {
-  console.log("AccountIconClicked");
-}
-
-function HandleCartIconClick() {
-  console.log("CartIconClicked");
-}
-
-function HandleQueryIconClick() {
-  console.log("QueryIconClicked");
-}
 
 function TopBarIcons() {
-  let { cartNumber } = useContext(ShopContext);
+  
+  const navigate = useNavigate()
+  const { cartNumber,user ,setUser} = useContext(ShopContext);
+  const [authBoxVisible,setAuthBoxVisible]= useState(false)
+
 
   return (
     <>
-      <Icon extra="icon" iconName="user" onIconClick={HandleAccountIconClick} />
-      <Link to={"/cart"}>
+      <Icon extra="icon" iconName="user" onIconClick={()=> authBoxVisible?setAuthBoxVisible(false):setAuthBoxVisible(true)} />
+     
         <Icon
           extra="icon"
           iconName="shopping-cart"
-          onIconClick={HandleCartIconClick}
+          onIconClick={()=>navigate("/cart")}
         >
-          {cartNumber>0 && <span className="items-number">{cartNumber }</span>}
+          
+        {cartNumber>0 && <span className="items-number">{cartNumber }</span>}
+
         </Icon>
-      </Link>
+     
       <Icon
         extra="icon"
         iconName="question"
-        onIconClick={HandleQueryIconClick}
       />
+     {authBoxVisible &&  <AuthBox user={user} onUserLogout={()=>setUser({})}/>}
     </>
   );
 }

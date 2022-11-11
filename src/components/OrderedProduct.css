@@ -1,0 +1,15 @@
+.ordered-product {
+    display: flex;
+    height: 70px;
+    margin: 16px 24px;
+    box-shadow: 2px 2px 5px rgb(209, 228, 244);
+    column-gap: 20px;
+    overflow: hidden;
+}
+
+.ordered-product span {
+    align-self: center;
+    color: rgb(184, 184, 185);
+    max-width: 200px;
+    font-size: smaller;
+}

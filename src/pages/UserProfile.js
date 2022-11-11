@@ -1,66 +1,43 @@
 import "./UserProfile.css";
-import Icon from "../ui/Icon";
 import TopBar from "../components/TopBar";
-import Orders from "../components/Orders";
-import { Routes, Route } from "react-router-dom";
+import ProfileSideBar from "../components/ProfileSideBar";
+import OrderItems from "../components/OrderItems";
+import SavedItems from "../components/SavedItems";
+import {useState} from "react"
 
 
 export default function UserProfile() {
+  const [ordersVisibility, setOrdersVisibility] = useState(true);
+  const[activeClass] = useState("")
+
+  const HandleToggle=()=>{
+    ordersVisibility?setOrdersVisibility(false):setOrdersVisibility(true);
+   // ordersVisibility?setActiveClass("active"):setActiveClass("");
+  }
+
   return (
+    
     <>
 
       <TopBar showToggler={true} />
       <section className="profile-container">
-        <aside>
-          <div className="avatar">
-            <img
-              src="https://i.pcmag.com/imagery/articles/0618BTBt5ZLG4DHKsoHFMex-1..v1657185098.jpg"
-              alt=""
-            />
-          </div>
-          <div className="cluster">
-            <div className="user-info">
-              <div className="info-cluster">
-                <h4>First Name</h4>
-                <small>Muwanguzi</small>
-              </div>
-              <div className="info-cluster">
-                <h4>Last Name</h4>
-                <small> Joseph</small>
-              </div>
-              <div className="info-cluster">
-                <h4>Address</h4>
-                <small> Kampala , Uganda</small>
-              </div>
-
-              <div className="info-cluster">
-                <h4>Phone</h4>
-                <small> 0754608152</small>
-              </div>
-
-              <div className="info-cluster">
-                <h4>Email</h4>
-                <small>muwanguzijoseph75@gmail.com</small>
-              </div>
-            </div>
-            <div className="more">
-             <span><Icon iconName="pen-to-square" /> Edit Profile</span>
-             <br/>
-             <span><Icon iconName="arrow-right-from-bucket" /> Logout</span>
-            </div>
-          </div>
-        </aside>
+       <ProfileSideBar/>
         <main>
           <div className="general-view">
             <div className="view-navs">
-              <div className="nav">Orders</div>
-              <div className="nav">Saved Items</div>
+              <div className={`nav toggle-btn ${activeClass}`} onClick={HandleToggle}>Orders</div>
+              <div className={`nav toggle-btn ${activeClass}`} onClick={HandleToggle}>Saved Items</div>
             </div>
-             <Routes>
-        <Route path="/profile/orders" element={<Orders />} />
+            <div className="display">
+            {(ordersVisibility &&  <OrderItems/> )||  <SavedItems/>}
+           
+            
+            </div>
+
+            
         
-      </Routes>
           </div>
+          
         </main>
       </section>
     </>

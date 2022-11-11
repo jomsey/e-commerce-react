@@ -37,6 +37,7 @@ function Footer() {
           </form>
         </div>
       </div>
+      <small className="copyright"><b>&copy; Muwanguzi Joseph {new Date().getFullYear()}</b></small>
     </div>
   );
 }

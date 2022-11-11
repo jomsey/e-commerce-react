@@ -29,5 +29,11 @@
 
 .cart-item .price span{
     color:gray;
-    font-size:16px
+    font-size:20px
+}
+
+.price{
+    width:100px;
+    text-align :center;
+    margin-top:16px;
 }

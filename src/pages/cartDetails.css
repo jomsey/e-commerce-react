@@ -85,3 +85,6 @@ h4,
     outline: none;
     padding: 8px;
 }
+.cart-empty-text{
+    color:grey;
+}
