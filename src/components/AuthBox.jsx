@@ -4,7 +4,7 @@ import "./AuthBox.css"
 function AuthBox({user,onUserLogout}){
     const navigate = useNavigate()
     return (
-        <div class="auth-box">
+        <div className="auth-box">
              {(user.authenticated) && <small><b>Hello , {user.username}</b></small>}
             <span onClick={()=>navigate("/profile")}>My Account</span>
             {user.authenticated?

@@ -25,8 +25,8 @@ function App() {
   
   return (
     <div className="App">
-              <ShopContext.Provider value={{cartNumber,setCartNumber,user,setUser,cartProducts,setCartProducts,showOrderProducts,setShowOrderProducts}}>
-
+      <ShopContext.Provider value={{cartNumber,setCartNumber,user,setUser,cartProducts,setCartProducts,showOrderProducts,setShowOrderProducts}}>
+ 
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products/:productName" element={<ProductDetails />} />
