@@ -10,7 +10,12 @@ function TopBarIcons() {
   const navigate = useNavigate()
   const { cartNumber,user ,setUser} = useContext(ShopContext);
   const [authBoxVisible,setAuthBoxVisible]= useState(false)
+  
+  const handleLogout=()=>{
+    setUser({})
+    localStorage.clear()
 
+  }
 
   return (
     <>
@@ -26,11 +31,12 @@ function TopBarIcons() {
 
         </Icon>
      
+    
       <Icon
         extra="icon"
         iconName="question"
       />
-     {authBoxVisible &&  <AuthBox user={user} onUserLogout={()=>setUser({})}/>}
+     {authBoxVisible &&  <AuthBox user={user} onUserLogout={handleLogout}/>}
     </>
   );
 }

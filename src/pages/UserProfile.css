@@ -1,7 +1,8 @@
     .profile-container {
         display: flex;
-        padding: 120px 30px;
+        margin: 130px auto 30px auto;
         gap: 32px;
+        width: 90%;
     }
     
     .profile-container aside {

@@ -7,18 +7,22 @@
 }
 
 :root {
-    --primary: rgb(255, 106, 80);
+    --primary: orange;
     --secondary: rgb(153, 149, 149);
     --tertiary: rgb(27, 27, 27);
     --tertiary-shade: rgb(43, 42, 42);
     --light: #fff;
     --light-shade: rgb(215, 237, 255);
     --lightgray: rgb(216, 216, 216);
+    --badge: rgb(255, 0, 179);
+    --bg-place:rgb(245, 241, 241);
 }
 
 body {
-    background-color: aliceblue;
+    background-color: rgb(0, 51, 71);
     overflow-x: hidden;
+    max-width: 2000px;
+    margin: auto;
 }
 
 img {
@@ -29,4 +33,21 @@ img {
 
 a {
     text-decoration: none;
+}
+
+.placeholder-fill {
+    background-color: var(--light);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.block{
+    display: block;
+}
+
+.bg-place{
+    background-color: var(--bg-place) !important;
 }

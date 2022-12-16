@@ -4,5 +4,4 @@ const orders = [
   { id: 48846455545, date: "20-12-2016", status: "delivered" },
   { id: 90464555454, date: "20-12-2020", status: "pending" },
 ];
-
 export default orders;

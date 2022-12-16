@@ -6,6 +6,7 @@
     margin-bottom: 32px;
     transform: translateX(-50%);
     display: flex;
+    overflow: hidden;
 }
 
 .cart-details .cart-items {
@@ -20,7 +21,7 @@
 }
 
 .cart-details .cart-summary {
-    flex-grow: 1;
+    width: 200px;
     padding: 32px;
     background-color: #e8edea;
     min-width: 300px;
@@ -32,6 +33,7 @@ h4,
     margin-bottom: 16px;
     border-bottom: 2px solid #fff;
     font-size: 1rem;
+    
 }
 
 .cart-details .cart-items h4 {
@@ -55,24 +57,26 @@ h4,
 }
 
 .cart-details .cart-summary .checkout-btn:hover {
-    background-color: rgb(241, 103, 131);
+    opacity: .6;
 }
 
-.cart-details .cart-summary .group {
+.cart-details .cart-summary .group1 {
     display: flex;
     justify-content: space-between;
     margin-top: 16px;
-  
+
 }
 
 .cart-details .cart-summary .group h5,
 .payment-methods h5 {
     font-weight: 450;
+   
 }
 
 .cart-details .cart-summary form {
     width: 100%;
     margin-top: 8px;
+   
 }
 
 .payment-methods {

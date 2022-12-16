@@ -1,18 +1,9 @@
 .carousel {
-    width: 71%;
-    height: 400px;
-    position: absolute;
-    margin-top: 20px;
-    top: -19px;
-    left: 320px;
+    height: 100%;
     overflow: hidden;
     background-color: var(--light);
-    border-radius: 10px;
-    border: 1px solid var(--secondary);
+    border-radius: 5px;
+    padding: 0 !important;
 }
 
-.carousel img{
-    
-    object-fit: fill;
 
-}

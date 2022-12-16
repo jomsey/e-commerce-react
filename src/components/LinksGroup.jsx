@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 import "./LinksGroup.css";
 import Icon from "../ui/Icon";
@@ -10,7 +9,7 @@ function LinksGroup({ title, links, icons }) {
       {links && (
         <ul>
           {links.map((link) => (
-            <li key={title}>{link.name}</li>
+            <li key={link.name}>{link.name}</li>
           ))}
         </ul>
       )}

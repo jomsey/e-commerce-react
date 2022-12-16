@@ -2,12 +2,10 @@
     width: 90%;
     height: auto;
     padding: 0 64px;
-    margin: 32px 0;
+    margin: 32px auto;
     background-color: var(--light);
-    left: 50%;
-    transform: translateX(-50%);
     padding: 16px 0 32px 0;
-    border-radius: 10px;
+    border-radius: 5px;
     overflow: hidden;
 }
 
@@ -22,7 +20,7 @@
 }
 
 .collection .collection-top .title {
-    color: coral;
+    color: var(--primary);
     margin-bottom: 16px;
 }
 
@@ -33,7 +31,7 @@
 }
 
 .collection .collection-top h4 {
-    transition: all 0.5s ease;
+    transition: all 0.3s ease;
     cursor: pointer;
 }
 

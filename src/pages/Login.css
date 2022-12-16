@@ -133,3 +133,16 @@
     transform: translateY(-50%);
     color: antiquewhite;
 }
+
+.form-error{
+    color: rgb(247, 108, 108);
+    position: absolute;
+    bottom: -18px;
+    left: 0;
+}
+
+.form-detail-error{
+    color: rgb(247, 108, 108);
+    position: absolute;
+    top:90px;
+}

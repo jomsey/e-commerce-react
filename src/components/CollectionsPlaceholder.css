@@ -1,0 +1,11 @@
+
+.collection-placeholder .title,.collection-placeholder .collection-link{
+    width: 100px;
+    height: 20px;
+    border-radius: 5px;
+    margin: 4px;
+}
+
+.collection-placeholder .title{
+    width: 200px;
+}

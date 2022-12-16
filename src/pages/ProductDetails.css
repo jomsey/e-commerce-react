@@ -4,10 +4,7 @@
 
 .product-details-page .details .image {
     width: 50%;
-    min-width: 400px;
-    max-height: 420px;
 }
-
 .image img {
     object-fit: contain;
 }

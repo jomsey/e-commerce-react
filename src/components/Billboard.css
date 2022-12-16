@@ -7,5 +7,5 @@
     background-color: var(--light);
     left: 50%;
     transform: translateX(-50%);
-    border-radius: 10px;
+    border-radius: 5px;
 }

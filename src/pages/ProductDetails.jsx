@@ -1,29 +1,57 @@
 import "./ProductDetails.css";
 import RatingRack from "./../ui/RatingRack";
 import Collection from "../components/Collection";
-import { products } from "./../utils/sample_products";
-import getProduct from "./../utils/single_product";
 import TopBar from "../components/TopBar";
-import { useContext } from 'react';
+import { useContext,useState,useEffect } from 'react';
 import { ShopContext } from "../shop-context/ShopState";
 import {useParams} from "react-router-dom"
+import { toast} from 'react-toastify';
+import cartService from "../services/cartService";
+import productsService from '../services/productsService';
+
 
 const ProductDetails = () => {
-  const {cartProducts,setCartProducts}= useContext(ShopContext)
-  const {productName}= useParams()
-  const [product]=getProduct(productName)
+  const {cartProducts,setCartProducts,products}= useContext(ShopContext)
+  const {id}= useParams()
+  const [product,setProduct] = useState({})
+  useEffect(()=>{
+    async function getProduct(){
+      
+      try {
+        const {data} = await productsService.getProduct(id)
+        setProduct(data)
+      } catch (error) {}
+    }
+   getProduct()
+
+  },[])
  
 
-  const AddProductToCart = (product) => {
-     setCartProducts([...new Set([...cartProducts,product])])
+  const AddProductToCart = async (product) => {
+    const cartId = localStorage.getItem("cartId")
+
+    toast("Item added to cart !");
+    setCartProducts([product,...cartProducts])
+        
+        if (cartId === null){
+             try {
+               const response = await cartService.createCart()
+               localStorage.setItem("cartId",response.data.cart_uuid)
+              } catch (error) {}
+            }
+            
+            try {
+              await cartService.addToCart({"product":product.id},cartId)
+             
+        } catch (error) {}
   };
 
   const AddProductToWishList = (product) => {
     console.log("added to wishlist");
+    toast("Item added to wishlist !");
   };
-
-  
-
+console.log(product)
+ 
   return (
     <>
       <TopBar showToggler={true} />
@@ -32,13 +60,13 @@ const ProductDetails = () => {
         <div className="details">
           <div className="image">
             <img
-              src={product.image}
+              src={product.image_url}
               alt=""
             />
           </div>
 
           <div className="info">
-            <small>Kitchen</small>
+            <small>category</small>
             <h3 className="product-name">
             {product.name}
             </h3>
@@ -47,19 +75,11 @@ const ProductDetails = () => {
                 <span>{product.discount}%</span>
                 <br />
                 <strike> {product.price} KES</strike>
-              </small>{product.price-((product.discount/100)*product.price)}
+              </small>{product.discounted_price}
             KES
             </h4>
             <p className="description">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
-              quod deleniti veniam sequi quis ex optio dolorum nobis ad
-              incidunt, itaque necessitatibus, ut libero pariatur? Iste natus,
-              animi voluptas deleniti sint accusantium tempora fugiat? Non ullam
-              magnam nam natus officiis? Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Quasi quod deleniti veniam sequi quis ex optio
-              dolorum nobis ad incidunt, itaque necessitatibus, ut libero
-              pariatur? Iste natus, animi voluptas deleniti sint accusantium
-              tempora fugiat? Non ullam magnam nam natus officiis?
+             {product.description}
             </p>
             <RatingRack rate={4} />
             <div className="buttons">
@@ -78,6 +98,8 @@ const ProductDetails = () => {
         <Collection title={"You May Also Like"} productsList={products} />
         <Collection title={"Previously Viewed"} productsList={products} />
       </div>
+
+     
     </>
   );
 };

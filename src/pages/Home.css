@@ -1,0 +1,16 @@
+.landing{
+    display: relative;
+    width: 90%;
+    margin: auto;
+    display: flex;
+    margin-top: 128px;
+    gap: 32px;
+    height: 400px;
+}
+
+.landing .categories-container {
+    display: flex;
+    left: 0;
+    margin-top: 0;
+}
+

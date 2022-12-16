@@ -3,7 +3,7 @@ import logo from "../assets/logo.jpg";
 import TopBarIcons from "./TopBarIcons";
 import Icon from "../ui/Icon";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 import MenuIcon from "../ui/MenuIcon";
 import PropTypes from "prop-types";
 import ProductCategories from "./ProductCategoryContainer";
@@ -11,6 +11,7 @@ import ProductCategories from "./ProductCategoryContainer";
 function TopBar({ showToggler }) {
   const [displace, setDisplace] = useState(false);
   const [offCanvasVisible, setOffCanvasVisibility] = useState(false);
+ 
 
   const handleScroll = () => {
     window.scrollY < 200 ? setDisplace(true) : setDisplace(false);

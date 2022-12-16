@@ -5,7 +5,7 @@ function Billboard({ items }) {
   return (
     <div className="billboard">
       {items.map((item) => (
-        <BillboardItem image={item.posterImage} />
+        <BillboardItem image={item.posterImage} key={item.id} />
       ))}
     </div>
   );

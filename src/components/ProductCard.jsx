@@ -1,50 +1,77 @@
-import Icon from "../ui/Icon";
 import "./ProductCard.css";
+import Icon from "../ui/Icon";
+import {useContext} from "react"
+import { toast} from 'react-toastify';
 import { useNavigate } from "react-router-dom";
+import cartService from "../services/cartService";
+import { ShopContext} from "../shop-context/ShopState"
 
-function ProductCard({ image, name, price, discount,onItemAddToCart}) {
+
+function ProductCard({product}) {
   
   const navigate = useNavigate()
+  const {cartProducts,setCartProducts,cartNumber,setCartNumber} = useContext(ShopContext);
 
-  function addProductToWishList(product) {
-    console.log(product, " added to wishList");
+  async function AddItemToCart(product_id){
+    const cartId = localStorage.getItem("cartId")
+
+    toast("Item added to cart !");
+    setCartProducts([product,...cartProducts])
+        
+        if (cartId === null){
+             try {
+               const response = await cartService.createCart()
+               localStorage.setItem("cartId",response.data.cart_uuid)
+              } catch (error) {}
+            }
+            
+            try {
+              await cartService.addToCart({"product":product_id},cartId)
+             
+        } catch (error) {
+            console.log(error)
+        }
+   }
+
+  function addProductToWishList() {
+    console.log( " added to wishList");
   }
+
   
   return (
   
       <div className="product-card">
         <div className="product-image">
-          <img src={image} alt={name} />
+          <img src={product.image_url} alt={product.name} />
         </div>
         <div className="container">
           <span className="product-name">
-            {name.length > 40 ? `${name.slice(0, 40)}...` : name}
+            {product.name.length > 40 ? `${product.name.toLowerCase().slice(0,20)}...` : product.name}
           </span>
 
           <small className="product-price">
             <strong>
-              {discount > 0 && <strike>{price} KES</strike>} {price} KES
+              {product.discount > 0 && <strike>{product.price} KES</strike>} {product.discounted_price} KES
             </strong>
           </small>
 
           <div className="buttons">
-            <span onClick={()=>navigate(`/products/${name}`)
-} className="detail-btn">DETAILS</span>
+            <span onClick={()=>navigate(`/products/${product.id}`)} className="detail-btn">DETAILS</span>
             <div className="add-btns">
               <Icon
                 extra={"wish-icon"}
                 iconName={"heart"}
-                onIconClick={() => addProductToWishList(name)}
+                onIconClick={() => addProductToWishList()}
               />
               <Icon
                 extra={"cart-icon"}
                 iconName={"shopping-cart"}
-                onIconClick={onItemAddToCart}
+                onIconClick={()=>AddItemToCart(product.id)}
               />
             </div>
           </div>
         </div>
-        {discount > 0 && <span className="product-discount">-{discount}%</span>}
+        {product.discount > 0 && <span className="product-discount">-{product.discount}%</span>}
 
       </div>
    
