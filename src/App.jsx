@@ -1,40 +1,50 @@
-import Footer from "./components/Footer";
-import ProductDetails from "./pages/ProductDetails";
-import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import CartDetails from "./pages/CartDetails";
 import Login from "./pages/Login";
-import NotFound from "./pages/NotFound";
-import UserProfile from "./pages/UserProfile";
-import ProductsList from "./pages/ProductsList";
-import { ShopContext} from "./shop-context/ShopState"
-import cartService from "./services/cartService";
-import CheckOut from "./pages/Checkout";
-import { toast, ToastContainer } from 'react-toastify';
 import jwtDecode from "jwt-decode"
+import CheckOut from "./pages/Checkout";
+import NotFound from "./pages/NotFound";
 import {useState,useEffect} from"react"
+import Footer from "./components/Footer";
+import CartDetails from "./pages/CartDetails";
+import UserProfile from "./pages/UserProfile";
 import "react-toastify/dist/ReactToastify.css";
-import getCollections from "./services/collectionsService";
+import PrivateRoute from "./tools/PrivateRoute";
+import {ToastContainer } from 'react-toastify';
+import ProductsList from "./pages/ProductsList";
+import { Routes, Route } from "react-router-dom";
+import cartService from "./services/cartService";
+import ProductDetails from "./pages/ProductDetails";
+import { ShopContext} from "./shop-context/ShopState"
 import productsService from './services/productsService';
-
+import getCollections from "./services/collectionsService";
+import UserAuthenticated from "./tools/UserAuthenticated";
+import useToken from "./customHooks/useToken";
+import CreateAccount from "./pages/CreateAccount";
 
 
 function App() {
-  const [collections,setCollections] = useState([])
-  const [cartNumber,setCartNumber] =  useState(0)
+  const {token,setToken}=useToken()
   const [products,setProducts] = useState([])
-  const [cartProducts,setCartProducts] = useState([])
-  const [showOrderProducts,setShowOrderProducts] = useState(false)
-  const [user,setUser]=useState({username:"",authenticated:false})
-  const jwt = localStorage.getItem("token")
   const cartId = localStorage.getItem("cartId")
+  const [cartNumber,setCartNumber] =  useState(0)
+  const [collections,setCollections] = useState([])
+  const [cartProducts,setCartProducts] = useState([])
+  const [productsCount,setProductsCount] = useState(0)
+  const [showOrderProducts,setShowOrderProducts] = useState(false)
+  const [productsResultsName,setProductsResultsName] = useState("")
+  const [user,setUser]=useState({username:null,is_authenticated:false})
+  const [searchQuery,setSearchQuery] = useState("")
+  const [priceRange,setPriceRange]= useState({})
 
+  
+ 
   const getCartProducts = async ()=>{
     try {
      if (cartId !== null) {
        const response = await cartService.getCartProducts(cartId)
        const{results}=response.data
        setCartProducts(results)
+
      }
     } catch (error) {}
    }
@@ -52,46 +62,77 @@ function App() {
    const getSiteProducts = async() => {
     try {
       const  response = await productsService.getProducts()
-      const{results}=response.data
+      const{results,count}=response.data
       setProducts(results)
+      setProductsResultsName("all")
+      setProductsCount(prev=>prev=count)
   } catch (error) {}
   
    }
+ useEffect(()=>{
+   try {
+     const {user_id,exp:tokenExpiryDate} = jwtDecode(token)
+     if(tokenExpiryDate<Date.now()){
+       setUser(prev=>({...prev,username:user_id,is_authenticated:true}))
+     }
+     else{
+      setUser(prev=>({...prev,username:null,is_authenticated:false}))
+     }
+  
+  
+   } catch (error) {
+    setUser(prev=>({...prev,username:null,is_authenticated:false}))
+   }
+
+ },[])
   
   useEffect(() => {
-    try {
-      const {user_id} = jwtDecode(jwt)
-      setUser({username:user_id,authenticated:true})
-    } catch (error) {}
-  
     getCartProducts()
-    setCartNumber(cartProducts.length)
+    setCartNumber(prev=>(prev=cartProducts.length))
     getProductCollections()
     getSiteProducts()
 
   },[cartProducts.length]);
  
+
   return (
     <div className="App">
-      <ShopContext.Provider value={{cartNumber,setCartNumber,
-                                    user,setUser,cartProducts,
-                                     setCartProducts,showOrderProducts,
+      <ShopContext.Provider value={{
+                                     setProductsCount,
+                                     priceRange,setPriceRange,
+                                     user,setUser,cartProducts,
+                                     searchQuery,setSearchQuery,
                                      setShowOrderProducts,collections,
-                                     setCollections,products,setProducts,cartId}}>
+                                     setCartProducts,showOrderProducts,
+                                     productsCount,cartNumber,setCartNumber,
+                                     setCollections,products,setProducts,cartId,
+                                     productsResultsName,setProductsResultsName,
+                                    }}>
    
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/products/:id" element={<ProductDetails />} />
-        <Route path="/cart" element={<CartDetails />} />
-        <Route path="/auth/login" element={<Login />} />
-        <Route path="/profile" element={<UserProfile />} />
-        <Route path="/products" element={<ProductsList/>}/>
-        <Route path="/checkout"  element={<CheckOut/>}/>
-        <Route path="*" element={<NotFound />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/products/:id" element={<ProductDetails />} />
+          <Route path="/cart" element={<CartDetails />} />
+          <Route path="/products" element={<ProductsList/>}/>
+          <Route path="/checkout"  element={<CheckOut/>}/>
+          <Route path="*" element={<NotFound />} />
+          <Route path="/auth/login" 
+              element={<UserAuthenticated user={user}>
+                          <Login />
+                      </UserAuthenticated>} />
+          <Route path="/profile"
+               element={<PrivateRoute user={user}>
+                           <UserProfile/>
+                        </PrivateRoute>} />
+          <Route path="/auth/register"
+               element ={<UserAuthenticated user={user}>
+                            <CreateAccount/>
+                        </UserAuthenticated>}/>
       </Routes>
+      
       <Footer />
       </ShopContext.Provider>
-      <ToastContainer />
+    {/* <ToastContainer /> */}
     
     </div>
   );

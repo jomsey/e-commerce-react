@@ -2,17 +2,10 @@ import APIService from "./apiService";
 import {apiEndPoint} from "../config.json"
 
 
-function getToken(){
-    return localStorage.getItem("token")
+const getToken=data=>APIService.post(`${apiEndPoint}/token/`,data)
+const registerUser=data=>console.log("registering")
+
+export default {
+    getToken,
+    registerUser
 }
-
-function loginUser(){
-
-}
-
-function logoutUser(){
-    
-}
-
-
-export default {getToken}

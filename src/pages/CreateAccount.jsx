@@ -4,35 +4,40 @@ import TopBar from './../components/TopBar';
 import {useState,useEffect,useContext} from "react"
 import APIService from "../services/apiService";
 import {apiEndPoint} from "../config.json"
-import { useNavigate,Link} from "react-router-dom";
+import { useNavigate ,Link} from "react-router-dom";
 import { ShopContext} from "../shop-context/ShopState"
 import authService from "../services/authService";
-import useToken from "../customHooks/useToken";
-import jwtDecode from "jwt-decode"
 
 
-export default function Login() {
-   const {setUser} = useContext(ShopContext)
-   const [formData,setFormData] = useState({})
-   const [formErrors,setFormErrors] = useState({})
-   const {setToken,token} = useToken()
-   const navigate = useNavigate()
 
-   
+
+export default function CreateAccount() {
+  const [formData,setFormData] = useState({})
+  const [formErrors,setFormErrors] = useState({})
+  const {setUser} = useContext(ShopContext)
+
+  
+  const navigate = useNavigate()
+
   const HandleFormSubmit=async(e)=>{
     e.preventDefault()
     try { 
-         const response= await authService.getToken(formData);
-         const {access} = response.data
-         setToken(access)
-         const {user_id} = jwtDecode(access)
-         setUser(user=>({...user,username:user_id,is_authenticated:"user"}))
+         const response= await authService.registerUser(formData);
+         const {access:jwt} = response.data
+         localStorage.setItem("token",jwt)
+         try {
+          console.log(jwtDecode(jwt))
+          const {user_id} = jwtDecode(jwt)
+          setUser({username:user_id,authenticated:true})
+        } catch (error) {}
+        
          navigate("/profile")
-              
+   
       } catch (error) {
-         if (error.response?.status==401 ||error.response?.status==400){
+        if (error.response?.status==401 ||error.response?.status==400){
            setFormErrors(error.response.data)
          }
+         else setFormErrors({info:"Oops something is wrong !"})
       }
     
      
@@ -44,12 +49,12 @@ export default function Login() {
     setFormData(data=>({...data,[name]:value}))
   }
 
-  
+
   return (
     <><TopBar showToggler={false}/>
-    <div className="auth login">
-      <div className="auth-container">
-        <h1>Sign In</h1>
+    <div className="register auth">
+      <div className="auth-container ">
+        <h1>Sign Up</h1>
         <div className="overlay"></div>
         {formErrors.detail && <small className="form-detail-error">{formErrors.detail}</small>}
         {formErrors.info && <small className="form-detail-error">{formErrors.info}</small>}
@@ -65,6 +70,17 @@ export default function Login() {
             />{formErrors.username && <small className="form-error">{formErrors.username}</small>}
           </div>
           <div className="input-group">
+            <Icon iconName={"envelope"} extra={"input-icon"} />
+            <input type="email"
+              placeholder="email"
+              name="email" 
+              onChange={handleChange}
+              />
+
+             {formErrors.email && <small className="form-error">{formErrors.email}</small>}
+
+          </div>
+          <div className="input-group">
             <Icon iconName={"lock"} extra={"input-icon"} />
             <input type="password"
               placeholder="password"
@@ -76,14 +92,14 @@ export default function Login() {
 
           </div>
           <div className="input-group flex-box">
-            <div className="remember-me">
+          <div className="remember-me">
               <input type="checkbox" /> <small>Remember me</small>
             </div>
-            <small>No account ? Signup <Link to="/auth/register">Here</Link></small>
+            <small>Have account ? Login <Link to="/auth/login">Here</Link></small>
           </div>
-          <button type="submit">LOGIN</button>
+          <button type="submit">SIGN UP</button>
           <div className="auth-options">
-            <p>or login with</p>
+            <p>or sign up with</p>
             <div className="auth-icons">
               <Icon iconName={"facebook"} extra={"fa-brands facebook"} />
               <Icon iconName={"google"} extra={"fa-brands google"} />

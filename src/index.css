@@ -16,6 +16,7 @@
     --lightgray: rgb(216, 216, 216);
     --badge: rgb(255, 0, 179);
     --bg-place:rgb(245, 241, 241);
+    --error:rgb(212, 37, 37);
 }
 
 body {

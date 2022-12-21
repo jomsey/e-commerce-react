@@ -1,7 +1,7 @@
         .group {
             margin: auto;
-            margin-top: 120px;
-            margin-bottom: 60px;
+            margin-top: 135px;
+            margin-bottom:0;
             display: flex;
             gap: 32px;
             width: 90%;
@@ -24,15 +24,26 @@
             align-items: center;
             border-radius: 5px;
         }
-        .products .placeholder-filler h3{
+        
+        .products .placeholder-filler h3 {
             color: var(--primary);
             font-weight: 400;
-
         }
         
-        .products .placeholder-filler img{
+        .products .placeholder-filler img {
             width: 250px;
             height: auto;
         }
-
-       
+        
+        .product-pagination {
+            width: 90%;
+            margin: auto;
+            position: relative;
+            height: 37px;
+        }
+        
+        .product-pagination .pagination {
+            position: absolute;
+            right: 0;
+            margin: 16px 0;
+        }

@@ -6,6 +6,7 @@ import cartService from "../services/cartService"
 
 function CartItem({product,onCartItemRemove,item_count,cartId,product_uuid}) {
   let [count, setCount] = useState(item_count);
+  const  formatToCurrencyFormat= Intl.NumberFormat()
 
   const HandleCountIncrease=()=>{
         count<10?setCount(count+1):setCount(10);
@@ -34,7 +35,7 @@ function CartItem({product,onCartItemRemove,item_count,cartId,product_uuid}) {
                 onCountDecrease={HandleCountDecrease}/>
 
       <div className="cart-group">
-           <h5 className="price">Price<br/><span> {(product.price)*count}</span></h5>
+           <h5 className="price">Price<br/><span> { formatToCurrencyFormat.format((product.price)*count)}</span></h5>
       </div>
     </div>
   );

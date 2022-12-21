@@ -1,0 +1,28 @@
+.pagination {
+    background-color: var(--light);
+    display: flex;
+    height: 35px;
+    border-radius: 5px;
+    overflow: hidden;
+    width: fit-content;
+}
+
+.pagination .page {
+    display: block;
+    border-right: 1px solid var(--primary);
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.pagination .page:hover {
+    color: var(--primary);
+}
+
+.pagination .active {
+    background-color: var(--primary);
+    color: var(--light);
+}

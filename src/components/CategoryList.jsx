@@ -7,18 +7,18 @@ import { Link } from "react-router-dom";
 
 function HandleItemClick(item) {
   // redirect to category page
-  console.log(item);
+  
 }
 
 function HandleItemMouseHover(item) {
-  console.log(item);
+ 
 }
 
 function CategoryList() {
   return (
     <div className="categories">
       {categories.map((category) => (
-        <Link to="/products">
+        <Link to="/products" key={category.name}>
           <ListItem
               key={category.name}
               icon={category.icon}

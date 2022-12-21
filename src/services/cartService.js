@@ -2,26 +2,12 @@ import APIService from "./apiService";
 import {apiEndPoint} from "../config.json"
 
 
-function createCart(){
-    return APIService.post(`${apiEndPoint}/cart/`);
-}
-
-function getCartProducts(cartId){
-    return  APIService.get(`${apiEndPoint}/cart/${cartId}/products/`)
-}
-
-function addToCart(data,cartId){
-    return  APIService.post(`${apiEndPoint}/cart/${cartId}/products/`,data)
-}
-
-function updateCart(cartId,productId,data){
-    return  APIService.patch(`${apiEndPoint}/cart/${cartId}/products/${productId}/`,data)
-}
-
-function removeFromCart(cartId,product_uuid){
-    return  APIService.remove(`${apiEndPoint}/cart/${cartId}/products/${product_uuid}/`)
-}
-
+const cartEndPoint=`${apiEndPoint}/cart/`
+const createCart=()=>APIService.post(cartEndPoint);
+const getCartProducts=cartId=>APIService.get(`${cartEndPoint}${cartId}/products/`)
+const addToCart=(data,cartId)=>APIService.post(`${cartEndPoint}${cartId}/products/`,data)
+const updateCart=(cartId,productId,data)=>APIService.patch(`${cartEndPoint}${cartId}/products/${productId}/`,data)
+const removeFromCart = (cartId,product_uuid) =>APIService.remove(`${cartEndPoint}${cartId}/products/${product_uuid}/`)
 
 export default {addToCart,
                 removeFromCart,

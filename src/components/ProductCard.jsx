@@ -10,6 +10,7 @@ import { ShopContext} from "../shop-context/ShopState"
 function ProductCard({product}) {
   
   const navigate = useNavigate()
+  const  formatToCurrencyFormat= Intl.NumberFormat()
   const {cartProducts,setCartProducts,cartNumber,setCartNumber} = useContext(ShopContext);
 
   async function AddItemToCart(product_id){
@@ -51,7 +52,7 @@ function ProductCard({product}) {
 
           <small className="product-price">
             <strong>
-              {product.discount > 0 && <strike>{product.price} KES</strike>} {product.discounted_price} KES
+              {product.discount > 0 && <strike>{formatToCurrencyFormat.format(product.price)} KES</strike>} {formatToCurrencyFormat.format(product.discounted_price)} KES
             </strong>
           </small>
 

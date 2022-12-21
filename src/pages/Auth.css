@@ -1,23 +1,24 @@
-.login {
+.auth{
     color: var(--light);
     width: 100%;
     height: 100%;
-    padding: 130px 0 32px 0;
-    background-image:linear-gradient(black,transparent);
+    /* padding: 130px 0 32px 0; */
+    /* background-image:linear-gradient(black,transparent); */
     background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+    /* background-size: cover; */
+    width: 400px;
+    margin: 110px auto 32px auto;
 }
 
-.login-container {
+.auth-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 24px;
 }
 
-.overlay {
-    width: 420px;
+/* .overlay {
+    width: 0%;
     height: 70vh;
     position: absolute;
     background-color: black;
@@ -25,15 +26,20 @@
     top: 0;
     border-radius: 10px;
     min-height: 400px;
+} */
+
+.auth a{
+    color: var(--primary);
+    text-decoration: underline;
 }
 
-.login-container form {
+.auth-container form {
     max-width: 360px;
     min-width: 360px;
     min-height: 400px;
 }
 
-.login-container h1 {
+.auth-container h1 {
     z-index: 1;
     margin: 16px;
 }
@@ -43,22 +49,24 @@
     justify-content: space-between;
 }
 
-.login-container form .input-group .remember-me input[type="checkbox"] {
+.auth-container form .input-group .remember-me input[type="checkbox"] {
     width: 20px;
     margin-right: 16px;
+    border: 2px solid var(--primary);
 }
 
-.login-options {
+.auth-options {
     margin-top: 40px;
 }
 
-.login-options p {
+.auth-options p {
     text-align: center;
     font-weight: 300;
+    color: var(--primary);
 }
 
-.login-options p::after,
-.login-options p::before {
+.auth-options p::after,
+.auth-options p::before {
     content: "";
     width: 80px;
     margin: 5px;
@@ -66,40 +74,40 @@
     display: inline-block;
 }
 
-.login-options .login-icons {
+.auth-options .auth-icons {
     display: flex;
     justify-content: center;
     margin-top: 8px;
 }
 
-.login-options .login-icons .fa-brands {
+.auth-options .auth-icons .fa-brands {
     margin: 10px;
     transition: all 0.3s ease;
     font-size: 1.4rem;
 }
 
-.login-options .login-icons .fa-brands:hover {
+.auth-options .auth-icons .fa-brands:hover {
     color: var(--primary);
 }
 
-.login-container form .input-group .remember-me {
+.auth-container form .input-group .remember-me {
     display: flex;
     width: 50%;
 }
 
-.login-container form .input-group,
-.login-container form button {
+.auth-container form .input-group,
+.auth-container form button {
     margin-top: 24px;
 }
 
-.login-container form .input-group input:not(input[type="checkbox"]) {
+.auth-container form .input-group input:not(input[type="checkbox"]) {
     padding: 8px 32px;
     background-color: transparent;
     border: 1px solid var(--light);
     color: var(--light);
 }
 
-.login-container form button {
+.auth-container form button {
     padding: 8px 16px;
     border-radius: 10px;
     border: none;
@@ -111,21 +119,23 @@
     transition: all 0.3s ease;
 }
 
-.login-container form button:hover {
-    background-color: rgb(241, 103, 131);
+.auth-container form button:hover {
+    opacity: .8;
 }
 
-.login-container form .input-group input:focus {
+.auth-container form .input-group input:focus {
     outline: none;
+    border-color: var(--primary) !important;
+
 }
 
-.login-container form .input-group,
-.login-container form .input-group input,
-.login-container form button {
+.auth-container form .input-group,
+.auth-container form .input-group input,
+.auth-container form button {
     width: 100%;
 }
 
-.login-container form .input-group .input-icon {
+.auth-container form .input-group .input-icon {
     position: absolute;
     z-index: 1;
     top: 50%;
@@ -133,16 +143,18 @@
     transform: translateY(-50%);
     color: antiquewhite;
 }
+.form-error,.form-detail-error{
+    color: var(--error);
+    position: absolute;
+}
 
 .form-error{
-    color: rgb(247, 108, 108);
-    position: absolute;
     bottom: -18px;
     left: 0;
+    
 }
 
 .form-detail-error{
-    color: rgb(247, 108, 108);
-    position: absolute;
     top:90px;
 }
+
