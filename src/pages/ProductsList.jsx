@@ -11,13 +11,28 @@ import ProductsContainer from "../components/ProductsContainer";
 
 
 function ProductsList() {
+  
+useEffect(() => {
+  const getSiteProducts = async() => {
+    try {
+      const  response = await productsService.getProducts()
+      const{results,count}=response.data
+      setProducts(results)
+      setProductsResultsName("all")
+      setProductsCount(prev=>prev=count)
+  } catch (error) {}
+  
+   }
+   getSiteProducts()
+}, []);
+ 
   const {products,productsCount,
         setProducts,productsResultsName,
         priceRange,setPriceRange,searchQuery}
          = useContext(ShopContext);
+  const [currentPage,setCurrentPage] = useState(1)
         
   const handlePageChange=async(page)=>{
-    console.log(priceRange)
     setProducts([]) //Simulate products loading page
     const responseObject = productsResultsName === "bySearch"?productsService.getPageSearchResults(page,searchQuery):
                            productsResultsName==="byPrice"?productsService.getPageProductsFilteredByPrice(priceRange.max, priceRange.min,page):
@@ -26,6 +41,7 @@ function ProductsList() {
     const response = await  responseObject
     const{results}=response.data
     setProducts(results)
+    setCurrentPage(page)
    
   }
  
@@ -47,6 +63,7 @@ function ProductsList() {
 
       <div className="product-pagination">
       <Pagination 
+             currentPage={currentPage}
              pageSize={30} 
              itemsCount={productsCount}
              onPageChange={handlePageChange}/>

@@ -1,6 +1,23 @@
+import userService from "../services/userService";
+import {useState,useEffect} from "react"
+import useToken from "../customHooks/useToken";
+import jwtDecode from "jwt-decode"
+
 
 const ProfileSideBar = () => {
+  const [profile,setUserprofile]=useState({});
+  const {token} = useToken()
 
+  const getUserProfile=async()=>{
+    const {user_id} = jwtDecode(token)
+    const response = await userService.getUser(user_id)
+    setUserprofile(response.data)
+  }
+  
+  useEffect(() => {
+  getUserProfile()
+  }, [])
+  
     return (
         <aside>
           <div className="avatar">
@@ -13,25 +30,25 @@ const ProfileSideBar = () => {
             <div className="user-info">
               <div className="info-cluster">
                 <h4>First Name</h4>
-                <small>Muwanguzi</small>
+                <small>{profile.first_name}</small>
               </div>
               <div className="info-cluster">
                 <h4>Last Name</h4>
-                <small> Joseph</small>
+                <small>{profile.last_name}</small>
               </div>
               <div className="info-cluster">
                 <h4>Address</h4>
-                <small> Kampala , Uganda</small>
+                <small>{profile.address}</small>
               </div>
 
               <div className="info-cluster">
                 <h4>Phone</h4>
-                <small> 0754608152</small>
+                <small>{profile.phone_number}</small>
               </div>
 
               <div className="info-cluster">
                 <h4>Email</h4>
-                <small>muwanguzijoseph75@gmail.com</small>
+                <small>{profile.email}</small>
               </div>
             </div>
             

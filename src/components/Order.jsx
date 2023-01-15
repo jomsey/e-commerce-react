@@ -1,4 +1,3 @@
-import React from 'react'
 
 function Order({orderItem,onOrderItemCancel,onViewOrderProducts}) {
   return (
@@ -8,7 +7,7 @@ function Order({orderItem,onOrderItemCancel,onViewOrderProducts}) {
         ID:
         <br />
       </small>
-      #{orderItem.id}
+      #{orderItem.order_id}
     </span>
     <span>
   
@@ -16,7 +15,7 @@ function Order({orderItem,onOrderItemCancel,onViewOrderProducts}) {
         DATE:
         <br />
       </small>
-     {orderItem.date}
+     {new Date(orderItem.date_made).toLocaleDateString()}
     </span>
     <span>
       <small>

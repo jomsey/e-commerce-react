@@ -1,28 +1,28 @@
-import { useState,useContext } from "react";
-import {useNavigate} from "react-router-dom"
-import { ShopContext } from "../shop-context/ShopState";
-import orders from "../utils/orders";
-import Order from "./Order";
 import "./OrderItems.css";
+import Order from "./Order";
+import {useNavigate} from "react-router-dom"
 import OrderProducts from "./OrderProducts";
+import orderSevice from "../services/orderSevice";
+import { useState,useContext,useEffect} from "react";
+import { ShopContext } from "../shop-context/ShopState";
 
 
-const OrderItems = () => {
+const OrderItems = ({orders}) => {
 
   const navigate = useNavigate()
-  const [orderItems,setOrderItems] = useState([...orders])
   const {showOrderProducts,setShowOrderProducts} = useContext(ShopContext)
 
+ 
   const HandleViewOrderProducts=()=>setShowOrderProducts(true);
   const HandleOrderItemCancel=(item)=>setOrderItems(orderItems.filter(orderItem=>orderItem.id !== item.id))
 
   
   return (
     <div className="orders">
-      {orderItems.length>0? orderItems.map(order=>
+      {orders.length>0? orders.map(order=>
               <Order 
                 orderItem={order}
-                key={order.id}  
+                key={order.order_id}  
                 onOrderItemCancel={()=>HandleOrderItemCancel(order)}
                 onViewOrderProducts={HandleViewOrderProducts}
   

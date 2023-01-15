@@ -2,23 +2,33 @@ import React from "react";
 import "./CategoryList.css";
 import { categories } from "./../utils/product_categories";
 import ListItem from "./../ui/ListItem";
-import { Link } from "react-router-dom";
+import productsService from "../services/productsService";
+import { ShopContext } from "../shop-context/ShopState";
+import { useNavigate} from "react-router-dom";
 
-
-function HandleItemClick(item) {
-  // redirect to category page
-  
-}
-
-function HandleItemMouseHover(item) {
- 
-}
 
 function CategoryList() {
+  const {setProducts,setProductsCount,setProductsResultsName,products} = React.useContext(ShopContext)
+  const navigate = useNavigate()
+  
+  const HandleItemClick=async({name})=> {
+    navigate("/products")
+
+    const response  = name==="All products"?await productsService.getProducts():
+                                            await productsService.getCategoryProducts(name);
+    const{results,count}=response.data
+    setProducts(results)
+    setProductsResultsName("category")
+    setProductsCount(count)
+  }
+  
+  function HandleItemMouseHover(item) {
+   
+  }
   return (
     <div className="categories">
       {categories.map((category) => (
-        <Link to="/products" key={category.name}>
+       
           <ListItem
               key={category.name}
               icon={category.icon}
@@ -27,7 +37,7 @@ function CategoryList() {
               onItemClick={() => HandleItemClick(category)}
               onItemMouseOver={() => HandleItemMouseHover(category)}
             />
-          </Link>
+         
       ))}
     </div>
   );

@@ -1,19 +1,21 @@
-import CartItem from "../components/CartItem";
 import "./cartDetails.css";
 import TopBar from "./../components/TopBar";
-import Collection from "./../components/Collection";
-import { useContext } from "react";
-import { ShopContext } from "../shop-context/ShopState";
+import CartItem from "../components/CartItem";
+import { useNavigate } from "react-router-dom";
 import cartService from "../services/cartService"
+import Collection from "./../components/Collection";
+import { useContext,useState,useEffect } from "react";
+import { ShopContext } from "../shop-context/ShopState";
 
 function CartDetails() {
-  
-  const {cartProducts,setCartProducts,products,cartId} = useContext(ShopContext);
+  const navigate  = useNavigate()
+  const  formatToCurrencyFormat= Intl.NumberFormat()
+  const {cartProducts,setCartProducts,products} = useContext(ShopContext);
  
-  
-  const removeCartItem = async (product_uuid) => {
-    setCartProducts(cartProducts.filter(product=>product.product_uuid!==product_uuid))
-    await cartService.removeFromCart(cartId,product_uuid)
+
+  const getTotalPrice = () => {
+    return cartProducts.reduce((total, {product,product_count}) => 
+                                total + (product.price*product_count), 0);
   };
 
  
@@ -24,15 +26,14 @@ function CartDetails() {
         <div className="cart-items">
           <h4>Shopping Cart</h4>
 
-          {cartProducts.length > 0 ? (
+          {
+           cartProducts.length > 0 ? (
             cartProducts.map(({product,product_count,product_uuid}) => ( 
               <CartItem
                 product={product}
                 key={product_uuid}
                 item_count={product_count}
-                cartId={cartId}
                 product_uuid={product_uuid}
-                onCartItemRemove={() => removeCartItem(product_uuid)}
               />
             ))
           ) : (
@@ -50,7 +51,7 @@ function CartDetails() {
 
               <div className="group1">
                 <h5>TOTAL</h5>
-                <small>KES 500</small>
+                <small>KES {formatToCurrencyFormat.format(getTotalPrice())}</small>
               </div>
 
               <div className="group1">
@@ -73,7 +74,7 @@ function CartDetails() {
                 </select>
               </form>
             </div>
-            <button className="checkout-btn">CHECKOUT</button>
+            <button className="checkout-btn" onClick={()=>navigate("/checkout")}>CHECKOUT</button>
           </div>
         )}
       </div>

@@ -24,9 +24,9 @@ export default function Login() {
     try { 
          const response= await authService.getToken(formData);
          const {access} = response.data
-         setToken(access)
          const {user_id} = jwtDecode(access)
          setUser(user=>({...user,username:user_id,is_authenticated:"user"}))
+         setToken(access)
          navigate("/profile")
               
       } catch (error) {

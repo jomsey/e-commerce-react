@@ -8,12 +8,18 @@ import {useParams} from "react-router-dom"
 import { toast} from 'react-toastify';
 import cartService from "../services/cartService";
 import productsService from '../services/productsService';
+import RecentlyViewedProducts from "../components/RecentlyViewedProducts";
 
 
 const ProductDetails = () => {
-  const {cartProducts,setCartProducts,products}= useContext(ShopContext)
   const {id}= useParams()
   const [product,setProduct] = useState({})
+  const  formatToCurrencyFormat= Intl.NumberFormat()
+  const {cartProducts,setCartProducts,products}= useContext(ShopContext)
+  //   parse HTML safely
+  const parser = new DOMParser(); 
+  
+  
   useEffect(()=>{
     async function getProduct(){
       
@@ -50,8 +56,7 @@ const ProductDetails = () => {
     console.log("added to wishlist");
     toast("Item added to wishlist !");
   };
-console.log(product)
- 
+
   return (
     <>
       <TopBar showToggler={true} />
@@ -74,8 +79,8 @@ console.log(product)
               <small>
                 <span>{product.discount}%</span>
                 <br />
-                <strike> {product.price} KES</strike>
-              </small>{product.discounted_price}
+                <strike> {formatToCurrencyFormat.format(product.price)} KES</strike>
+              </small>{formatToCurrencyFormat.format(product.discounted_price)}
             KES
             </h4>
             <p className="description">
@@ -96,7 +101,7 @@ console.log(product)
           </div>
         </div>
         <Collection title={"You May Also Like"} productsList={products} />
-        <Collection title={"Previously Viewed"} productsList={products} />
+        <RecentlyViewedProducts/>
       </div>
 
      

@@ -1,6 +1,6 @@
 import "./ProductCard.css";
 import Icon from "../ui/Icon";
-import {useContext} from "react"
+import {useContext,useState,useEffect} from "react"
 import { toast} from 'react-toastify';
 import { useNavigate } from "react-router-dom";
 import cartService from "../services/cartService";
@@ -8,15 +8,20 @@ import { ShopContext} from "../shop-context/ShopState"
 
 
 function ProductCard({product}) {
-  
-  const navigate = useNavigate()
-  const  formatToCurrencyFormat= Intl.NumberFormat()
-  const {cartProducts,setCartProducts,cartNumber,setCartNumber} = useContext(ShopContext);
+    const navigate = useNavigate()
+    const  formatToCurrencyFormat= Intl.NumberFormat()
+    const {cartProducts,setCartProducts,cartNumber,setCartNumber} = useContext(ShopContext);
+     
+    const handleProductDetailClick=(product,product_id)=>{
+      navigate(`/products/${product_id}`)
+      saveViewedProduct(product_id)
+    }
 
-  async function AddItemToCart(product_id){
+
+    const AddItemToCart = async(product_id)=>{
     const cartId = localStorage.getItem("cartId")
 
-    toast("Item added to cart !");
+    // toast("Item added to cart !");
     setCartProducts([product,...cartProducts])
         
         if (cartId === null){
@@ -57,7 +62,7 @@ function ProductCard({product}) {
           </small>
 
           <div className="buttons">
-            <span onClick={()=>navigate(`/products/${product.id}`)} className="detail-btn">DETAILS</span>
+            <span onClick={()=>handleProductDetailClick(product,product.id)} className="detail-btn">DETAILS</span>
             <div className="add-btns">
               <Icon
                 extra={"wish-icon"}
@@ -77,6 +82,23 @@ function ProductCard({product}) {
       </div>
    
   );
+}
+
+
+function saveViewedProduct(product,product_id) {
+  // Get the previously viewed products from local storage
+  let previousViewedProducts = localStorage.getItem('previouslyViewedProducts');
+
+  // If there are no previously viewed products, create an empty array
+  // Otherwise, parse the previously viewed products from JSON
+  previousViewedProducts === null?previousViewedProducts = []:previousViewedProducts = JSON.parse(previousViewedProducts);
+  
+
+  // Add the new product to the array of previously viewed products
+  if (!previousViewedProducts.includes(product))previousViewedProducts.unshift(product);
+
+  // Save the updated array of previously viewed products to local storage
+  localStorage.setItem('previouslyViewedProducts', JSON.stringify(previousViewedProducts.slice(0,6)));
 }
 
 export default ProductCard;

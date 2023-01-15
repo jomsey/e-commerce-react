@@ -23,21 +23,11 @@ export default function CreateAccount() {
     e.preventDefault()
     try { 
          const response= await authService.registerUser(formData);
-         const {access:jwt} = response.data
-         localStorage.setItem("token",jwt)
-         try {
-          console.log(jwtDecode(jwt))
-          const {user_id} = jwtDecode(jwt)
-          setUser({username:user_id,authenticated:true})
-        } catch (error) {}
-        
-         navigate("/profile")
-   
-      } catch (error) {
+      
+    }catch (error) {
         if (error.response?.status==401 ||error.response?.status==400){
            setFormErrors(error.response.data)
          }
-         else setFormErrors({info:"Oops something is wrong !"})
       }
     
      
@@ -56,7 +46,7 @@ export default function CreateAccount() {
       <div className="auth-container ">
         <h1>Sign Up</h1>
         <div className="overlay"></div>
-        {formErrors.detail && <small className="form-detail-error">{formErrors.detail}</small>}
+        {formErrors.error && <small className="form-detail-error">{formErrors.error}</small>}
         {formErrors.info && <small className="form-detail-error">{formErrors.info}</small>}
         <form method="post" onSubmit={HandleFormSubmit}>
           <div className="input-group">
@@ -81,6 +71,17 @@ export default function CreateAccount() {
 
           </div>
           <div className="input-group">
+            <Icon iconName={"phone"} extra={"input-icon"} />
+            <input type="phone"
+              placeholder="phone"
+              name="phone_number" 
+              onChange={handleChange}
+              />
+
+             {formErrors.phone_number && <small className="form-error">{formErrors.phone_number}</small>}
+
+          </div>
+          <div className="input-group">
             <Icon iconName={"lock"} extra={"input-icon"} />
             <input type="password"
               placeholder="password"
@@ -89,6 +90,18 @@ export default function CreateAccount() {
               />
 
              {formErrors.password && <small className="form-error">{formErrors.password}</small>}
+
+          </div>
+
+          <div className="input-group">
+            <Icon iconName={"lock"} extra={"input-icon"} />
+            <input type="password"
+              placeholder="comfirm password"
+              name="password2" 
+              onChange={handleChange}
+              />
+
+             {formErrors.password2 && <small className="form-error">{formErrors.password2}</small>}
 
           </div>
           <div className="input-group flex-box">

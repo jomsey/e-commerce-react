@@ -9,6 +9,7 @@ const addToCart=(data,cartId)=>APIService.post(`${cartEndPoint}${cartId}/product
 const updateCart=(cartId,productId,data)=>APIService.patch(`${cartEndPoint}${cartId}/products/${productId}/`,data)
 const removeFromCart = (cartId,product_uuid) =>APIService.remove(`${cartEndPoint}${cartId}/products/${product_uuid}/`)
 
+
 export default {addToCart,
                 removeFromCart,
                 createCart,
