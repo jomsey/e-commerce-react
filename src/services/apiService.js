@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const instance = axios.create({headers: {"Authorization": `Bearer ${localStorage.getItem("token")}`}});
+const token = localStorage.getItem("token")
+const instance = axios.create({headers: {"Authorization": `Bearer ${token}`}});
+console.log(">>>",localStorage.getItem("token"));
 const get = apiEndPoint =>axios.get(apiEndPoint);
 const post = (apiEndPoint,data)=>axios.post(apiEndPoint,data)
 const remove = (apiEndPoint)=>axios.delete(apiEndPoint)

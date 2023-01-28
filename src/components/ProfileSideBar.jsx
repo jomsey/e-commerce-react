@@ -1,60 +1,56 @@
-import userService from "../services/userService";
+import Icon from "../ui/Icon"
+import UserInfo from "./UserInfo";
+import jwtDecode from "jwt-decode"
+import EditProfile from "./EditProfile";
 import {useState,useEffect} from "react"
 import useToken from "../customHooks/useToken";
-import jwtDecode from "jwt-decode"
+import userService from "../services/userService";
+
 
 
 const ProfileSideBar = () => {
   const [profile,setUserprofile]=useState({});
   const {token} = useToken()
+  const {email,username,first_name,last_name,phone_number,address} = profile
 
   const getUserProfile=async()=>{
-    const {user_id} = jwtDecode(token)
-    const response = await userService.getUser(user_id)
-    setUserprofile(response.data)
+        const {user_id} = jwtDecode(token)
+        const response = await userService.getUser(user_id)
+        setUserprofile(response.data)
+
   }
-  
+
   useEffect(() => {
-  getUserProfile()
+        getUserProfile()
   }, [])
   
     return (
-        <aside>
+      <>
+      <aside>
           <div className="avatar">
-            <img
-              src="https://i.pcmag.com/imagery/articles/0618BTBt5ZLG4DHKsoHFMex-1..v1657185098.jpg"
-              alt=""
-            />
+              <img
+                src="https://thumbs.dreamstime.com/b/user-profile-line-icon-web-avatar-employee-symbol-sign-illustration-design-isolated-white-background-192379539.jpg"
+                alt=""
+              />
           </div>
           <div className="cluster">
-            <div className="user-info">
-              <div className="info-cluster">
-                <h4>First Name</h4>
-                <small>{profile.first_name}</small>
+              <div className="user-info">
+                      <UserInfo title="First Name" info={first_name}/>
+                      <UserInfo title="Last Name" info={last_name}/>
+                      <UserInfo title="Address" info={address}/>
+                      <UserInfo title="Phone" info={phone_number}/>
+                      <UserInfo title="Email" info={email}/>
               </div>
-              <div className="info-cluster">
-                <h4>Last Name</h4>
-                <small>{profile.last_name}</small>
-              </div>
-              <div className="info-cluster">
-                <h4>Address</h4>
-                <small>{profile.address}</small>
-              </div>
-
-              <div className="info-cluster">
-                <h4>Phone</h4>
-                <small>{profile.phone_number}</small>
-              </div>
-
-              <div className="info-cluster">
-                <h4>Email</h4>
-                <small>{profile.email}</small>
-              </div>
-            </div>
-            
           </div>
+         <span className="profile-edit">Edit Profile</span>
         </aside>
+        <EditProfile/>
+    
+    </>
+        
     );
 }
+
+
 
 export default ProfileSideBar;

@@ -14,17 +14,21 @@ import authService from "../services/authService";
 export default function CreateAccount() {
   const [formData,setFormData] = useState({})
   const [formErrors,setFormErrors] = useState({})
+  const [isSigningUp,setIsSigningUp]=useState(false)
   const {setUser} = useContext(ShopContext)
 
   
   const navigate = useNavigate()
 
   const HandleFormSubmit=async(e)=>{
+    setIsSigningUp(true)
     e.preventDefault()
     try { 
          const response= await authService.registerUser(formData);
+         setIsSigningUp(false)
       
     }catch (error) {
+        setIsSigningUp(false)
         if (error.response?.status==401 ||error.response?.status==400){
            setFormErrors(error.response.data)
          }
@@ -110,7 +114,7 @@ export default function CreateAccount() {
             </div>
             <small>Have account ? Login <Link to="/auth/login">Here</Link></small>
           </div>
-          <button type="submit">SIGN UP</button>
+          <button type="submit">SIGN UP {isSigningUp && <Icon iconName={"spinner"} extra={"submit-spinner"} />}</button>
           <div className="auth-options">
             <p>or sign up with</p>
             <div className="auth-icons">

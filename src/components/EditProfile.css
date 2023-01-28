@@ -1,0 +1,29 @@
+.edit-profile-modal{
+    position: fixed;
+    width: 70%;
+    z-index: 10;
+    height: 70vh;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--light);
+    border-radius: 10px;
+    box-shadow: 2px 2px 15px rgb(175, 174, 174);
+    padding: 32px;
+   
+}
+
+.modal-not-visible{
+    visibility: hidden;
+}
+
+.close-modal-btn{
+    font-size: 18px;
+    position: absolute;
+    right: 32px;
+    cursor:pointer;
+}
+
+.close-modal-btn:hover{
+    color: var(--primary);
+}
+

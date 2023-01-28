@@ -1,0 +1,8 @@
+.info-cluster .p-edit-icon{
+    position: absolute;
+    top: 0;
+    right:16px;
+    font-size: 14px;
+    color: var(--tertiary-shade);
+    cursor: pointer;
+   }

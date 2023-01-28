@@ -23,6 +23,8 @@ import UserAuthenticated from "./tools/UserAuthenticated";
 
 
 function App() {
+  console.log("render-app")
+
   const {token,setToken}=useToken()
   const [products,setProducts] = useState([])
   const cartId = localStorage.getItem("cartId")
