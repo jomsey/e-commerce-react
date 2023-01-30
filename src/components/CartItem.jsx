@@ -3,6 +3,7 @@ import Counter from "./Counter";
 import cartService from "../services/cartService"
 import { useContext,useState,useEffect, } from "react";
 import { ShopContext } from "../shop-context/ShopState";
+import Spinner  from "./Spinner"
 
 
 function CartItem({product,item_count,product_uuid}) {
@@ -12,18 +13,14 @@ function CartItem({product,item_count,product_uuid}) {
   const {cartProducts,setCartProducts,products,cartId} = useContext(ShopContext);
 
   const removeCartItem = async (product_uuid) => {
-    setProductRemoved(true)
-    await cartService.removeFromCart(cartId,product_uuid)
-    setCartProducts(cartProducts.filter(product=>product.product_uuid!==product_uuid))
+        setProductRemoved(true)
+        const {status} = await cartService.removeFromCart(cartId,product_uuid)
+        if(status === 204)setCartProducts(cartProducts.filter(product=>product.product_uuid!==product_uuid));
   };
-  function name() {
-    
-  }
+ 
   const HandleCountIncrease=()=>{
         cartService.updateCart(cartId,product_uuid,{product_count:count})
         count<10?setCount(count+1):setCount(10);
-
-      name()
   }
 
   const  HandleCountDecrease=()=>{
@@ -40,7 +37,7 @@ function CartItem({product,item_count,product_uuid}) {
 
        <div className="cart-group">
            <h5>{(product.name).length > 25?`${product.name.slice(0,25)} ...`:product.name}</h5>
-           <button onClick={()=>removeCartItem(product_uuid)}>{productRemove?"Removing Item...":"Remove From Cart"}</button>
+           <button onClick={()=>removeCartItem(product_uuid)}>{productRemove?<>Removing  <Spinner/></>:"Remove From Cart"}</button>
        </div>
 
        <Counter count={count} 

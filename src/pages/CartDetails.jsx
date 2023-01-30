@@ -7,6 +7,7 @@ import Collection from "./../components/Collection";
 import { useContext,useState,useEffect } from "react";
 import { ShopContext } from "../shop-context/ShopState";
 
+
 function CartDetails() {
   const navigate  = useNavigate()
   const  formatToCurrencyFormat= Intl.NumberFormat()

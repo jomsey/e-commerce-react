@@ -1,5 +1,25 @@
+import { useState,useContext,useEffect} from "react";
+import orderSevice from "../services/orderSevice";
+import { ShopContext } from "../shop-context/ShopState";
+import Spinner from "./Spinner";
 
-function Order({orderItem,onOrderItemCancel,onViewOrderProducts}) {
+function Order({orderItem,onOrderItemCancel,onViewOrderProducts,deleting}) {
+
+  const [isDeleting,setIsDeleting] = useState(false)
+  const {showOrderProducts,setShowOrderProducts} = useContext(ShopContext)
+  
+
+  const  HandleOrderItemCancel= async(order_id)=>{
+    setIsDeleting(true)
+     try{
+      const response = await orderSevice.deleteUserOrder(order_id)
+      if (response.status === 204) {
+        setIsDeleting(false)
+      }
+     }
+     catch(error){}
+}
+
   return (
     <div className="item">
     <span>
@@ -25,7 +45,7 @@ function Order({orderItem,onOrderItemCancel,onViewOrderProducts}) {
      {orderItem.status}
     </span>
     <button onClick={onViewOrderProducts}>View Order Items</button>
-    <button onClick={onOrderItemCancel}>Delete Order</button>
+    <button onClick={()=>HandleOrderItemCancel(orderItem.order_id)}> {isDeleting?<>Deleting <Spinner/></>:"Delete Order"}</button>
   </div>
   )
 }

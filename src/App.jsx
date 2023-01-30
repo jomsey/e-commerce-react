@@ -23,8 +23,6 @@ import UserAuthenticated from "./tools/UserAuthenticated";
 
 
 function App() {
-  console.log("render-app")
-
   const {token,setToken}=useToken()
   const [products,setProducts] = useState([])
   const cartId = localStorage.getItem("cartId")
@@ -39,24 +37,23 @@ function App() {
   const [user,setUser]=useState({username:null,is_authenticated:false})
  
 
-
   const getCartProducts = async ()=>{
-    try {
-     if (cartId !== null) {
-       const response = await cartService.getCartProducts(cartId)
-       const{results}=response.data
-       setCartProducts(results)
+        try {
+        if (cartId !== null) {
+          const response = await cartService.getCartProducts(cartId)
+          const{results}=response.data
+          setCartProducts(results)
 
-     }
-    } catch (error) {}
+        }
+        } catch (error) {}
    }
 
    const getProductCollections = async()=>{
-    try {
-        const  response = await getCollections()
-        const{results}=response.data
-        setCollections(results)
-    } catch (error) {}
+          try {
+              const  response = await getCollections()
+              const{results}=response.data
+              setCollections(results)
+          } catch (error) {}
     
    }
    

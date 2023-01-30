@@ -159,18 +159,7 @@
     top:90px;
 }
 
-.submit-spinner{
+.auth .spinner{
     margin-left: 32px;
-    animation:spin 2s linear infinite;
-    animation-direction: reverse;
 }
 
-@keyframes spin {
-    0%{
-        transform: rotate(0deg);
-    }
-    0%{
-        transform: rotate(360deg);
-    }
-    
-}

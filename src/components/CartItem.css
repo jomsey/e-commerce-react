@@ -20,6 +20,10 @@
     color: var(--primary);
     cursor: pointer;
     width: 200px;
+   
+}
+.cart-group button .spinner{
+    margin-left: 16px;
 }
 
 .cart-item .item-image {

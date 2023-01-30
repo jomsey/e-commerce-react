@@ -64,13 +64,17 @@ useEffect(() => {
         }
       </div>
 
-      <div className="product-pagination">
-              <Pagination 
-                      currentPage={currentPage}
-                      pageSize={30} 
-                      itemsCount={productsCount}
-                      onPageChange={handlePageChange}/>
-      </div>
+
+      {
+        !productsLoading && 
+        <div className="product-pagination">
+        <Pagination 
+                currentPage={currentPage}
+                pageSize={30} 
+                itemsCount={productsCount}
+                onPageChange={handlePageChange}/>
+         </div>
+      }
           
       {products.length>0 && <Collection title={"Recently Viewed"} productsList={products}/>}
     </>

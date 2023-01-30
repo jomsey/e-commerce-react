@@ -71,7 +71,7 @@ function ProductCard({product}) {
               />
               <Icon
                 extra={"cart-icon"}
-                iconName={"shopping-cart"}
+                iconName={"cart-plus"}
                 onIconClick={()=>AddItemToCart(product.id)}
               />
             </div>

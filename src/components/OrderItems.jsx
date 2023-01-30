@@ -8,25 +8,35 @@ import { ShopContext } from "../shop-context/ShopState";
 import ComponentIsLoading from "./ComponentIsLoading";
 
 
-const OrderItems = ({orders,loading}) => {
-
+const OrderItems = ({loading}) => {
+  const [orderItems,setOrderItems] = useState([])
+  const [isDeleting,setIsDeleting] = useState(false)
+  const [ordersLoading,setOrdersLoading] = useState(true)
   const navigate = useNavigate()
   const {showOrderProducts,setShowOrderProducts} = useContext(ShopContext)
 
+  const getUserOrders=async()=>{
+    const response = await orderSevice.getUserOrders()
+          setOrderItems(response.data.results)
+          setOrdersLoading(false)
+   } 
+
 
   const HandleViewOrderProducts=()=>setShowOrderProducts(true);
-  const HandleOrderItemCancel=(item)=>setOrderItems(orderItems.filter(orderItem=>orderItem.id !== item.id))
 
-  
+
+  useEffect(() => {
+    getUserOrders()  
+  }, []);
+
   return (
     <div className="orders">
-      {loading
+      {ordersLoading
               ?<ComponentIsLoading/>
-              :(orders.length>0? orders.map(order=>
+              :(orderItems.length>0? orderItems.map(order=>
                 <Order 
                   orderItem={order}
                   key={order.order_id}  
-                  onOrderItemCancel={()=>HandleOrderItemCancel(order)}
                   onViewOrderProducts={HandleViewOrderProducts}
     
                   /> ):

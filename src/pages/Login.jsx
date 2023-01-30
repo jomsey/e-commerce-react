@@ -9,6 +9,7 @@ import authService from "../services/authService";
 import { useNavigate,Link} from "react-router-dom";
 import {useState,useEffect,useContext} from "react"
 import { ShopContext} from "../shop-context/ShopState"
+import Spinner from  './../components/Spinner';
 
 
 
@@ -89,7 +90,7 @@ export default function Login() {
           </div>
           <button type="submit">
               LOGIN  
-              {isLoggingIn && <Icon iconName={"spinner"} extra={"submit-spinner"} />}
+              {isLoggingIn && <Spinner/>}
           </button>
         
           <div className="auth-options">
