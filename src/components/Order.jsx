@@ -1,16 +1,20 @@
 import { useState,useContext,useEffect} from "react";
 import orderSevice from "../services/orderSevice";
 import { ShopContext } from "../shop-context/ShopState";
+import ComfimDeleteDialog from "./ComfirmDeleteDialog";
 import Spinner from "./Spinner";
 
-function Order({orderItem,onOrderItemCancel,onViewOrderProducts,deleting}) {
 
+function Order({orderItem,onViewOrderProducts}) {
+  const [deleteDialogVisible,setDeleteDialogVisible] = useState(false)
+  const [deleteComfirmed,setDeleteComfirmed] = useState(false)
   const [isDeleting,setIsDeleting] = useState(false)
   const {showOrderProducts,setShowOrderProducts} = useContext(ShopContext)
   
+  const handleComfirmCartItemDelete = async (order_id) =>{
+    setDeleteDialogVisible(false);//remove dialog after comfirming
+    setIsDeleting(true);//display deleting loader
 
-  const  HandleOrderItemCancel= async(order_id)=>{
-    setIsDeleting(true)
      try{
       const response = await orderSevice.deleteUserOrder(order_id)
       if (response.status === 204) {
@@ -18,7 +22,10 @@ function Order({orderItem,onOrderItemCancel,onViewOrderProducts,deleting}) {
       }
      }
      catch(error){}
+    
 }
+
+
 
   return (
     <div className="item">
@@ -45,7 +52,13 @@ function Order({orderItem,onOrderItemCancel,onViewOrderProducts,deleting}) {
      {orderItem.status}
     </span>
     <button onClick={onViewOrderProducts}>View Order Items</button>
-    <button onClick={()=>HandleOrderItemCancel(orderItem.order_id)}> {isDeleting?<>Deleting <Spinner/></>:"Delete Order"}</button>
+    <button onClick={()=>!isDeleting && setDeleteDialogVisible(true)}> {isDeleting?<>Deleting <Spinner/></>:"Delete Order"}</button>
+
+    <ComfimDeleteDialog message="Do you really want to cancel this order?" 
+                          title="Cancel Order"
+                          visible={deleteDialogVisible}
+                          onCloseDialog={()=>setDeleteDialogVisible(false)}
+                          onComfirm={()=>handleComfirmCartItemDelete(orderItem.order_id)}/>
   </div>
   )
 }

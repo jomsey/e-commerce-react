@@ -12,7 +12,6 @@ function CartDetails() {
   const navigate  = useNavigate()
   const  formatToCurrencyFormat= Intl.NumberFormat()
   const {cartProducts,setCartProducts,products} = useContext(ShopContext);
- 
 
   const getTotalPrice = () => {
     return cartProducts.reduce((total, {product,product_count}) => 
@@ -80,6 +79,8 @@ function CartDetails() {
         )}
       </div>
       {products.length>0 &&  <Collection title={"Recently Viewed"} productsList={products}/>}
+
+
     </>
   );
 }

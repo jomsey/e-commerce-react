@@ -1,17 +1,17 @@
 .cart-details {
     width: 90%;
     background-color: var(--light);
-    left: 50%;
-    margin-top: 130px;
-    margin-bottom: 32px;
-    transform: translateX(-50%);
+    margin:130px auto 32px auto;
     display: flex;
     overflow: hidden;
+    position: unset;
+   
 }
 
 .cart-details .cart-items {
     flex-grow: 3;
     padding: 32px;
+    position: unset;
 }
 
 .cart-details .cart-items .box-top span {
@@ -92,3 +92,4 @@ h4,
 .cart-empty-text{
     color:grey;
 }
+
