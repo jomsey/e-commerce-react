@@ -2,9 +2,8 @@ import "./cartDetails.css";
 import TopBar from "./../components/TopBar";
 import CartItem from "../components/CartItem";
 import { useNavigate } from "react-router-dom";
-import cartService from "../services/cartService"
 import Collection from "./../components/Collection";
-import { useContext,useState,useEffect } from "react";
+import { useContext,useState} from "react";
 import { ShopContext } from "../shop-context/ShopState";
 
 

@@ -19,7 +19,7 @@
    .comfirm-delete button{
        width: 200px;
        padding: 12px 0;
-       background-color: var(--primary);
+       background-color: var(--primary) !important;
        color: #fff;
        border: none;
        display: flex;

@@ -15,6 +15,7 @@ function CartItem({product,item_count,product_uuid}) {
   const  formatToCurrencyFormat= Intl.NumberFormat()
   const  [productRemove,setProductRemoved] = useState(false)
   const {cartProducts,setCartProducts,products,cartId} = useContext(ShopContext);
+  const [updatingItemCount,setUpdatingItemItemCount] = useState(false)
 
   const removeCartItem = () => {
       //display dialog to comfirm item removal from cart
@@ -29,14 +30,32 @@ function CartItem({product,item_count,product_uuid}) {
   }
   
 
-  const HandleCountIncrease=()=>{
-        cartService.updateCart(cartId,product_uuid,{product_count:count})
-        count<10?setCount(count+1):setCount(10);
+  const HandleCountIncrease= async()=>{
+        setUpdatingItemItemCount(true)
+        try {
+            const {status} = await cartService.updateCart(cartId,product_uuid,{product_count:count})
+            if (status === 200){
+                setUpdatingItemItemCount(false)
+                count<10?setCount(count+1):setCount(10);
+            }
+            setUpdatingItemItemCount(false)
+        } catch (error) {
+          setUpdatingItemItemCount(false)
+        }
   }
 
-  const  HandleCountDecrease=()=>{
-         cartService.updateCart(cartId,product_uuid,{product_count:count})
-         count>1?setCount(count-1):setCount(1);
+  const  HandleCountDecrease=async()=>{
+         setUpdatingItemItemCount(true)
+         try {
+              const {status} = await cartService.updateCart(cartId,product_uuid,{product_count:count})
+              if (status === 200){
+                  setUpdatingItemItemCount(false)
+                  count>1?setCount(count-1):setCount(1);
+              }
+              setUpdatingItemItemCount(false)
+         } catch (error) {
+           setUpdatingItemItemCount(false)
+         }
   }
 
 
@@ -49,12 +68,14 @@ function CartItem({product,item_count,product_uuid}) {
 
        <div className="cart-group">
            <h5>{(product.name).length > 25?`${product.name.slice(0,25)} ...`:product.name}</h5>
-           <button onClick={()=>removeCartItem(product_uuid)}>{productRemove?<>Removing  <Spinner/></>:"Remove From Cart"}</button>
+           <button onClick={removeCartItem}>{productRemove?<>Removing  <Spinner/></>:"Remove From Cart"}</button>
        </div>
 
        <Counter count={count} 
                 onCountIncrease={HandleCountIncrease} 
-                onCountDecrease={HandleCountDecrease}/>
+                onCountDecrease={HandleCountDecrease}
+                updating={updatingItemCount}
+                />
 
       <div className="cart-group">
            <h5 className="price">Price<br/><span> { formatToCurrencyFormat.format((product.discounted_price)*count)}</span></h5>

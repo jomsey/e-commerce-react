@@ -3,12 +3,15 @@
     display: flex;
     align-items: center;
     margin-top:24px;
+    gap: 5px;
+    width: 100px;
+    
 }
 
 .counter .view {
     border: 1px solid var(--lightgray);
     padding: 5px 10px;
-    margin: 0 16px;
+    
 }
 
 .count-icon {
@@ -17,8 +20,12 @@
     text-align: center;
     cursor:pointer;
 }
+ .fa .fa-plus{
+    border: 3px solid red !important;
+}
 
 .count-icon:hover {
     box-shadow: 0 0 0 1px var(--primary);
     color:var(--primary)
 }
+

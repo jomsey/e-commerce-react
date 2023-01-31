@@ -1,7 +1,8 @@
 import Icon from "./../ui/Icon";
 import "./Counter.css";
+import Spinner from "./Spinner"
 
-function Counter({count,onCountIncrease,onCountDecrease}) {
+function Counter({count,onCountIncrease,onCountDecrease,updating}) {
   
   return (
     <div className="counter">
@@ -12,8 +13,13 @@ function Counter({count,onCountIncrease,onCountDecrease}) {
         onIconClick={onCountDecrease}
       />
 
-      <span className="view" >{count}</span>
+      <div className="count">
+      {updating
+             ?<Spinner/>
+             :<span className="view" >{count}</span>
+      }
 
+      </div>
       <Icon
         iconName={"plus"}
         extra={"count-icon"}

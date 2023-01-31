@@ -120,9 +120,9 @@ function App() {
                              <Login />
                           </UserAuthenticated>} />
           <Route path="/checkout" 
-                 element={<PrivateRoute user={user}>
+                 element={
                              <CheckOut/>
-                         </PrivateRoute>} /> 
+                         } /> 
 
           <Route path="/profile"
                  element={<PrivateRoute user={user}>
