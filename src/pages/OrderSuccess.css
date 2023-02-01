@@ -1,0 +1,6 @@
+.success-container{
+    width: 90%;
+    height: 60vh;
+    margin: 130px auto 30px auto;
+    background-color: var(--light);
+}

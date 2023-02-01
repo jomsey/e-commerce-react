@@ -14,7 +14,7 @@ function CartDetails() {
 
   const getTotalPrice = () => {
     return cartProducts.reduce((total, {product,product_count}) => 
-                                total + (product.price*product_count), 0);
+                                total + (product.discounted_price*product_count), 0);
   };
 
  
@@ -77,7 +77,7 @@ function CartDetails() {
           </div>
         )}
       </div>
-      {products.length>0 &&  <Collection title={"Recently Viewed"} productsList={products}/>}
+      {/* {products.length>0 &&  <Collection title={"Recently Viewed"} productsList={products}/>} */}
 
 
     </>

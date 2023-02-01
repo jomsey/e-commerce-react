@@ -5,48 +5,58 @@ import { toast} from 'react-toastify';
 import { useNavigate } from "react-router-dom";
 import cartService from "../services/cartService";
 import { ShopContext} from "../shop-context/ShopState"
+import Spinner from "./Spinner"
 
 
 function ProductCard({product}) {
+    const [addingToCart,setAddingToCart] = useState(false)
     const navigate = useNavigate()
     const  formatToCurrencyFormat= Intl.NumberFormat()
     const {cartProducts,setCartProducts,cartNumber,setCartNumber} = useContext(ShopContext);
      
     const handleProductDetailClick=(product,product_id)=>{
-      navigate(`/products/${product_id}`)
-      saveViewedProduct(product_id)
+          navigate(`/products/${product_id}`)
+          saveViewedProduct(product_id)
     }
 
 
     const AddItemToCart = async(product_id)=>{
-    const cartId = localStorage.getItem("cartId")
+      
+          setAddingToCart(true) //display loader
+          const cartId = localStorage.getItem("cartId")
 
-    // toast("Item added to cart !");
-    setCartProducts([product,...cartProducts])
-        
-        if (cartId === null){
-             try {
-               const response = await cartService.createCart()
-               localStorage.setItem("cartId",response.data.cart_uuid)
+          if (cartId === null){
+              try {
+                  const response = await cartService.createCart()
+                  localStorage.setItem("cartId",response.data.cart_uuid)
               } catch (error) {}
-            }
-            
+          }
+                
             try {
-              await cartService.addToCart({"product":product_id},cartId)
-             
-        } catch (error) {
-            console.log(error)
-        }
+                const  {status} = await cartService.addToCart({"product":product_id},cartId)
+                if (status === 201){
+                    setCartProducts([product,...cartProducts])
+                    setAddingToCart(false)
+                }
+                setAddingToCart(false)
+                
+            } catch (error) {}
    }
 
   function addProductToWishList() {
-    console.log( " added to wishList");
+           console.log( " added to wishList");
   }
 
   
   return (
   
       <div className="product-card">
+
+        {addingToCart && 
+            <div className="add-to-cart-processing">
+              <Spinner/>
+            </div>
+        }
         <div className="product-image">
           <img src={product.image_url} alt={product.name} />
         </div>

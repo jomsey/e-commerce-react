@@ -83,3 +83,16 @@
     background-color: transparent;
     cursor: pointer;
 }
+.action-btns {
+    display: flex;
+    gap: 32px;
+    margin-top: 32px;
+}
+.action-btns button{
+    width: 200px;
+    padding:  12px 0;
+    cursor: pointer;
+    border: none;
+    background-color: var(--primary);
+    color: var(--light);
+}

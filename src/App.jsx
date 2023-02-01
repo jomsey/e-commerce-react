@@ -20,6 +20,7 @@ import { ShopContext} from "./shop-context/ShopState"
 import productsService from './services/productsService';
 import getCollections from "./services/collectionsService";
 import UserAuthenticated from "./tools/UserAuthenticated";
+import OrderSuccess from "./pages/OrderSuccess";
 
 
 function App() {
@@ -111,6 +112,7 @@ function App() {
    
       <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/order-success" element={<OrderSuccess/>} />
           <Route path="/products/:id" element={<ProductDetails />} />
           <Route path="/cart" element={<CartDetails />} />
           <Route path="/products" element={<ProductsList/>}/>

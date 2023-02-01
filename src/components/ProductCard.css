@@ -109,3 +109,16 @@
 strike {
     color: var(--primary);
 }
+
+.add-to-cart-processing{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 20;
+    background-color: rgba(207, 179, 179, 0.521);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: var(--primary);
+}

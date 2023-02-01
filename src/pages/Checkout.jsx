@@ -1,34 +1,36 @@
 import "./Checkout.css";
 import TopBar from "../components/TopBar";
-import ComfimDeleteDialog from "../components/ComfirmDeleteDialog";
-import Spinner  from "../components/Spinner"
 import { useContext,useState} from "react";
 import { ShopContext } from "../shop-context/ShopState";
 import cartService from "../services/cartService"
+import {useNavigate} from "react-router-dom";
+import orderSevice from "../services/orderSevice";
+import Spinner  from "../components/Spinner"
 
 
 
 function CheckOut() {
   const {cartProducts,setCartProducts} = useContext(ShopContext);
-  const [deleteDialogVisible,setDeleteDialogVisible] = useState(false)
-  const [deleteComfirmed,setDeleteComfirmed] = useState(false)
-  const  [productRemove,setProductRemoved] = useState(false)
+  const [placingOrder,setPlacingOrder] = useState(false)
+  const navigate = useNavigate()
 
+  const placeOrder=async()=>{
+    setPlacingOrder(true) //display processing loader
+    const cart_uuid = window.localStorage.getItem("cartId")
+    try {
+      const {status} = await orderSevice.createUserOrder(cart_uuid)
 
-const removeCartItem = () => {
-    //display dialog to comfirm item removal from cart
-    // !productRemove &&
-    
-     setDeleteDialogVisible(true) //don't display dialog again after comfirming
-};
+      if(status === 201){
+        window.localStorage.removeItem("cartId");
+        setCartProducts([])
+        navigate("/order-success")
+        setPlacingOrder(false)
+      }
+    } catch (error) {
+      setPlacingOrder(false)
+    }
 
-const handleComfirmCartItemDelete = async (product_uuid) =>{
-      setDeleteDialogVisible(false);//remove dialog after comfirming
-      setProductRemoved(true);//display deleting 
-      const {status} = await cartService.removeFromCart(cartId,product_uuid)
-      if(status === 204)setCartProducts(cartProducts.filter(product=>product.product_uuid!==product_uuid));
-}
-
+  }
 
   return (
     <>
@@ -93,7 +95,7 @@ const handleComfirmCartItemDelete = async (product_uuid) =>{
           </div>
 
           {
-            cartProducts.map(({product,product_count})=>(
+            cartProducts.map(({product,product_count,cart_uuid})=>(
              
               <div className="row" key={product.product_uuid}>
                   <div className="product">
@@ -103,25 +105,23 @@ const handleComfirmCartItemDelete = async (product_uuid) =>{
 
                   <div>
                       <small>{(product.name).length > 40?`${product.name.slice(0,40)} ...`:product.name}</small><br />
-                      <button onClick={removeCartItem}>{productRemove?<>Removing  <Spinner/></>:"Remove Item"}</button>
                   </div>
 
                     </div>
                     <span>{product_count}</span>
                     <span><small>KE</small> {product_count*product.discounted_price}</span>
 
-                    <ComfimDeleteDialog message="Do you really want to remove this item?" 
-                          title="Remove Item"
-                          visible={deleteDialogVisible}
-                          onCloseDialog={()=>setDeleteDialogVisible(false)}
-                          onComfirm={()=>handleComfirmCartItemDelete(product.product_uuid)}/>
+                  
               </div>
-
               
              )
             )
           }
 
+          <div className="action-btns">
+            <button onClick={()=>navigate("/cart")}>Update Cart</button>
+            <button onClick={placeOrder}>{placingOrder?<>Processing  <Spinner/></>:"Comfirm Order"}</button>
+          </div>
           
         </div>
       </div>
