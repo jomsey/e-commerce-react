@@ -4,23 +4,19 @@ import productsService from '../services/productsService';
 
 
 export default function RecentlyViewedProducts() {
-    const [previouslyViewedProducts,setPreviouslyViewedProducts] = React.useState([])
-
+    const [previouslyViewedProducts, setPreviouslyViewedProducts] = React.useState([])
+    const productsIds = JSON.parse(localStorage.getItem("previouslyViewedProducts"))
+    
     React.useEffect(() => {
-      const productsIds = JSON.parse(localStorage.getItem("previouslyViewedProducts"))
-
-        if (productsIds.length){   
-           productsIds.map(async id =>{
-           const response =await productsService.getProduct(id)
-           
-        })
-    }
-   
-      
-      }, []);
-    
-    return (
-    <div>RecentlyViewedProducts</div>
-    
-  )
+        if (productsIds.length>0) {
+            productsIds.forEach(async id => {
+                  const {data:product} = await productsService.getProduct(id)
+                  setPreviouslyViewedProducts(products => [...products, product])
+                });
+              }
+    }, []);
+       
+    return previouslyViewedProducts.length>0
+          ?<Collection productsList={previouslyViewedProducts} title="Recently Viewed"/>
+          :null;
 }

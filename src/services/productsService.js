@@ -21,5 +21,6 @@ export default {
     getCategoryProducts,
     filterProductsByPrice,
     getPageSearchResults,
+    getCategoryPageProducts,
     getPageProductsFilteredByPrice,
 }

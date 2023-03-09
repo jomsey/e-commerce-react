@@ -12,9 +12,6 @@ import productsService from "../services/productsService";
 import { useNavigate } from "react-router-dom";
 
 
-
-
-
 function TopBar({ showToggler }) {
   const {setProducts,setProductsCount,setProductsResultsName,searchQuery,setSearchQuery} = useContext(ShopContext)
   const [displace, setDisplace] = useState(false);
@@ -27,17 +24,18 @@ function TopBar({ showToggler }) {
   };
  
   const handleSearchPoducts= async (e)=>{
-    e.preventDefault()
-    try {
-      const response = await productsService. searchProducts(searchQuery)
-      const{results,count}=response.data
-      setProducts(results)
-      setProductsResultsName("bySearch")
-      setProductsCount(count)
-      navigate("/products")
-    } catch (error) {
-      console.log(error)
-    }
+        e.preventDefault()
+
+        try {
+            const response = await productsService. searchProducts(searchQuery)
+            const{results,count}=response.data
+            setProducts(results)
+            setProductsResultsName("bySearch")
+            setProductsCount(count)
+            navigate("/products")
+        } catch (error) {
+          console.log(error)
+        }
   }
 
   useEffect(() => {

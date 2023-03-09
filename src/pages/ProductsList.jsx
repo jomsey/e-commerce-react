@@ -2,49 +2,37 @@ import "./ProductsList.css";
 import TopBar from "./../components/TopBar";
 import Filters from "./../components/Filters";
 import Pagination from "../components/Pagination";
-import Collection from "./../components/Collection";
-import { useContext,useEffect,useState} from "react";
+import { useContext,useState} from "react";
 import { ShopContext } from "../shop-context/ShopState";
 import productsService from "../services/productsService";
 import ProductsContainer from "../components/ProductsContainer";
 import ComponentIsLoading from "../components/ComponentIsLoading";
+import RecentlyViewedProducts from "../components/RecentlyViewedProducts";
 
 
 function ProductsList() {
   const [productsLoading,setProductsLoading]=useState(true)
-  
-useEffect(() => {
-  const getSiteProducts = async() => {
-    try {
-        const  response = await productsService.getProducts()
-        const{results,count}=response.data
-        setProductsLoading(false)
-        setProducts(results)
-        setProductsResultsName("all")
-        setProductsCount(prev=>prev=count)
-  } catch (error) {}
-  
-   }
-   getSiteProducts()
-}, []);
- 
+
   const {products,productsCount,
         setProducts,productsResultsName,
-        priceRange,setPriceRange,searchQuery}
-         = useContext(ShopContext);
+        priceRange,searchQuery,categoryName}= useContext(ShopContext);
   const [currentPage,setCurrentPage] = useState(1)
-        
-  const handlePageChange=async(page)=>{
-    setProducts([]) //Simulate products loading page
-    const responseObject = productsResultsName === "bySearch"?productsService.getPageSearchResults(page,searchQuery):
-                           productsResultsName==="byPrice"?productsService.getPageProductsFilteredByPrice(priceRange.max, priceRange.min,page):
-                           productsService.getPageProducts(page);
+  
 
-    const response = await  responseObject
-    const{results}=response.data
-    setProducts(results)
-    setCurrentPage(page)
-   
+
+
+  const handlePageChange=async(page)=>{
+        setProducts([]) //Simulate products loading page
+
+        const responseObject = productsResultsName === "bySearch"?productsService.getPageSearchResults(page,searchQuery):
+                              productsResultsName === "byPrice"?productsService.getPageProductsFilteredByPrice(priceRange.max, priceRange.min,page):
+                              productsResultsName === "category" && categoryName !== "All products"?productsService.getCategoryPageProducts(categoryName,page):
+                              productsService.getPageProducts(page);
+
+        const response = await  responseObject
+        const{results}=response.data
+        setProducts(results)
+        setCurrentPage(page)
   }
  
 
@@ -75,8 +63,7 @@ useEffect(() => {
                 onPageChange={handlePageChange}/>
          </div>
       }
-          
-      {products.length>0 && <Collection title={"Recently Viewed"} productsList={products}/>}
+      <RecentlyViewedProducts/>
     </>
   );
 }

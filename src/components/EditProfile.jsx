@@ -9,7 +9,7 @@ function EditProfile({visible=true}) {
 
   const modalClasses = visible?"modal-not-visible":"edit-profile-modal modal-not-visible"
   return (
-    <div class={modalClasses}>
+    <div className={modalClasses}>
         <Icon iconName="close" extra="close-modal-btn" onIconClick={handleModalClose}/>
     </div>
   )

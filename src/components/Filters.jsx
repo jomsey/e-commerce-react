@@ -11,22 +11,22 @@ export default function Filters() {
         priceRange,setPriceRange} = useContext(ShopContext)
 
   const handleFiltering=async(e)=>{
-    e.preventDefault()
-    try {
-      const response = await productsService.filterProductsByPrice( priceRange.max, priceRange.min)
-      const{results,count}=response.data
-      setProducts(results)
-      setProductsResultsName("byPrice")
-      setProductsCount(count)
-    } catch (error) {
-      console.log(error)
-    }
+        e.preventDefault()
+        try {
+          const response = await productsService.filterProductsByPrice( priceRange.max, priceRange.min)
+          const{results,count}=response.data
+          setProducts(results)
+          setProductsResultsName("byPrice")
+          setProductsCount(count)
+        } catch (error) {
+          console.log(error)
+        }
   }
 
 const handleChange = (e)=>{
-  const name = e.target.name
-  const value = e.target.value
-  setPriceRange(data=>({...data,[name]:value}))
+      const name = e.target.name
+      const value = e.target.value
+      setPriceRange(data=>({...data,[name]:value}))
 }
 
 

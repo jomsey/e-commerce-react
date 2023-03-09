@@ -4,9 +4,12 @@ function OrderedProduct ({product}){
     return (
         <div className="ordered-product">
             <div className="prod-image">
-                <img src="https://api.lorem.space/image/fashion" alt="...." />
+                <img src={product.image_url} alt="...." />
             </div>
-            <span>Product Name </span> 
+            <span>{(product.name).length > 20
+                    ?`${product.name.slice(0,20)} ...`
+                    :product.name}
+            </span> 
         </div>
     );
 }

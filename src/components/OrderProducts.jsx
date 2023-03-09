@@ -16,9 +16,10 @@ export default function OrderProducts({ showItems, productsList }) {
  
   return <div className={`canvas ${canvasClass}`}>
     <Icon iconName={"times"} extra={"close-icon"} onIconClick={()=>setShowOrderProducts(false)}/>
-
-    <OrderedProduct/>
-    <OrderedProduct/>
-    <OrderedProduct/>
+     {
+      productsList.map(({product,product_uuid})=><OrderedProduct key={product_uuid} product={product}/>)
+     }
+   
+   
   </div>;
 }

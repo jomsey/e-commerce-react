@@ -25,7 +25,7 @@ import OrderSuccess from "./pages/OrderSuccess";
 
 function App() {
   const {token,setToken}=useToken()
-  const [products,setProducts] = useState([])
+  const [products,setProducts] = useState(null)
   const cartId = localStorage.getItem("cartId")
   const [priceRange,setPriceRange]= useState({})
   const [cartNumber,setCartNumber] =  useState(0)
@@ -36,40 +36,23 @@ function App() {
   const [showOrderProducts,setShowOrderProducts] = useState(false)
   const [productsResultsName,setProductsResultsName] = useState("")
   const [user,setUser]=useState({username:null,is_authenticated:false})
+  const [categoryName,setCategoryName] = useState("")
  
 
-  const getCartProducts = async ()=>{
-        try {
-        if (cartId !== null) {
-          const response = await cartService.getCartProducts(cartId)
-          const{results}=response.data
-          setCartProducts(results)
-
-        }
-        } catch (error) {}
-   }
-
+useEffect(()=>{
    const getProductCollections = async()=>{
           try {
               const  response = await getCollections()
               const{results}=response.data
               setCollections(results)
           } catch (error) {}
-    
    }
+       getProductCollections()
+
+},[])
    
 
-   const getSiteProducts = async() => {
-    try {
-      const  response = await productsService.getProducts()
-      const{results,count}=response.data
-      setProducts(results)
-      setProductsResultsName("all")
-      setProductsCount(prev=>prev=count)
-  } catch (error) {}
-  
-   }
- useEffect(()=>{
+useEffect(()=>{
    try {
      const {user_id,exp:tokenExpiryDate} = jwtDecode(token)
      if(tokenExpiryDate<Date.now()){
@@ -88,13 +71,34 @@ function App() {
  },[])
   
   useEffect(() => {
+     const getCartProducts = async ()=>{
+        try {
+        if (cartId !== null) {
+          const response = await cartService.getCartProducts(cartId)
+          const{results}=response.data
+          setCartProducts(results)
+
+        }
+        } catch (error) {}
+    }
     getCartProducts()
     setCartNumber(prev=>(prev=cartProducts.length))
-    getProductCollections()
-    getSiteProducts()
 
   },[cartProducts.length]);
  
+  useEffect(() => {
+    const getSiteProducts = async() => {
+          try {
+              const  response = await productsService.getProducts()
+              const{results,count}=response.data
+              setProductsLoading(false)
+              setProducts(results)
+              setProductsResultsName("all") //we are getting full list of products
+              setProductsCount(count)
+        } catch (error) {}
+    }
+    getSiteProducts() 
+}, [products]);
 
   return (
     <div className="App">
@@ -108,6 +112,7 @@ function App() {
                                      productsCount,cartNumber,setCartNumber,
                                      setCollections,products,setProducts,cartId,
                                      productsResultsName,setProductsResultsName,
+                                     categoryName,setCategoryName
                                     }}>
    
       <Routes>
@@ -123,8 +128,10 @@ function App() {
                           </UserAuthenticated>} />
           <Route path="/checkout" 
                  element={
-                             <CheckOut/>
-                         } /> 
+                      <PrivateRoute user={user}>
+                        <CheckOut/>
+                      </PrivateRoute>}/>
+                        
 
           <Route path="/profile"
                  element={<PrivateRoute user={user}>

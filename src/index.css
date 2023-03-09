@@ -15,8 +15,8 @@
     --light-shade: rgb(215, 237, 255);
     --lightgray: rgb(216, 216, 216);
     --badge: rgb(240, 20, 148);
-    --bg-place:rgb(235, 235, 235);
-    --error:rgb(212, 37, 37);
+    --bg-place: rgb(235, 235, 235);
+    --error: rgb(212, 37, 37);
 }
 
 body {
@@ -45,10 +45,16 @@ a {
     align-items: center;
 }
 
-.block{
+.block {
     display: block;
 }
 
-.bg-place{
+.bg-place {
     background-color: var(--bg-place) !important;
 }
+
+::-webkit-scrollbar-track {
+    background-color: var(--primary);
+}
+
+

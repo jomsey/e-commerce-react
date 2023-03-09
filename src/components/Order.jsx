@@ -12,19 +12,17 @@ function Order({orderItem,onViewOrderProducts}) {
   const {showOrderProducts,setShowOrderProducts} = useContext(ShopContext)
   
   const handleComfirmCartItemDelete = async (order_id) =>{
-    setDeleteDialogVisible(false);//remove dialog after comfirming
-    setIsDeleting(true);//display deleting loader
+        setDeleteDialogVisible(false);//remove dialog after comfirming
+        setIsDeleting(true);//display deleting loader
 
-     try{
-      const response = await orderSevice.deleteUserOrder(order_id)
-      if (response.status === 204) {
-        setIsDeleting(false)
-      }
-     }
-     catch(error){}
-    
-}
-
+        try{
+          const response = await orderSevice.deleteUserOrder(order_id)
+          if (response.status === 204) {
+             setIsDeleting(false)
+          }
+        }
+        catch(error){}
+    }
 
 
   return (
@@ -52,7 +50,7 @@ function Order({orderItem,onViewOrderProducts}) {
      {orderItem.status}
     </span>
     <button onClick={onViewOrderProducts}>View Order Items</button>
-    <button onClick={()=>!isDeleting && setDeleteDialogVisible(true)}> {isDeleting?<>Deleting <Spinner/></>:"Delete Order"}</button>
+    <button onClick={()=>!isDeleting && setDeleteDialogVisible(true)}> {isDeleting?<> <Spinner/></>:"Cancel Order"}</button>
 
     <ComfimDeleteDialog message="Do you really want to cancel this order?" 
                           title="Cancel Order"

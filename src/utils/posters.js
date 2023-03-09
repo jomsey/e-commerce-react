@@ -6,7 +6,7 @@ export const posters = [
   },
   {id:2,
     posterImage:
-      "https://assetscdn1.paytm.com/images/catalog/view_item/787364/1617369686163.jpg?imwidth=480&impolicy=hq",
+      "https://ke.jumia.is/cms/2023/SuperBrandDays/PRK/Live/Sliders/KE_PRK_SBD_JamesonBeefeater_0123_S_GIF.gif",
   },
   
 ];

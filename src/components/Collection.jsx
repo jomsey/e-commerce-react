@@ -3,24 +3,22 @@ import ProductCard from "./ProductCard";
 
  
 function Collection({ title, productsList }) {
-  return (
-   <>
-    <div className="collection">
+    return (
+        <div className="collection">
+            <div className="collection-top">
+                <h3 className="title">{title}</h3>
+                <h4>SEE ALL</h4>
+            </div>
 
-      <div className="collection-top">
-        <h3 className="title">{title}</h3>
-        <h4>SEE ALL</h4>
-      </div>
-      <div className="collection-container">
-        {productsList.slice(0, 5).map((product) => (
-          <ProductCard 
-              product={product}
-              key={product.id}/>
-        ))}
-      </div>
-    </div>
-   </>
-  );
+            <div className="collection-container">
+                {productsList.map((product) => (
+                    <ProductCard 
+                        product={product}
+                        key={product.id}/>
+                ))}
+            </div>
+        </div>
+    );
 }
 
 export default Collection;

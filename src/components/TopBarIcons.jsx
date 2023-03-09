@@ -15,8 +15,8 @@ function TopBarIcons() {
   const {setToken} = useToken()
   
   const handleLogout=()=>{
-    setToken(null)
-    setUser({username:null,is_autheticated:false})
+        setUser({username:null,is_autheticated:false})
+        setToken(null)
   }
 
   return (

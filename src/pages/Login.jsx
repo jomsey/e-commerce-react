@@ -12,7 +12,6 @@ import { ShopContext} from "../shop-context/ShopState"
 import Spinner from  './../components/Spinner';
 
 
-
 export default function Login() {
    const {setUser} = useContext(ShopContext)
    const [formData,setFormData] = useState({})
@@ -22,33 +21,35 @@ export default function Login() {
    const navigate = useNavigate()
 
 
-   
   const HandleFormSubmit=async(e)=>{
-    e.preventDefault()
-    setIsLogingIn(true)
-    try { 
-         const response= await authService.getToken(formData);
-         const {access} = response.data
-         const {user_id} = jwtDecode(access)
-         setUser(user=>({...user,username:user_id,is_authenticated:"user"}))
-         setToken(access)
-         setIsLogingIn(false)
-         navigate("/profile")
-              
-      } catch (error) {
-         setIsLogingIn(false)
-         if (error.response?.status==401 ||error.response?.status==400){
-           setFormErrors(error.response.data)
-         }
-      }
-    
-     
+        e.preventDefault()
+        setIsLogingIn(true) //show the log in progress loader
+
+        try { 
+            const {status,data}= await authService.getToken(formData);
+            
+            if (status === 200){
+                const {user_id} = jwtDecode(data.access)
+                setToken(data.access)
+                setUser(user=>({...user,username:user_id,is_authenticated:true}))
+                navigate("/profile")
+                setIsLogingIn(false) //stop the login progress loader
+            }        
+        }
+
+        catch (error) {
+            setIsLogingIn(false) //stop the login progress loader
+
+            if (error.response?.status==401 ||error.response?.status==400){
+                setFormErrors(error.response.data)
+            }
+        }  
   }
 
   const handleChange = (e)=>{
-    const name = e.target.name
-    const value = e.target.value
-    setFormData(data=>({...data,[name]:value}))
+        const name = e.target.name
+        const value = e.target.value
+        setFormData(data=>({...data,[name]:value}))
   }
 
   
@@ -69,7 +70,8 @@ export default function Login() {
               placeholder="username"
               name="username"
               onChange={handleChange}
-            />{formErrors.username && <small className="form-error">{formErrors.username}</small>}
+            />
+            {formErrors.username && <small className="form-error">{formErrors.username}</small>}
           </div>
           <div className="input-group">
             <Icon iconName={"lock"} extra={"input-icon"} />

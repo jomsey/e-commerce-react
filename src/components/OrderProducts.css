@@ -8,8 +8,10 @@
     border: 1px solid rgb(215, 237, 255);
     border-right: none;
     overflow: hidden;
+    overflow-y: scroll;
     min-height: 500px;
     padding-top: 32px;
+   
 }
 
 .orders-off-canvas-hidden {

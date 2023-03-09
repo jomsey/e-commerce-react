@@ -1,6 +1,7 @@
-import PropTypes from "prop-types";
 import "./LinksGroup.css";
 import Icon from "../ui/Icon";
+import PropTypes from "prop-types";
+
 
 function LinksGroup({ title, links, icons }) {
   return (

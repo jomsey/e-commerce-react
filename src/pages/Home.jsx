@@ -3,11 +3,12 @@ import Collection from "../components/Collection";
 import ProductCategories from "../components/ProductCategoryContainer";
 import "./Home.css";
 import Billboard from "./../components/Billboard";
-import { posters } from "../utils/posters";
+import {posters} from "../utils/posters";
 import TopBar from './../components/TopBar';
 import {useContext} from "react";
-import { ShopContext } from "../shop-context/ShopState";
+import {ShopContext} from "../shop-context/ShopState";
 import CollectionsPlaceholder from "../components/CollectionsPlaceholder";
+import RecentlyViewedProducts from "../components/RecentlyViewedProducts";
 
 
 function Home() {
@@ -23,17 +24,20 @@ function Home() {
 
       <Billboard items={posters} />
      
-      {collections.length>0?collections.map(({title,products,id})=> 
+      {collections.length>0
+                         ?collections.map(({title,products,id})=> 
                                           <Collection title={title}
-                                              productsList={products}
-                                              key={id}/>
-                                          ):
+                                                      productsList={products}
+                                                      key={id}/>)
+                        :
                         <div>
                            <CollectionsPlaceholder/>
                            <CollectionsPlaceholder/>
                            <CollectionsPlaceholder/>
                       </div>
-            }
+       }
+
+       <RecentlyViewedProducts/>
       
     </> 
   );
