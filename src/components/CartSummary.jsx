@@ -1,14 +1,16 @@
 import { useNavigate } from "react-router-dom";
+import { useContext,useState,useEffect, } from "react";
+import { ShopContext } from "../shop-context/ShopState";
+
+
 
 
 function CartSummary({products}) {
     const navigate  = useNavigate()
     const  formatToCurrencyFormat= Intl.NumberFormat()
+    const {cartTotalPrice} = useContext(ShopContext);
 
-    const getTotalPrice = () => {
-        return products.reduce((total, {product,product_count}) => 
-                                    total + (product.discounted_price*product_count), 0);
-      };
+   
     
   return (
     <div className="cart-summary">
@@ -21,7 +23,7 @@ function CartSummary({products}) {
 
               <div className="group1">
                 <h5>TOTAL</h5>
-                <small>KES {formatToCurrencyFormat.format(getTotalPrice())}</small>
+                <small>KES {formatToCurrencyFormat.format(cartTotalPrice)}</small>
               </div>
 
               <div className="group1">

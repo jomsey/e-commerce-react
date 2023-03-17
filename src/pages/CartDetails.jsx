@@ -5,11 +5,12 @@ import { useContext} from "react";
 import { ShopContext } from "../shop-context/ShopState";
 import RecentlyViewedProducts from "../components/RecentlyViewedProducts";
 import CartSummary from "../components/CartSummary";
+import ComponentIsLoading from './../components/ComponentIsLoading';
 
 
 function CartDetails() {
-  const {cartProducts} = useContext(ShopContext);
- 
+  const {cartProducts,cartItemsLoading} = useContext(ShopContext);
+  
   return (
     <>
       <TopBar showToggler={true} />
@@ -18,16 +19,18 @@ function CartDetails() {
           <h4>Shopping Cart</h4>
 
           {
-           cartProducts.length > 0 
-                               ? (cartProducts.map(({product,product_count,product_uuid}) => 
-                                                            <CartItem
-                                                              product={product}
-                                                              key={product_uuid}
-                                                              item_count={product_count}
-                                                              product_uuid={product_uuid}/>
-                                                          ))
-                                :<h3 className="cart-empty-text">No Items To Display</h3>
-         }
+           cartItemsLoading?
+           <ComponentIsLoading/>:
+           (cartProducts.length > 0 
+            ? (cartProducts.map(({product,product_count,product_uuid}) => 
+                                 <CartItem
+                                           product={product}
+                                           key={product_uuid}
+                                           item_count={product_count}
+                                           product_uuid={product_uuid}/>
+             ))
+             :<h3 className="cart-empty-text">No Items To Display</h3>)
+          }
 
         </div>
 

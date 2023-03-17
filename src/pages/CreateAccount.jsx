@@ -7,6 +7,7 @@ import {apiEndPoint} from "../config.json"
 import { useNavigate ,Link} from "react-router-dom";
 import { ShopContext} from "../shop-context/ShopState"
 import authService from "../services/authService";
+import useToken from "../customHooks/useToken";
 
 
 
@@ -16,6 +17,8 @@ export default function CreateAccount() {
   const [formErrors,setFormErrors] = useState({})
   const [isSigningUp,setIsSigningUp]=useState(false)
   const {setUser} = useContext(ShopContext)
+  const {setToken,token} = useToken()
+
 
   
   const navigate = useNavigate()
@@ -24,7 +27,20 @@ export default function CreateAccount() {
     setIsSigningUp(true)
     e.preventDefault()
     try { 
-         const response= await authService.registerUser(formData);
+         const {status}= await authService.registerUser(formData);
+         
+         //login user after successful account creation
+         if (status === 201) {
+           try {
+                const {username,password} = formData
+                const {data}= await authService.getToken({username:username,password:password});
+                const {user_id} = jwtDecode(data.access)
+                setToken(data.access)
+                setUser(user=>({...user,username:user_id,is_authenticated:true}))
+                navigate("/profile")
+           } catch (error) {}
+          
+         }
          setIsSigningUp(false)
       
     }catch (error) {

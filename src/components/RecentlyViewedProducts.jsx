@@ -6,6 +6,7 @@ import productsService from '../services/productsService';
 export default function RecentlyViewedProducts() {
     const [previouslyViewedProducts, setPreviouslyViewedProducts] = React.useState([])
     const productsIds = JSON.parse(localStorage.getItem("previouslyViewedProducts"))
+
     
     React.useEffect(() => {
         if (productsIds.length>0) {
@@ -17,6 +18,7 @@ export default function RecentlyViewedProducts() {
     }, []);
        
     return previouslyViewedProducts.length>0
-          ?<Collection productsList={previouslyViewedProducts} title="Recently Viewed"/>
+          ?<Collection productsList={previouslyViewedProducts.slice(0,5)} title="Recently Viewed" showLink={false}/>
           :null;
+    return null
 }

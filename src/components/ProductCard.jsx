@@ -1,7 +1,6 @@
 import "./ProductCard.css";
 import Icon from "../ui/Icon";
-import {useContext,useState,useEffect} from "react"
-import { toast} from 'react-toastify';
+import {useContext,useState} from "react"
 import { useNavigate } from "react-router-dom";
 import cartService from "../services/cartService";
 import { ShopContext} from "../shop-context/ShopState"
@@ -12,9 +11,9 @@ function ProductCard({product}) {
     const [addingToCart,setAddingToCart] = useState(false)
     const navigate = useNavigate()
     const  formatToCurrencyFormat= Intl.NumberFormat()
-    const {cartProducts,setCartProducts,cartNumber,setCartNumber} = useContext(ShopContext);
+    const {cartProducts,setCartProducts} = useContext(ShopContext);
      
-    const handleProductDetailClick=(product,product_id)=>{
+    const handleProductDetailClick=(product_id)=>{
           navigate(`/products/${product_id}`)
           saveViewedProduct(product_id)
     }
@@ -23,24 +22,20 @@ function ProductCard({product}) {
     const AddItemToCart = async(product_id)=>{
       
           setAddingToCart(true) //display loader
-          const cartId = localStorage.getItem("cartId")
-
-          if (cartId === null){
-              try {
-                  const response = await cartService.createCart()
-                  localStorage.setItem("cartId",response.data.cart_uuid)
-              } catch (error) {}
+          const cartId = localStorage.getItem("cartId")   
+          try {
+              if (cartId !== null){
+                  const  {status} = await cartService.addToCart({"product":product_id},cartId)
+                  if (status === 201){
+                      setCartProducts([product,...cartProducts])
+                      setAddingToCart(false)
+                  }
+                  setAddingToCart(false)
+              }
+                
+          } catch (error) {
+               setAddingToCart(false)
           }
-                
-            try {
-                const  {status} = await cartService.addToCart({"product":product_id},cartId)
-                if (status === 201){
-                    setCartProducts([product,...cartProducts])
-                    setAddingToCart(false)
-                }
-                setAddingToCart(false)
-                
-            } catch (error) {}
    }
 
   function addProductToWishList() {
@@ -67,12 +62,12 @@ function ProductCard({product}) {
 
           <small className="product-price">
             <strong>
-              {product.discount > 0 && <strike>{formatToCurrencyFormat.format(product.price)} KES</strike>} {formatToCurrencyFormat.format(product.discounted_price)} KES
+              {product.discount > 0 && <strike>{formatToCurrencyFormat.format(Math.floor(product.price))} KES</strike>} {formatToCurrencyFormat.format(Math.floor(product.discounted_price))} KES
             </strong>
           </small>
 
           <div className="buttons">
-            <span onClick={()=>handleProductDetailClick(product,product.id)} className="detail-btn">DETAILS</span>
+            <span onClick={()=>handleProductDetailClick(product.id)} className="detail-btn">DETAILS</span>
             <div className="add-btns">
               <Icon
                 extra={"wish-icon"}

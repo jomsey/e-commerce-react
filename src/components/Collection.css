@@ -11,12 +11,14 @@
 
 .collection .collection-container {
     width: 100%;
-    display: grid;
-    width: max-content;
+    display: flex;
     left: 50%;
-    transform: translateX(-50%);
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    transform: 
+    translateX(-50%);
+    /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr; */
     gap: 30px;
+    flex-wrap:wrap;
+    justify-content:center;
 }
 
 .collection .collection-top .title {

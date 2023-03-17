@@ -24,8 +24,10 @@ import OrderSuccess from "./pages/OrderSuccess";
 
 
 function App() {
+  const [cartItemsLoading,setCartItemsLoading] = useState(true)
   const {token,setToken}=useToken()
-  const [products,setProducts] = useState(null)
+  const [orderItems,setOrderItems] = useState([])
+  const [products,setProducts] = useState([])
   const cartId = localStorage.getItem("cartId")
   const [priceRange,setPriceRange]= useState({})
   const [cartNumber,setCartNumber] =  useState(0)
@@ -37,7 +39,9 @@ function App() {
   const [productsResultsName,setProductsResultsName] = useState("")
   const [user,setUser]=useState({username:null,is_authenticated:false})
   const [categoryName,setCategoryName] = useState("")
+  const [cartTotalPrice,setCartPriceTotal] = useState(0)
  
+
 
 useEffect(()=>{
    const getProductCollections = async()=>{
@@ -53,52 +57,51 @@ useEffect(()=>{
    
 
 useEffect(()=>{
+
+  //logout  user when the auth token is expired
    try {
-     const {user_id,exp:tokenExpiryDate} = jwtDecode(token)
-     if(tokenExpiryDate<Date.now()){
-       setUser(prev=>({...prev,username:user_id,is_authenticated:true}))
-     }
-     else{
-      setToken(null)
-      setUser(prev=>({...prev,username:null,is_authenticated:false}))
-     }
-   
-  
+        const {user_id,exp:tokenExpiryDate} = jwtDecode(token)
+        if(tokenExpiryDate<Date.now()){
+             setUser(prev=>({...prev,username:user_id,is_authenticated:true}))
+        }
+        else{
+              setToken(null)
+              setUser(prev=>({...prev,username:null,is_authenticated:false}))
+        }
+      
    } catch (error) {
-    setUser(prev=>({...prev,username:null,is_authenticated:false}))
+           setUser(prev=>({...prev,username:null,is_authenticated:false}))
    }
 
  },[])
   
   useEffect(() => {
+    //create new cart else get cart products
      const getCartProducts = async ()=>{
-        try {
-        if (cartId !== null) {
-          const response = await cartService.getCartProducts(cartId)
-          const{results}=response.data
-          setCartProducts(results)
+        
+          if (cartId === null){
+             try {
+                  const response = await cartService.createCart();
+                  localStorage.setItem("cartId",response.data.cart_uuid);
+              } catch (error) {}
+          }
+      
 
+        if (cartId !== null) {
+            try {
+              const {status,data} = await cartService.getCartProducts(cartId);
+              setCartProducts(data.results);
+              if(status === 200)setCartItemsLoading(false);
+            } catch (error) {}
         }
-        } catch (error) {}
+
     }
     getCartProducts()
     setCartNumber(prev=>(prev=cartProducts.length))
 
   },[cartProducts.length]);
  
-  useEffect(() => {
-    const getSiteProducts = async() => {
-          try {
-              const  response = await productsService.getProducts()
-              const{results,count}=response.data
-              setProductsLoading(false)
-              setProducts(results)
-              setProductsResultsName("all") //we are getting full list of products
-              setProductsCount(count)
-        } catch (error) {}
-    }
-    getSiteProducts() 
-}, [products]);
+ 
 
   return (
     <div className="App">
@@ -107,12 +110,14 @@ useEffect(()=>{
                                      priceRange,setPriceRange,
                                      user,setUser,cartProducts,
                                      searchQuery,setSearchQuery,
+                                     cartTotalPrice,setCartPriceTotal,
                                      setShowOrderProducts,collections,
                                      setCartProducts,showOrderProducts,
+                                     cartItemsLoading,setCartItemsLoading,
                                      productsCount,cartNumber,setCartNumber,
                                      setCollections,products,setProducts,cartId,
                                      productsResultsName,setProductsResultsName,
-                                     categoryName,setCategoryName
+                                     categoryName,setCategoryName,orderItems,setOrderItems,
                                     }}>
    
       <Routes>
@@ -122,21 +127,23 @@ useEffect(()=>{
           <Route path="/cart" element={<CartDetails />} />
           <Route path="/products" element={<ProductsList/>}/>
           <Route path="*" element={<NotFound />} />
+
           <Route path="/auth/login" 
                  element={<UserAuthenticated user={user}>
                              <Login />
                           </UserAuthenticated>} />
+
           <Route path="/checkout" 
                  element={
                       <PrivateRoute user={user}>
                         <CheckOut/>
                       </PrivateRoute>}/>
                         
-
           <Route path="/profile"
                  element={<PrivateRoute user={user}>
                                 <UserProfile/>
                              </PrivateRoute>} />
+                             
           <Route path="/auth/register"
                  element ={<UserAuthenticated user={user}>
                             <CreateAccount/>
@@ -145,7 +152,7 @@ useEffect(()=>{
       
       <Footer />
       </ShopContext.Provider>
-    {/* <ToastContainer /> */}
+    <ToastContainer />
     
     </div>
   );

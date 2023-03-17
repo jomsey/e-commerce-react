@@ -7,15 +7,20 @@ import cartService from "../services/cartService";
 import { useState,useContext,useEffect} from "react";
 import { ShopContext } from "../shop-context/ShopState";
 import ComponentIsLoading from "./ComponentIsLoading";
+import axios from "axios";
+import {apiEndPoint} from "../config.json"
+import useToken from "../customHooks/useToken";
+
+
 
 
 const OrderItems = ({loading}) => {
-  const [orderItems,setOrderItems] = useState([])
   const [orderProducts,setOrderProducts] = useState([])
-  const [isDeleting,setIsDeleting] = useState(false)
+  const {token} = useToken()
   const [ordersLoading,setOrdersLoading] = useState(true)
   const navigate = useNavigate()
-  const {showOrderProducts,setShowOrderProducts} = useContext(ShopContext)
+  const {showOrderProducts,setShowOrderProducts,orderItems,setOrderItems} = useContext(ShopContext)
+  const instance = axios.create({headers: {"Authorization": `Bearer ${token}`}});
 
 
   const HandleViewOrderProducts=async(cartId)=>{
@@ -28,9 +33,10 @@ const OrderItems = ({loading}) => {
 
   useEffect(() => {
     const getUserOrders=async()=>{
-        const response = await orderSevice.getUserOrders()
+        const response = await instance.get(`${apiEndPoint}/orders/`)
         setOrderItems(response.data.results)
         setOrdersLoading(false)
+      
     } 
     getUserOrders()  
   }, []);

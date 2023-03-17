@@ -15,7 +15,10 @@
             gap: 32px;
         }
         
-       
+       .group-right{
+        width:100%;
+        position:relative
+       }
         
         .product-pagination {
             width: 90%;

@@ -1,24 +1,23 @@
 import { useState,useContext,useEffect} from "react";
-import orderSevice from "../services/orderSevice";
+import orderService from "../services/orderSevice";
 import { ShopContext } from "../shop-context/ShopState";
-import ComfimDeleteDialog from "./ComfirmDeleteDialog";
+import ConfirmDeleteDialog from "./ComfirmDeleteDialog";
 import Spinner from "./Spinner";
 
 
 function Order({orderItem,onViewOrderProducts}) {
   const [deleteDialogVisible,setDeleteDialogVisible] = useState(false)
-  const [deleteComfirmed,setDeleteComfirmed] = useState(false)
   const [isDeleting,setIsDeleting] = useState(false)
-  const {showOrderProducts,setShowOrderProducts} = useContext(ShopContext)
+  const {showOrderProducts,setShowOrderProducts,orderItems,setOrderItems} = useContext(ShopContext)
   
-  const handleComfirmCartItemDelete = async (order_id) =>{
-        setDeleteDialogVisible(false);//remove dialog after comfirming
+  const handleConfirmCartItemDelete = async (id) =>{
+        setDeleteDialogVisible(false);//remove dialog after confirming
         setIsDeleting(true);//display deleting loader
-
         try{
-          const response = await orderSevice.deleteUserOrder(order_id)
+          const response = await orderService.deleteUserOrder(id)
           if (response.status === 204) {
-             setIsDeleting(false)
+            setIsDeleting(false)
+            setOrderItems(orderItems.filter(order=>order.order_id !== id)) //update the current orders list
           }
         }
         catch(error){}
@@ -50,13 +49,13 @@ function Order({orderItem,onViewOrderProducts}) {
      {orderItem.status}
     </span>
     <button onClick={onViewOrderProducts}>View Order Items</button>
-    <button onClick={()=>!isDeleting && setDeleteDialogVisible(true)}> {isDeleting?<> <Spinner/></>:"Cancel Order"}</button>
+    <button onClick={()=>!isDeleting && setDeleteDialogVisible(true)}> {isDeleting?<>Canceling<Spinner/></>:"Cancel Order"}</button>
 
-    <ComfimDeleteDialog message="Do you really want to cancel this order?" 
+    <ConfirmDeleteDialog message="Do you really want to cancel this order?" 
                           title="Cancel Order"
                           visible={deleteDialogVisible}
                           onCloseDialog={()=>setDeleteDialogVisible(false)}
-                          onComfirm={()=>handleComfirmCartItemDelete(orderItem.order_id)}/>
+                          onConfirm={()=>handleConfirmCartItemDelete(orderItem.order_id)}/>
   </div>
   )
 }

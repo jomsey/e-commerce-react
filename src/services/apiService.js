@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const token = localStorage.getItem("token")
+
 const instance = axios.create({headers: {"Authorization": `Bearer ${token}`}});
 const get = apiEndPoint =>axios.get(apiEndPoint);
 const post = (apiEndPoint,data)=>axios.post(apiEndPoint,data)
@@ -17,10 +18,23 @@ const authPatch = (apiEndPoint,data)=>instance.patch(apiEndPoint,data)
 //    return Promise.reject(error);
 //   });
 
+
+
+const callAuthAPIEndpoint =  (method, apiEndPoint, authToken, data=null) => {
+        const headers = { Authorization: `Bearer ${authToken}` };
+        return axios({
+            method,
+            apiEndPoint,
+            headers,
+        });
+};
+
+
+
 const APIService = {get,post,
                     remove,patch,
                     authGet,authPost,
-                    authDelete,authPost}
+                    authDelete,authPost,callAuthAPIEndpoint}
 
 export  default APIService
 

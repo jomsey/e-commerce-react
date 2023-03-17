@@ -4,6 +4,7 @@ import { ShopContext } from "../shop-context/ShopState";
 import { useContext,useState } from "react";
 import AuthBox from "./AuthBox";
 import useToken from "../customHooks/useToken";
+import "./TopBarIcons.css"
 
 
 
@@ -21,12 +22,18 @@ function TopBarIcons() {
 
   return (
     <>
-      <Icon extra="icon" iconName="user" onIconClick={()=> authBoxVisible?setAuthBoxVisible(false):setAuthBoxVisible(true)} />
+       <div className="user-icon-group">
+            {user.is_authenticated && <span className="user-active-badge"></span>}
+            <Icon 
+                extra="icon i-user" 
+                iconName="user"
+                onIconClick={()=> authBoxVisible?setAuthBoxVisible(false):setAuthBoxVisible(true)} />
+       </div>
      
         <Icon
-          extra="icon"
-          iconName="shopping-cart"
-          onIconClick={()=>navigate("/cart")}
+            extra="icon"
+            iconName="shopping-cart"
+            onIconClick={()=>navigate("/cart")}
         >
           
         {cartNumber>0 && <span className="items-number">{cartNumber }</span>}

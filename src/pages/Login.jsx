@@ -27,7 +27,7 @@ export default function Login() {
 
         try { 
             const {status,data}= await authService.getToken(formData);
-            
+  
             if (status === 200){
                 const {user_id} = jwtDecode(data.access)
                 setToken(data.access)

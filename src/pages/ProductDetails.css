@@ -3,8 +3,10 @@
 }
 
 .product-details-page .details .image {
-    width: 50%;
+    width: 40%;
+    padding: 60px;
 }
+
 .image img {
     object-fit: contain;
 }
@@ -14,6 +16,7 @@
     background-color: var(--light);
     display: flex;
     justify-content: space-between;
+    gap: 60px;
 }
 
 .product-details-page .info {
@@ -55,23 +58,23 @@
     border-radius: 5px;
     font-size: 0.7rem;
     position: absolute;
-    background-color: turquoise;
+    background-color: var(--badge);
     top: 22px;
 }
 
 .product-details-page .details .info strike {
-    color: tomato;
+    color: var(--red-shade);
     margin-right: 4px;
-    font-size: 0.9rem !important;
+    font-size: 0.8rem !important;
     font-weight: 500 !important;
 }
 
 .product-details-page .details .info .buttons {
     width: 100%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     margin: 24px 0;
+    gap: 36px;
 }
 
 .product-details-page .details .info .buttons .add-to-cart,
@@ -87,20 +90,11 @@
 }
 
 .product-details-page .details .info .buttons .add-to-cart {
-    background-image: linear-gradient( to left, darkturquoise, mediumturquoise, mediumturquoise);
-    background-image: -moz-linear-gradient( to left, darkturquoise, mediumturquoise, mediumturquoise);
-    background-image: -o-linear-gradient( to left, darkturquoise, mediumturquoise, mediumturquoise);
-    background-image: -webkit-linear-gradient( to left, darkturquoise, mediumturquoise, mediumturquoise);
-    --shadow-color: mediumturquoise;
+    background-color: var(--primary);
 }
 
 .product-details-page .details .info .buttons .add-to-wishlist {
-    background-color: tomato;
-    background-image: linear-gradient(to left, tomato, rgb(241, 140, 122));
-    background-image: -moz-linear-gradient(to left, tomato, rgb(241, 140, 122));
-    background-image: -webkit-linear-gradient( to left, tomato, rgb(241, 140, 122));
-    background-image: -o-linear-gradient(to left, tomato, rgb(241, 140, 122));
-    --shadow-color: rgb(241, 140, 122);
+    background-color: var(--tertiary);
 }
 
 .product-details-page .details .info .buttons .add-to-cart:hover,

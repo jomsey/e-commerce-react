@@ -1,4 +1,4 @@
-.comfirm-delete{
+.confirm-delete {
     background-color: var(--light);
     width: 400px;
     padding: 32px;
@@ -8,39 +8,40 @@
     bottom: 32px;
     right: 32px;
     border: 1px solid #e8edea;
-   }
+}
 
-   .comfirm-delete h5{
+.confirm-delete h5 {
     color: rgb(27, 26, 26) !important;
     font-size: 14px !important;
     margin: 0 !important;
-   }
-   
-   .comfirm-delete button{
-       width: 200px;
-       padding: 12px 0;
-       background-color: var(--primary) !important;
-       color: #fff;
-       border: none;
-       display: flex;
-       justify-content: space-evenly;
-       align-items: center;
-       cursor: pointer;
-   }
-   .comfirm-delete p{
-       color: gray;
-       font-size: 14px;
-       margin: 16px 0;
-   }
-   
-   .comfirm-delete-close-btn{
-      position: absolute;
-      top: 16px;
-      right: 32px;
-      font-size: 24px;
-      cursor: pointer;
-   }
-   
-   .comfirm-delete-close-btn:hover{
-       color: var(--primary);
-   }
+}
+
+.confirm-delete button {
+    width: 200px;
+    padding: 12px 0;
+    background-color: var(--primary) !important;
+    color: #fff;
+    border: none;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    cursor: pointer;
+}
+
+.confirm-delete p {
+    color: gray;
+    font-size: 14px;
+    margin: 16px 0;
+}
+
+.confirm-delete-close-btn {
+    position: absolute;
+    top: 16px;
+    right: 32px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.confirm-delete-close-btn:hover {
+    color: var(--primary);
+}

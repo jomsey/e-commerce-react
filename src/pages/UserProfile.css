@@ -37,6 +37,7 @@
     
     .info-cluster small {
         color: rgb(118, 144, 166);
+
     }
     
     .info-cluster h4 {
@@ -44,6 +45,7 @@
         margin: 0;
         color: rgb(44, 42, 42);
         font-weight: 600;
+        font-size:.8rem;
     }
 
 
