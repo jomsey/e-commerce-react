@@ -15,7 +15,7 @@ export default function RecentlyViewedProducts() {
                   setPreviouslyViewedProducts(products => [...products, product])
                 });
               }
-    }, []);
+    }, [productsIds]);
        
     return previouslyViewedProducts.length>0
           ?<Collection productsList={previouslyViewedProducts.slice(0,5)} title="Recently Viewed" showLink={false}/>
