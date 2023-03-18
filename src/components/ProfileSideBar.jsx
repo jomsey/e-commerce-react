@@ -31,7 +31,6 @@ const ProfileSideBar = () => {
         getUserProfile()
       }, [])
       
-      console.log(phone_number)
       return (
         <>
          <aside>

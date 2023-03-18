@@ -5,11 +5,11 @@ import productsService from '../services/productsService';
 
 export default function RecentlyViewedProducts() {
     const [previouslyViewedProducts, setPreviouslyViewedProducts] = React.useState([])
-    const productsIds = JSON.parse(localStorage.getItem("previouslyViewedProducts"))
+    const productsIds = JSON.parse(localStorage.getItem("previouslyViewedProducts")) //read product ids from the browser local storage
 
     
     React.useEffect(() => {
-        if (productsIds.length>0) {
+        if (productsIds !==null && productsIds.length>0) {
             productsIds.forEach(async id => {
                   const {data:product} = await productsService.getProduct(id)
                   setPreviouslyViewedProducts(products => [...products, product])
