@@ -116,10 +116,10 @@ function ProductDetails(){
                   </div>
                 </div>
               </div>
-              <Collection title={"You May Also Like"} productsList={products} />
               </>
             }
             </div>
+              {products &&  <Collection title={"You May Also Like"} productsList={products.splice(0,5)} showLink={false} />}
               <RecentlyViewedProducts/>
 
           

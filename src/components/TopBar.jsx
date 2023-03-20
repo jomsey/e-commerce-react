@@ -16,42 +16,39 @@ function TopBar({ showToggler }) {
   const {setProducts,setProductsCount,setProductsResultsName,searchQuery,setSearchQuery} = useContext(ShopContext)
   const [displace, setDisplace] = useState(false);
   const [offCanvasVisible, setOffCanvasVisibility] = useState(false);
-  const [query,setQuery] = useState("")
   const navigate = useNavigate()
 
   const handleScroll = () => {
     window.scrollY < 200 ? setDisplace(true) : setDisplace(false);
   };
  
-  const handleSearchPoducts= async (e)=>{
+  const handleSearchProducts= async (e)=>{
         e.preventDefault()
 
+        navigate("/products")
         try {
             const response = await productsService. searchProducts(searchQuery)
             const{results,count}=response.data
             setProducts(results)
             setProductsResultsName("bySearch")
             setProductsCount(count)
-            navigate("/products")
         } catch (error) {
-          console.log(error)
+        
         }
   }
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+            window.addEventListener("scroll", handleScroll);
+            return () => {
+              window.removeEventListener("scroll", handleScroll);
+            };
   }, []);
 
-  let topBarClasses = displace ? "top-bar displace-bar" : "top-bar";
 
   let offCanvasClasses = offCanvasVisible
-    ? "category-off-canvas show-off-canvas"
-    : " category-off-canvas";
+                         ? "category-off-canvas show-off-canvas"
+                         : " category-off-canvas";
 
-    
     
   return (
     <>
@@ -77,7 +74,7 @@ function TopBar({ showToggler }) {
             </div>
           </Link>
         </div>
-        <form  onSubmit={handleSearchPoducts}>
+        <form  onSubmit={handleSearchProducts}>
           <input
             type="search"
             placeholder="search product , category and promotions"

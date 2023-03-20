@@ -4,7 +4,7 @@
     width: 100%;
     justify-content: center;
     align-items: center;
-    
+    height: 100%;
 }
 
 .placeholder-filler h3 {
@@ -12,12 +12,12 @@
     font-weight: 400;
     text-align: center;
 }
-.placeholder-filler .loader{
+
+.placeholder-filler .loader {
     width: 250px;
 }
 
 .placeholder-filler img {
     width: 200px;
     height: auto;
-   
 }

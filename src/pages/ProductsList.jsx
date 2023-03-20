@@ -18,25 +18,9 @@ function ProductsList() {
          priceRange,searchQuery,categoryName} = useContext(ShopContext);
   const [currentPage,setCurrentPage] = useState(1)
   
-  useEffect(() => {
-    const getSiteProducts = async() => {
-          //load the default products list
-          if (products.lenght !== 0) {
-            try {
-              const  response = await productsService.getProducts()
-              const{results,count}=response.data
-              setProductsLoading(false)
-              setProducts(results)
-              setProductsResultsName("all") //we are getting full list of products
-              setProductsCount(count)
-        } catch (error) {}
-            
-        }
-    }
-    getSiteProducts() 
-}, []);
+ 
   const handlePageChange=async(page)=>{
-        // setProducts([]) //Simulate products loading page
+        setProductsLoading(true)
 
         const responseObject = productsResultsName === "bySearch"?productsService.getPageSearchResults(page,searchQuery):
                                productsResultsName === "byPrice"?productsService.getPageProductsFilteredByPrice(priceRange.max, priceRange.min,page):
@@ -47,6 +31,7 @@ function ProductsList() {
         const{results}=response.data
         setProducts(results)
         setCurrentPage(page)
+        setProductsLoading(false)
   }
 
   return (
@@ -56,13 +41,10 @@ function ProductsList() {
             <Filters />
 
           <div className="group-right">
-          {productsLoading
-                  ?<ComponentIsLoading/>
-                  :products.length>0
-                  ?<ProductsContainer products={products}/>
-                  :<NoContent message="No products to Show"/>
-
-            }
+          
+                  <ProductsContainer products={products}/>
+                
+            
           </div>
       </div>
 

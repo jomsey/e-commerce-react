@@ -1,4 +1,4 @@
-.landing{
+.landing {
     display: relative;
     width: 90%;
     margin: auto;
@@ -14,3 +14,13 @@
     margin-top: 0;
 }
 
+@media screen and (min-width:320px) and (max-width:480px) {
+    .landing {
+        width: 95%;
+        margin-top: 170px;
+        gap: 16px;
+        height: 400px;
+    }
+}
+
+@media screen and (min-width:480px) and (max-width:768px) {}

@@ -7,24 +7,26 @@
 }
 
 :root {
-    --primary: darkcyan;
+    --primary: rgb(245, 80, 209);
     --secondary: rgb(153, 149, 149);
     --tertiary: rgb(27, 27, 27);
     --tertiary-shade: rgb(43, 42, 42);
     --light: #fff;
     --light-shade: rgb(215, 237, 255);
     --lightgray: rgb(216, 216, 216);
-    --badge: forestgreen;
+    --badge: rgb(228, 17, 115);
     --bg-place: rgb(235, 235, 235);
     --error: rgb(212, 37, 37);
     --red-shade: rgb(230, 74, 74);
 }
 
+html,
 body {
-    background-color: rgb(43, 8, 28);
+    background-color: rgb(15, 13, 14);
     overflow-x: hidden;
     max-width: 2000px;
     margin: auto;
+    min-width: 320px;
 }
 
 img {

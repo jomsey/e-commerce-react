@@ -1,10 +1,8 @@
-import Icon from "../ui/Icon"
 import UserInfo from "./UserInfo";
 import jwtDecode from "jwt-decode"
 import EditProfile from "./EditProfile";
 import {useState,useEffect} from "react"
 import useToken from "../customHooks/useToken";
-import userService from "../services/userService";
 import axios from "axios";
 import {apiEndPoint} from "../config.json"
 
@@ -36,8 +34,8 @@ const ProfileSideBar = () => {
          <aside>
               <div className="avatar">
                   <img
-                    src="https://thumbs.dreamstime.com/b/user-profile-line-icon-web-avatar-employee-symbol-sign-illustration-design-isolated-white-background-192379539.jpg"
-                    alt=""
+                    src="./avatar.jpg"
+                    alt="...."
                   />
               </div>
 
@@ -55,7 +53,7 @@ const ProfileSideBar = () => {
             <span className="profile-edit" onClick={()=>setEditModalVisible(true)}>Edit Profile</span>
           </aside>
 
-          <EditProfile visible={editModalVisible}/>
+          <EditProfile visible={0}/>
 
        </> 
     );

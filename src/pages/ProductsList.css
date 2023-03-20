@@ -1,7 +1,7 @@
         .group {
             margin: auto;
             margin-top: 135px;
-            margin-bottom:0;
+            margin-bottom: 0;
             display: flex;
             gap: 32px;
             width: 90%;
@@ -15,10 +15,12 @@
             gap: 32px;
         }
         
-       .group-right{
-        width:100%;
-        position:relative
-       }
+        .group-right {
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+        }
         
         .product-pagination {
             width: 90%;

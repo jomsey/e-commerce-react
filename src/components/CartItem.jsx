@@ -75,20 +75,22 @@ function CartItem({product,item_count,product_uuid}) {
             product !== undefined &&
             <>
             <div className="cart-item">
-            <div className="item-image">
-                <img src={product.image_url} alt="..." />
+            <div className="cart-group right">
+                  <div className="item-image">
+                       <img src={product.image_url} alt="..." />
+                  </div>
+
+                  <h5>{(product.name).length > 25?`${product.name.slice(0,30)} ...`:product.name}</h5>
             </div>
-
-          <div className="cart-group">
-              <h5>{(product.name).length > 25?`${product.name.slice(0,25)} ...`:product.name}</h5>
+          <div className="cart-group btns">
               <button onClick={removeCartItem}>{productRemove?<>Removing  <Spinner/></>:"Remove From Cart"}</button>
-          </div>
-
           <Counter 
                 count={count} 
                 onCountIncrease={HandleCountIncrease} 
                 onCountDecrease={HandleCountDecrease}
                 updating={updatingItemCount}/>
+          </div>
+
 
           <div className="cart-group">
               <h5 className="price">Price<br/><span> { formatToCurrencyFormat.format((Math.floor(product.discounted_price)*count))}</span></h5>

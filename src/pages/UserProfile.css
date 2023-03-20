@@ -1,6 +1,6 @@
     .profile-container {
         display: flex;
-        margin: 130px auto 30px auto;
+        margin: 130px auto 0 auto;
         gap: 32px;
         width: 90%;
     }
@@ -27,7 +27,6 @@
         background-color: var(--lightgray);
         box-shadow: 5px 5px 20px var(--lightgray);
         border-radius: 50%;
-
     }
     
     .info-cluster {
@@ -37,7 +36,6 @@
     
     .info-cluster small {
         color: rgb(118, 144, 166);
-
     }
     
     .info-cluster h4 {
@@ -45,10 +43,9 @@
         margin: 0;
         color: rgb(44, 42, 42);
         font-weight: 600;
-        font-size:.8rem;
+        font-size: .8rem;
     }
-
-
+    
     .profile-container main {
         background-color: var(--light);
         width: 100%;
@@ -79,16 +76,22 @@
         background-color: var(--light);
         color: var(--primary);
     }
-  
-
-.profile-edit{
-    text-align: center;
-    font-size: 14px;
-    margin-top: 24px;
-    padding: 6px 0;
-    cursor: pointer;
-    color: var(--primary);
-    border: 1px solid var(--primary);
-    border-radius: 10px;
-}
-
+    
+    .profile-edit {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 24px;
+        padding: 6px 0;
+        cursor: pointer;
+        color: var(--primary);
+        border: 1px solid var(--primary);
+        border-radius: 10px;
+    }
+    
+    @media screen and (max-width:480px) {
+        .profile-container {
+            margin: 170px auto 0 auto;
+            gap: 32px;
+            width: 95%;
+        }
+    }

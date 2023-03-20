@@ -26,6 +26,7 @@
     justify-content: space-evenly;
     align-items: center;
     cursor: pointer;
+    border-radius:8px;
 }
 
 .confirm-delete p {
@@ -36,12 +37,23 @@
 
 .confirm-delete-close-btn {
     position: absolute;
-    top: 16px;
+    top: 10px;
     right: 32px;
     font-size: 24px;
     cursor: pointer;
+    color:var(--primary);
+   padding:8px;
 }
 
 .confirm-delete-close-btn:hover {
     color: var(--primary);
+}
+
+@media screen and (max-width:480px){
+    .confirm-delete {
+        width: 300px;
+        padding: 16px;
+        border: 1px solid #e8edea;
+    }
+    
 }

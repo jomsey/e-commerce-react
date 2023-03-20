@@ -95,3 +95,14 @@
     color: aliceblue;
     width: 100%;
 }
+
+@media screen and (max-width:768px) {
+    .footer {
+        padding: 24px 48px;
+        width: 100%;
+        background-color: var(--tertiary);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+}

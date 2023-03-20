@@ -3,9 +3,7 @@ import axios from "axios";
 import TopBar from "../components/TopBar";
 import { useContext,useState} from "react";
 import { ShopContext } from "../shop-context/ShopState";
-import cartService from "../services/cartService"
 import {useNavigate} from "react-router-dom";
-import orderSevice from "../services/orderSevice";
 import Spinner  from "../components/Spinner"
 import useToken from "../customHooks/useToken";
 import {apiEndPoint} from "../config.json"
@@ -30,7 +28,7 @@ function CheckOut() {
           const {status} = await instance.post(`${apiEndPoint}/orders/`,{cart:cart_uuid})
     
           if(status === 201){
-            window.localStorage.removeItem("cartId");//delete cartId in localstoage after is submited
+            window.localStorage.removeItem("cartId");//delete cartId in local storage after is submitted
             setCartProducts([])
             navigate("/order-success")
             setPlacingOrder(false)
@@ -53,7 +51,7 @@ function CheckOut() {
                 <h4>Your Information</h4> <span>Edit</span>
                 <small>FIRST NAME</small>
                 <br />
-                <span>Muwwanguzi</span>
+                <span>Muwanguzi</span>
                 <br />
                 <small>SECOND NAME</small>
                 <br />
@@ -117,7 +115,7 @@ function CheckOut() {
                   </div>
 
                     </div>
-                    <span>{product_count}</span>
+                    <span className="product-count">{product_count}</span>
                     <span><small>KE</small> { formatToCurrencyFormat.format(Math.floor(product_count*product.discounted_price))}</span>
                   
               </div>

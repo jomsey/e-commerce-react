@@ -3,7 +3,6 @@ import {useState} from "react"
 import TopBar from "../components/TopBar";
 import OrderItems from "../components/OrderItems";
 import SavedItems from "../components/SavedItems";
-import userService from "../services/userService";
 import ProfileSideBar from "../components/ProfileSideBar";
 
 

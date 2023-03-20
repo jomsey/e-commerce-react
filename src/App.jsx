@@ -8,16 +8,13 @@ import Footer from "./components/Footer";
 import CartDetails from "./pages/CartDetails";
 import useToken from "./customHooks/useToken";
 import UserProfile from "./pages/UserProfile";
-import "react-toastify/dist/ReactToastify.css";
 import PrivateRoute from "./tools/PrivateRoute";
-import {ToastContainer } from 'react-toastify';
 import ProductsList from "./pages/ProductsList";
 import { Routes, Route } from "react-router-dom";
 import cartService from "./services/cartService";
 import CreateAccount from "./pages/CreateAccount";
 import ProductDetails from "./pages/ProductDetails";
 import { ShopContext} from "./shop-context/ShopState"
-import productsService from './services/productsService';
 import getCollections from "./services/collectionsService";
 import UserAuthenticated from "./tools/UserAuthenticated";
 import OrderSuccess from "./pages/OrderSuccess";
@@ -54,8 +51,7 @@ useEffect(()=>{
        getProductCollections()
 
 },[])
-   
-
+ 
 useEffect(()=>{
 
   //logout  user when the auth token is expired
@@ -152,7 +148,6 @@ useEffect(()=>{
       
       <Footer />
       </ShopContext.Provider>
-    <ToastContainer />
     
     </div>
   );

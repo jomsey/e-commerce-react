@@ -1,9 +1,8 @@
 .carousel {
     height: 100%;
+    width: 50%;
     overflow: hidden;
     background-color: var(--light);
     border-radius: 5px;
     padding: 0 !important;
 }
-
-

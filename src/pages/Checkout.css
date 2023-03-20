@@ -1,6 +1,7 @@
 .check-out {
-    margin: 120px auto;
-    width: 80%;
+    margin: auto;
+    margin-top: 80px;
+    width: 90%;
 }
 
 .check-out .info {
@@ -60,7 +61,6 @@
     margin: 16px 0;
     border-bottom: 1px solid lightgrey;
     padding-bottom: 8px;
-
 }
 
 .ordered-items .row .product {
@@ -83,16 +83,45 @@
     background-color: transparent;
     cursor: pointer;
 }
+
 .action-btns {
     display: flex;
     gap: 32px;
     margin-top: 32px;
 }
-.action-btns button{
+
+.action-btns button {
     width: 200px;
-    padding:  12px 0;
+    padding: 10px 0;
     cursor: pointer;
     border: none;
     background-color: var(--primary);
     color: var(--light);
+    border-radius: 8px;
+}
+
+@media screen and (max-width:480px) {
+    .check-out {
+        margin-top: 130px;
+        margin-bottom: 0;
+    }
+    .check-out .info {
+        grid-template-columns: 1fr;
+        margin-top: 16px;
+        padding: 16px;
+    }
+    .ordered-items .row {
+        grid-template-columns: 2fr 1fr 1fr;
+    }
+    .ordered-items {
+        margin-top: 16px;
+        background-color: var(--light);
+        padding: 16px;
+    }
+    .ordered-items .heading-row {
+        grid-template-columns: 2fr 1fr 1fr;
+    }
+    .ordered-items .product-count {
+        text-align: center;
+    }
 }
