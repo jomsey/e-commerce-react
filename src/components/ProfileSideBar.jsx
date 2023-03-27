@@ -53,7 +53,7 @@ const ProfileSideBar = () => {
             <span className="profile-edit" onClick={()=>setEditModalVisible(true)}>Edit Profile</span>
           </aside>
 
-          <EditProfile visible={0}/>
+          <EditProfile visible={editModalVisible} onModalClose={()=>setEditModalVisible(false)}/>
 
        </> 
     );

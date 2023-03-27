@@ -37,6 +37,8 @@ function App() {
   const [user,setUser]=useState({username:null,is_authenticated:false})
   const [categoryName,setCategoryName] = useState("")
   const [cartTotalPrice,setCartPriceTotal] = useState(0)
+  const [productsLoading,setProductsLoading]=useState(true)
+
  
 
 
@@ -114,6 +116,7 @@ useEffect(()=>{
                                      setCollections,products,setProducts,cartId,
                                      productsResultsName,setProductsResultsName,
                                      categoryName,setCategoryName,orderItems,setOrderItems,
+                                     productsLoading,setProductsLoading
                                     }}>
    
       <Routes>

@@ -8,22 +8,27 @@ import productsService from "../services/productsService";
 
 
 function CategoryList() {
-      const {setProducts,setProductsCount,setProductsResultsName,setCategoryName} = React.useContext(ShopContext)
+      const {setProducts,setProductsCount,setProductsResultsName,setCategoryName,productsLoading,setProductsLoading} = React.useContext(ShopContext)
       const navigate = useNavigate()
       
       const HandleItemClick=async(name)=> {
             navigate("/products")
+            setProductsLoading(true)
         
             //get products for specific category name , else return full products list
             const response  = name === "All products"?
-                               await productsService.getProducts():
-                               await productsService.getCategoryProducts(name);
+                              await productsService.getProducts():
+                              await productsService.getCategoryProducts(name);
             
-            const{results,count}=response.data
-            setCategoryName(name)
-            setProducts(results)
-            setProductsResultsName("category")
-            setProductsCount(count)
+            const{results,count,status}=response.data
+            
+            if (status === 200){
+                setCategoryName(name)
+                setProducts(results)
+                setProductsResultsName("category")
+                setProductsCount(count)
+              }
+             setProductsLoading(false)
       }
       
       function HandleItemMouseHover(item) {

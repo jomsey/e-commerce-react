@@ -1,11 +1,10 @@
 .collection {
     width: 90%;
     height: auto;
-    padding: 0 64px;
     margin: 32px auto;
     background-color: var(--light);
-    padding: 16px 0 32px 0;
-    border-radius: 5px;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 .collection .collection-container {
@@ -18,15 +17,14 @@
     overflow: hidden;
 }
 
-.collection .collection-top .title {
-    color: var(--primary);
-    margin-bottom: 16px;
-}
-
 .collection .collection-top {
     display: flex;
     justify-content: space-between;
-    margin: 0 16px;
+    background-color: var(--primary);
+    color: aliceblue;
+    align-items: center;
+    margin-bottom: 32px;
+    padding: 0 32px;
 }
 
 .collection .collection-top h4 {
@@ -34,16 +32,9 @@
     cursor: pointer;
 }
 
-.collection .collection-top h4:hover {
-    color: var(--primary);
-    text-decoration: underline;
-}
-
 @media screen and (max-width:600px) {
     .collection {
         width: 95%;
-        padding: 16px 0 32px 0;
-        margin: 16px auto;
     }
     .collection .collection-container .product-card {
         width: unset;

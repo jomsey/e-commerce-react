@@ -14,6 +14,7 @@ function CheckOut() {
   const {cartProducts,setCartProducts} = useContext(ShopContext);
   const [placingOrder,setPlacingOrder] = useState(false)
   const  formatToCurrencyFormat= Intl.NumberFormat()
+  const [editable , setEditable] = useState(false)
   const {token} = useToken()
   const instance = axios.create({headers: {"Authorization": `Bearer ${token}`}});
 
@@ -84,14 +85,18 @@ function CheckOut() {
               </div>
 
               <div className="billing-address-info">
-                  <h4>Billing Address</h4> <span>Edit</span>
-                  <span>Kampala , Uganda</span>
+                  <h4>Billing Address</h4> {editable?<span  onClick={()=>setEditable(false)}>Save Changes</span>:<span onClick={()=>setEditable(true)}>Edit</span>}
+                  {!editable?<span>Kampala , Uganda</span>:
+                  <input type="text" name="city" placeholder="Kampala , Uganda" />}
                   <br />
-                  <span>Kabaka Anjagala,rd</span>
+                  {!editable?<span>Kabaka Anjagala,rd</span>:
+                  <input type="text" name="city" placeholder="Kabaka Anjagala,rd" />}
                   <br />
-                  <span>William st</span>
+                 {!editable? <span>William st</span>:
+                  <input type="text" name="street" placeholder="William st" />}
                   <br />
-                  <span>Uganda</span>
+                 {!editable? <span>Uganda</span>:
+                  <input type="text" name="country" placeholder="Uganda" />}
               </div>
           </div>
         </div>
@@ -103,7 +108,7 @@ function CheckOut() {
           </div>
 
           {
-            cartProducts.map(({product,product_count,cart_uuid})=>(
+            cartProducts.map(({product,product_count})=>(
              
               <div className="row" key={product.product_uuid}>
                   <div className="product">
@@ -126,7 +131,7 @@ function CheckOut() {
 
           <div className="action-btns">
                 <button onClick={()=>navigate("/cart")}>Update Cart</button>
-                <button onClick={placeOrder}>{placingOrder?<>Processing  <Spinner/></>:"Comfirm Order"}</button>
+                <button onClick={placeOrder}>{placingOrder?<>Processing  <Spinner/></>:"Confirm Order"}</button>
           </div>
           
         </div>

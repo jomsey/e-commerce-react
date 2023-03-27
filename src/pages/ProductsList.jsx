@@ -3,7 +3,7 @@ import TopBar from "./../components/TopBar";
 import Filters from "./../components/Filters";
 import NoContent from "./../components/NoContent"
 import Pagination from "../components/Pagination";
-import { useContext,useState,useEffect} from "react";
+import { useContext,useState} from "react";
 import { ShopContext } from "../shop-context/ShopState";
 import productsService from "../services/productsService";
 import ProductsContainer from "../components/ProductsContainer";
@@ -12,10 +12,9 @@ import RecentlyViewedProducts from "../components/RecentlyViewedProducts";
 
 
 function ProductsList() {
-  const [productsLoading,setProductsLoading]=useState(true)
+
   const {products,productsCount,
-         setProducts,productsResultsName,
-         priceRange,searchQuery,categoryName} = useContext(ShopContext);
+         setProducts,productsResultsName,productsLoading,setProductsLoading} = useContext(ShopContext);
   const [currentPage,setCurrentPage] = useState(1)
   
  
@@ -42,7 +41,7 @@ function ProductsList() {
 
           <div className="group-right">
           
-                  <ProductsContainer products={products}/>
+                 {productsLoading  ? <ComponentIsLoading/>:<ProductsContainer products={products}/>}
                 
             
           </div>

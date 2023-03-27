@@ -2,6 +2,7 @@
     width: 200px;
     min-width: 200px;
     border-radius: 5px;
+    height: 310px;
     background-color: var(--light);
     box-shadow: 4px 4px 10px var(--lightgray);
     transition: all 0.3s ease;
@@ -40,18 +41,16 @@
     color: var(--tertiary);
     font-size: 14px;
     transition: all 1s ease;
-}
-
-.product-card .container {
-    margin: 8px 18px;
-}
-
-.product-card .product-name {
     text-transform: capitalize;
+    display: block;
 }
 
 .product-card:hover .product-name {
     color: var(--primary);
+}
+
+.product-card .container {
+    margin: 8px 18px;
 }
 
 .product-card .product-discount {
@@ -126,7 +125,6 @@ strike {
     .product-card {
         width: 150px;
         min-width: 150px !important;
-        height: auto;
         overflow: hidden;
     }
     .product-card .product-image {

@@ -79,7 +79,7 @@ function ProductDetails(){
                 <div className="image">
                   <img
                     src={product.image_url}
-                    alt=""
+                    alt={product.name}
                   />
                 </div>
 
@@ -119,7 +119,7 @@ function ProductDetails(){
               </>
             }
             </div>
-              {products &&  <Collection title={"You May Also Like"} productsList={products.splice(0,5)} showLink={false} />}
+              {products.length>0 &&  <Collection title={"You May Also Like"} productsList={products.splice(0,5)} showLink={false} />}
               <RecentlyViewedProducts/>
 
           

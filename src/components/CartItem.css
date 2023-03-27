@@ -1,5 +1,5 @@
 .cart-item {
-    height: 100px;
+    height: 120px;
     width: 100%;
     margin-top: 16px;
     overflow: hidden;
@@ -12,7 +12,7 @@
 }
 
 .cart-item .counter {
-    margin-top: 8px;
+    margin-top: 20px;
 }
 
 .cart-group {
@@ -30,13 +30,14 @@
 }
 
 .cart-group button {
-    background-color: var(--primary);
+    background-color: transparent;
     padding: 8px 16px;
-    color: var(--light);
+    color: var(--primary);
     cursor: pointer;
     width: 200px;
     border-radius: 8px;
     border: none;
+    border: 1px solid var(--primary);
 }
 
 .cart-group button .spinner {

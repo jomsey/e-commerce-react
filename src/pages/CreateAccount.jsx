@@ -1,9 +1,7 @@
 import Icon from "../ui/Icon";
 import "./Auth.css";
 import TopBar from './../components/TopBar';
-import {useState,useEffect,useContext} from "react"
-import APIService from "../services/apiService";
-import {apiEndPoint} from "../config.json"
+import {useState,useContext} from "react"
 import { useNavigate ,Link} from "react-router-dom";
 import { ShopContext} from "../shop-context/ShopState"
 import authService from "../services/authService";
@@ -116,7 +114,7 @@ export default function CreateAccount() {
           <div className="input-group">
             <Icon iconName={"lock"} extra={"input-icon"} />
             <input type="password"
-              placeholder="comfirm password"
+              placeholder="confirm password"
               name="password2" 
               onChange={handleChange}
               />

@@ -125,3 +125,11 @@
         text-align: center;
     }
 }
+
+.bunch input {
+    border: 1px solid var(--secondary);
+    border-radius: 5px;
+    outline: none;
+    font-size: smaller;
+    margin-bottom: 4px;
+}
