@@ -91,3 +91,15 @@
         height: 100%;
     }
 }
+
+@media screen and (max-width:480px) {
+    .cart-group button {
+        padding: 6px 16px;
+        color: var(--primary);
+        width: 150px;
+    }
+    .cart-item .counter {
+        margin-top: 20px;
+        left: 20px;
+    }
+}

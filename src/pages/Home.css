@@ -1,26 +1,48 @@
-.landing {
-    display: relative;
-    width: 90%;
-    margin: auto;
-    display: flex;
-    margin-top: 128px;
-    gap: 32px;
-    height: 400px;
-}
-
-.landing .categories-container {
-    display: flex;
-    left: 0;
-    margin-top: 0;
-}
-
-@media screen and (min-width:320px) and (max-width:480px) {
-    .landing {
-        width: 95%;
-        margin-top: 170px;
-        gap: 16px;
-        height: 400px;
-    }
-}
-
-@media screen and (min-width:480px) and (max-width:768px) {}
+        .landing {
+            display: relative;
+            width: 90%;
+            margin: auto;
+            display: flex;
+            margin-top: 128px;
+            gap: 32px;
+            height: 400px;
+        }
+        
+        .landing .categories-container {
+            display: flex;
+            left: 0;
+            overflow: hidden;
+            margin-top: 0;
+        }
+        
+        @media screen and (min-width:320px) and (max-width:480px) {
+            .landing {
+                width: 95%;
+                margin-top: 170px;
+                gap: 16px;
+                height: auto;
+                flex-direction: column;
+            }
+            .landing .categories-container {
+                position: fixed;
+                z-index: 300;
+                top: 150px;
+                height: 100%;
+                width: max-content;
+                border-top: 1px solid rgb(196, 196, 196);
+            }
+            .landing .categories-container .categories {
+                height: 100%;
+                border: none;
+                border-radius: 0;
+                width: 250px;
+            }
+            .landing .categories-container .close-btn {
+                display: block;
+            }
+            .landing .close-categories-canvas {
+                width: 0;
+            }
+        }
+        
+        @media screen and (min-width:480px) and (max-width:768px) {}

@@ -25,9 +25,10 @@
     align-items: center;
     margin-bottom: 32px;
     padding: 0 32px;
+    height: 40px;
 }
 
-.collection .collection-top h4 {
+.collection .collection-top h5 {
     transition: all 0.3s ease;
     cursor: pointer;
 }

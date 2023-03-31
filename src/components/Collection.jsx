@@ -7,7 +7,7 @@ function Collection({ title, productsList,showLink=true }) {
         <div className="collection">
             <div className="collection-top">
                 <h3 className="title">{title}</h3>
-                 {showLink &&  <h4>SEE ALL</h4>}
+                 {showLink &&  <h5>SEE ALL</h5>}
             </div>
 
             <div className="collection-container">

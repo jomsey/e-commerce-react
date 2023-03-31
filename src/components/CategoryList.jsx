@@ -8,9 +8,10 @@ import productsService from "../services/productsService";
 
 
 function CategoryList() {
-      const {setProducts,setProductsCount,setProductsResultsName,setCategoryName,productsLoading,setProductsLoading} = React.useContext(ShopContext)
+      const {setProducts,setProductsCount,setProductsResultsName,setCategoryName,setProductsLoading} = React.useContext(ShopContext)
       const navigate = useNavigate()
       
+     
       const HandleItemClick=async(name)=> {
             navigate("/products")
             setProductsLoading(true)

@@ -18,6 +18,7 @@ import { ShopContext} from "./shop-context/ShopState"
 import getCollections from "./services/collectionsService";
 import UserAuthenticated from "./tools/UserAuthenticated";
 import OrderSuccess from "./pages/OrderSuccess";
+import Alert from "./components/Alert";
 
 
 function App() {
@@ -150,6 +151,7 @@ useEffect(()=>{
       </Routes>
       
       <Footer />
+      <Alert message="This is a sample alert" type="error"/>
       </ShopContext.Provider>
     
     </div>

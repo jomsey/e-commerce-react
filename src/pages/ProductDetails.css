@@ -54,6 +54,7 @@
 .product-details-page .details .info .price {
     font-size: 1.5rem;
     font-weight: 200;
+    width: 200px;
 }
 
 .product-details-page .details .info .price span {
@@ -63,7 +64,8 @@
     font-size: 0.7rem;
     position: absolute;
     background-color: var(--badge);
-    top: 22px;
+    top: 28px;
+    right: 38px;
 }
 
 .product-details-page .details .info strike {
@@ -112,11 +114,13 @@
         margin-top: 170px;
         width: 95%;
         height: auto;
+        overflow: hidden;
     }
     .details {
-        margin: 0;
+        width: 100%;
         gap: 30px;
         flex-direction: column;
+        margin: 0 !important
     }
     .product-details-page .info {
         padding: 24px;

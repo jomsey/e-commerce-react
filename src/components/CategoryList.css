@@ -16,3 +16,5 @@
 .categories .category-item:hover {
     color: var(--primary);
 }
+
+@media screen and (max-width:480px) {}
