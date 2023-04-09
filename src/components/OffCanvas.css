@@ -1,0 +1,72 @@
+.off-canvas {
+    width: 70%;
+    height: 100%;
+    background-color: var(--light);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    top: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 170px 16px 16px 16px;
+    transition: width .3s linear;
+    visibility: hidden;
+}
+
+.off-canvas-closed {
+    width: 0;
+    padding: 0;
+}
+
+.off-canvas .categories {
+    width: 220px;
+    height: auto;
+    background-color: var(--light);
+    border-radius: 0;
+    border: none;
+    padding: 0;
+}
+
+.off-canvas .filters-container {
+    padding: 0 16px;
+    margin-top: 16px;
+    display: block;
+    min-width: unset;
+}
+
+.off-canvas-close-icon {
+    left: 80%;
+    position: absolute;
+    cursor: pointer;
+    color: var(--primary);
+    z-index: 10;
+}
+
+.off-canvas aside {
+    background-color: transparent;
+    max-width: unset;
+    min-width: unset;
+    width: 100%;
+    margin-top: 24px;
+}
+
+.off-canvas .avatar {
+    width: 120px;
+    box-shadow: 4px 4px 16px var(--light-shade);
+    border-radius: 50%;
+    overflow: hidden;
+    margin: auto;
+    margin-bottom: 32px;
+}
+
+.off-canvas .profile-edit {
+    width: 200px;
+    display: block;
+}
+
+@media screen and (min-width:320px) and (max-width:480px) {
+    .off-canvas {
+        visibility: visible;
+    }
+}

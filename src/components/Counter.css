@@ -7,9 +7,10 @@
 }
 
 .counter .view {
-    border: 1px solid var(--primary);
+    border: 1px solid var(--badge);
     padding: 3px 8px;
     font-weight: 600;
+    user-select: none;
 }
 
 .count-icon {
@@ -18,10 +19,15 @@
     text-align: center;
     cursor: pointer;
     font-weight: 800;
-    background-color: var(--primary);
+    background-color: var(--badge);
     color: var(--light);
+    transition: all .5s ease;
 }
 
 .count-icon:hover {
-    box-shadow: 0 0 0 3px var(--primary);
+    box-shadow: 0 0 10px 3px var(--badge);
+}
+
+* {
+    user-select: none;
 }

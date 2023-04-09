@@ -11,7 +11,7 @@ function ProductCard({product}) {
          const [addingToCart,setAddingToCart] = useState(false)
          const navigate = useNavigate()
          const  formatToCurrencyFormat= Intl.NumberFormat()
-         const {cartProducts,setCartProducts} = useContext(ShopContext);
+         const {cartProducts,setCartProducts,setAlertMessage} = useContext(ShopContext);
          
          const handleProductDetailClick=(product_id)=>{
                navigate(`/products/${product_id}`)
@@ -28,12 +28,16 @@ function ProductCard({product}) {
                        if (status === 201){
                            setCartProducts([product,...cartProducts])
                            setAddingToCart(false)
+                           setAlertMessage({message:"Product successfully added  to cart!"})
+
                        }
                        setAddingToCart(false)
                    }
                      
                } catch (error) {
                    setAddingToCart(false)
+                   setAlertMessage({message:"Oops , Couldn't Add Product !",isError:true})
+
                }
        }
 

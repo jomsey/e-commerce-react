@@ -18,7 +18,7 @@ import { ShopContext} from "./shop-context/ShopState"
 import getCollections from "./services/collectionsService";
 import UserAuthenticated from "./tools/UserAuthenticated";
 import OrderSuccess from "./pages/OrderSuccess";
-import Alert from "./components/Alert";
+
 
 
 function App() {
@@ -36,13 +36,15 @@ function App() {
   const [showOrderProducts,setShowOrderProducts] = useState(false)
   const [productsResultsName,setProductsResultsName] = useState("")
   const [user,setUser]=useState({username:null,is_authenticated:false})
-  const [categoryName,setCategoryName] = useState("")
+  const [categoryName,setCategoryName] = useState(null)
   const [cartTotalPrice,setCartPriceTotal] = useState(0)
   const [productsLoading,setProductsLoading]=useState(true)
+  const [mobileOffCanvasOpen,setMobileOffCanvasOpen]=useState(false)
+  const [currentPage,setCurrentPage] = useState(1)
+  const [alertMessage,setAlertMessage] = useState(null)
 
+  
  
-
-
 useEffect(()=>{
    const getProductCollections = async()=>{
           try {
@@ -54,15 +56,16 @@ useEffect(()=>{
        getProductCollections()
 
 },[])
- 
+
+
+
 useEffect(()=>{
 
   //logout  user when the auth token is expired
    try {
         const {user_id,exp:tokenExpiryDate} = jwtDecode(token)
-        if(tokenExpiryDate<Date.now()){
-             setUser(prev=>({...prev,username:user_id,is_authenticated:true}))
-        }
+        if(tokenExpiryDate<Date.now())setUser(prev=>({...prev,username:user_id,is_authenticated:true}));
+
         else{
               setToken(null)
               setUser(prev=>({...prev,username:null,is_authenticated:false}))
@@ -109,6 +112,7 @@ useEffect(()=>{
                                      priceRange,setPriceRange,
                                      user,setUser,cartProducts,
                                      searchQuery,setSearchQuery,
+                                     currentPage,setCurrentPage,
                                      cartTotalPrice,setCartPriceTotal,
                                      setShowOrderProducts,collections,
                                      setCartProducts,showOrderProducts,
@@ -116,8 +120,8 @@ useEffect(()=>{
                                      productsCount,cartNumber,setCartNumber,
                                      setCollections,products,setProducts,cartId,
                                      productsResultsName,setProductsResultsName,
-                                     categoryName,setCategoryName,orderItems,setOrderItems,
-                                     productsLoading,setProductsLoading
+                                     categoryName,setCategoryName,orderItems,setOrderItems,alertMessage,setAlertMessage,
+                                     productsLoading,setProductsLoading,mobileOffCanvasOpen,setMobileOffCanvasOpen
                                     }}>
    
       <Routes>
@@ -151,7 +155,7 @@ useEffect(()=>{
       </Routes>
       
       <Footer />
-      <Alert message="This is a sample alert" type="error"/>
+    
       </ShopContext.Provider>
     
     </div>

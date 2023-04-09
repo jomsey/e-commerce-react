@@ -1,6 +1,6 @@
 .check-out {
     margin: auto;
-    margin-top: 80px;
+    margin-top: 130px;
     width: 90%;
 }
 
@@ -25,13 +25,14 @@
     font-size: small;
 }
 
-.check-out .info h4+span {
+
+/* .check-out .info h4+span {
     color: var(--primary) !important;
     position: absolute;
     top: 0;
     right: 5px;
     cursor: pointer;
-}
+} */
 
 .check-out .info .personal-info small {
     font-weight: 700;
@@ -92,17 +93,51 @@
 
 .action-btns button {
     width: 200px;
-    padding: 10px 0;
+    padding: 8px 0;
     cursor: pointer;
     border: none;
-    background-color: var(--primary);
+    background-color: var(--badge);
     color: var(--light);
     border-radius: 8px;
 }
 
+.bunch input,
+.bunch select {
+    width: 50%;
+    outline: none !important;
+    border: 1px solid var(--light-shade);
+    padding: 3px;
+    padding-left: 16px;
+    font-size: .75rem;
+    color: var(--secondary);
+    margin-top: 8px;
+}
+
+.bunch button {
+    width: 200px;
+    padding: 6px 0;
+    border-radius: 8px;
+    border: none;
+    color: var(--badge);
+    background-color: var(--light-shade);
+    cursor: pointer;
+    transition: all .5s ease;
+}
+
+.bunch button:hover {
+    box-shadow: 0 0 1px 1px var(--badge);
+}
+
+@media screen and (max-width:600px) {
+    .bunch input,
+    .bunch select {
+        width: 100%;
+    }
+}
+
 @media screen and (max-width:480px) {
     .check-out {
-        margin-top: 130px;
+        margin-top: 170px;
         margin-bottom: 0;
     }
     .check-out .info {
@@ -124,12 +159,4 @@
     .ordered-items .product-count {
         text-align: center;
     }
-}
-
-.bunch input {
-    border: 1px solid var(--secondary);
-    border-radius: 5px;
-    outline: none;
-    font-size: smaller;
-    margin-bottom: 4px;
 }

@@ -2,7 +2,6 @@ import "./OrderItems.css";
 import Order from "./Order";
 import {useNavigate} from "react-router-dom"
 import OrderProducts from "./OrderProducts";
-import orderSevice from "../services/orderSevice";
 import cartService from "../services/cartService";
 import { useState,useContext,useEffect} from "react";
 import { ShopContext } from "../shop-context/ShopState";
@@ -10,6 +9,7 @@ import ComponentIsLoading from "./ComponentIsLoading";
 import axios from "axios";
 import {apiEndPoint} from "../config.json"
 import useToken from "../customHooks/useToken";
+import NoContent from './NoContent';
 
 
 
@@ -26,7 +26,7 @@ const OrderItems = ({loading}) => {
   const HandleViewOrderProducts=async(cartId)=>{
         setShowOrderProducts(true);
         try {
-            const {data,status} = await cartService.getCartProducts(cartId)
+            const {data } = await cartService.getCartProducts(cartId)
             setOrderProducts(data.results)
         } catch (error){}  
   }
@@ -39,7 +39,7 @@ const OrderItems = ({loading}) => {
       
     } 
     getUserOrders()  
-  }, []);
+  }, [orderItems]);
 
   return (
     <div className="orders">
@@ -52,11 +52,10 @@ const OrderItems = ({loading}) => {
                   onViewOrderProducts={()=>HandleViewOrderProducts(order.cart)}
     
                   /> ):
+<NoContent message="You don't have any orders">
 
-             <div className="no-orders">
-                  <span>You Have Not Yet Made Any Orders</span>
                   <button onClick={()=>navigate("/products")}>Continue Shopping</button>
-            </div>)
+</NoContent>)
      }
      <OrderProducts showItems={showOrderProducts} productsList={orderProducts}/>
     </div>

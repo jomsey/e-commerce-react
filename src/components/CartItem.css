@@ -32,12 +32,12 @@
 .cart-group button {
     background-color: transparent;
     padding: 8px 16px;
-    color: var(--primary);
+    color: var(--badge);
     cursor: pointer;
     width: 200px;
     border-radius: 8px;
     border: none;
-    border: 1px solid var(--primary);
+    border: 1px solid var(--badge);
 }
 
 .cart-group button .spinner {

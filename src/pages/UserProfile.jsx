@@ -4,6 +4,8 @@ import TopBar from "../components/TopBar";
 import OrderItems from "../components/OrderItems";
 import SavedItems from "../components/SavedItems";
 import ProfileSideBar from "../components/ProfileSideBar";
+import OffCanvas from "../components/OffCanvas";
+
 
 
 export default function UserProfile() {
@@ -18,8 +20,14 @@ export default function UserProfile() {
 
   return (
     
-    <>
-      <TopBar showToggler={true} />
+    <> 
+      <OffCanvas>
+        {/* to be displayed only on small screens */}
+         <ProfileSideBar/>
+      </OffCanvas>
+
+      <TopBar showToggler={true} useMobileSideNav={true} />
+
       <section className="profile-container" >
        <ProfileSideBar/>
         <main>
@@ -29,7 +37,7 @@ export default function UserProfile() {
                   <div className={`nav toggle-btn ${activeClass}`} onClick={HandleToggle}>Saved Items</div>
             </div>
             <div className="display">
-                 {(ordersVisibility &&  <OrderItems/> )||  <SavedItems/>}
+                 {ordersVisibility?<OrderItems/> : <SavedItems/>}
             </div>
           </div>
           

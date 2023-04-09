@@ -1,6 +1,7 @@
 import "./Billboard.css";
 import BillboardItem from "./BillboardItem";
 
+
 function Billboard({ items }) {
       return (
         <div className="billboard">

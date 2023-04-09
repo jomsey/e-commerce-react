@@ -16,7 +16,6 @@ export default function Filters() {
           const response = await productsService.filterProductsByPrice( priceRange.max, priceRange.min)
           const{results,count}=response.data
           setProducts(results)
-          setProductsResultsName("byPrice")
           setProductsCount(count)
         } catch (error) {
           console.log(error)

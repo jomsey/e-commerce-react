@@ -1,9 +1,10 @@
 import "./NoContent.css"
 
-export default function NoContent({message}) {
+export default function NoContent({message,children}) {
     return(
         <div className = "no-content-container">
-            <p>{message}</p>
+            <span>{message}</span>
+            {children}
         </div>
     )
 }

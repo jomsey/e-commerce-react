@@ -30,7 +30,7 @@ function LinksGroup({ title, links, icons }) {
 }
 
 LinksGroup.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.string,  
   links: PropTypes.array,
   icons: PropTypes.array,
 };

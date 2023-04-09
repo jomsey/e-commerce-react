@@ -6,6 +6,7 @@ import { ShopContext } from "../shop-context/ShopState";
 import RecentlyViewedProducts from "../components/RecentlyViewedProducts";
 import CartSummary from "../components/CartSummary";
 import ComponentIsLoading from './../components/ComponentIsLoading';
+import NoContent from './../components/NoContent';
 
 
 function CartDetails() {
@@ -29,7 +30,7 @@ function CartDetails() {
                                            item_count={product_count}
                                            product_uuid={product_uuid}/>
              ))
-             :<h3 className="cart-empty-text">No Items To Display</h3>)
+             :<NoContent  message="No Items To Display"/>)
           }
 
         </div>

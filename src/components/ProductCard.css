@@ -99,7 +99,7 @@
 }
 
 .product-card .product-price {
-    color: darkturquoise;
+    color: rgb(40, 180, 183);
     display: block;
     margin-top: 8px;
 }
@@ -126,9 +126,10 @@ strike {
         width: 150px;
         min-width: 150px !important;
         overflow: hidden;
+        height: 275px;
     }
     .product-card .product-image {
-        height: 50%;
+        height: 45%;
     }
     .product-card .buttons {
         margin: 0;

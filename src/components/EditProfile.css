@@ -4,11 +4,11 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1000;
+    z-index: 1000000;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: all .3s linear;
+    transition: all .5s ease;
 }
 
 .modal-container .overlay {
@@ -30,10 +30,32 @@
     border-radius: 10px;
     padding: 32px;
     overflow: hidden;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.edit-profile-modal p {
+    width: 50%;
+    font-size: small;
+    line-height: 1.5rem;
+    color: var(--tertiary);
 }
 
 .modal-container-not-visible {
+    width: 0;
+    height: 0;
     visibility: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: .5;
+    border-radius: 50%;
+}
+
+.modal-container-not-visible .edit-profile-modal,
+.modal-container-not-visible .close-modal-btn {
+    display: none;
 }
 
 .close-modal-btn {
@@ -62,9 +84,8 @@
 .edit-profile-modal form .input-group input {
     padding: 8px 32px;
     background-color: transparent;
-    border: 1px solid var(--primary) !important;
+    border: 1px solid var(--light-shade) !important;
     color: var(--primary) !important;
-    border-radius: 8px;
 }
 
 .edit-profile-modal form .input-group:nth-child(1) {
@@ -82,4 +103,27 @@
     letter-spacing: 1.5px;
     transition: all 0.3s ease;
     cursor: pointer;
+}
+
+@media screen and (max-width:480px) {
+    .edit-profile-modal .auth-container form {
+        min-width: unset;
+        min-height: unset;
+    }
+    .edit-profile-modal {
+        width: 90%;
+        height: auto;
+        top: 70px;
+        padding: 32px 16px;
+        flex-direction: column;
+    }
+    .edit-profile-modal p {
+        width: 90%;
+        margin: auto;
+        margin-bottom: 24px;
+    }
+    .modal-container {
+        overflow: scroll;
+        align-items: unset;
+    }
 }

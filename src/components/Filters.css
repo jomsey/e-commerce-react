@@ -3,7 +3,7 @@
     padding: 32px 16px;
     background-color: var(--light);
     border-radius: 5px;
-    height: max-content;
+    height: auto;
 }
 
 .slider {
@@ -120,7 +120,6 @@ input[type="radio"]:checked {
 
 @media screen and (min-width:320px) and (max-width:480px) {
     .filters-container {
-        position: absolute;
-        z-index: 10;
+        display: none;
     }
 }

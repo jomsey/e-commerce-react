@@ -6,7 +6,7 @@ const productsEndPoint = `${apiEndPoint}/products`
 const getProducts = () => APIService.get(productsEndPoint + "/");
 const getProduct = id => APIService.get(`${productsEndPoint}/${id}/`);
 const getPageProducts = page => APIService.get(`${productsEndPoint}/?page=${page}`)
-const searchProducts = query => APIService.get(`${productsEndPoint}/?search=${query}/`)
+const searchProducts = query => APIService.get(`${productsEndPoint}/?search=${query}`)
 const getCategoryProducts = category => APIService.get(`${apiEndPoint}/categories/${category}/products/`);
 const getCategoryPageProducts = (category, page) => APIService.get(`${apiEndPoint}/categories/${category}/products/?page=${page}`);
 const getPageSearchResults = (page, query) => APIService.get(`${productsEndPoint}/?page=${page}&search=${query}`)

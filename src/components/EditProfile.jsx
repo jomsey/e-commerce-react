@@ -13,6 +13,7 @@ function EditProfile({visible,onModalClose}) {
             <div className="overlay"></div>
             <Icon iconName="close" extra="close-modal-btn" onIconClick={onModalClose}/>
             <div className="edit-profile-modal">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam ipsum laboriosam perferendis culpa necessitatibus expedita? Cupiditate sed provident excepturi ratione?</p>
                   <div className="edit-profile ">
                     <div className="auth-container ">
                           {formErrors.error && <small className="form-detail-error">{formErrors.error}</small>}
@@ -79,7 +80,7 @@ function EditProfile({visible,onModalClose}) {
                               {formErrors.address && <small className="form-error">{formErrors.address}</small>}
 
                             </div>
-                            <button type="submit">SUBMIT <Icon iconName={"spinner"} extra={"submit-spinner"} /></button>
+                            <button type="submit">Save changes<Icon iconName={"spinner"} extra={"submit-spinner"} /></button>
                           </form>
                     </div>
             </div>

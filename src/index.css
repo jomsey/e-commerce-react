@@ -22,11 +22,11 @@
 
 html,
 body {
-    background-color: rgb(31, 89, 89);
+    background-color: rgb(29, 76, 76);
     overflow-x: hidden;
     max-width: 2000px;
     margin: auto;
-    min-width: 320px;
+    min-width: 320px z!important;
 }
 
 img {

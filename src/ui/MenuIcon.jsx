@@ -4,11 +4,11 @@ import Icon from "./Icon";
 import "./MenuIcon.css";
 
 
-function MenuIcon({ visible = true,HandleMenuIconClick }) {
+function MenuIcon({ visible = true,onMenuIconClick }) {
   return (
     <Icon
       iconName={"bars"}
-      onIconClick={HandleMenuIconClick}
+      onIconClick={onMenuIconClick}
       extra={visible ? "menu-icon" : "not-visible"}
     />
   );
@@ -16,7 +16,7 @@ function MenuIcon({ visible = true,HandleMenuIconClick }) {
 
 MenuIcon.propTypes = {
   visible: PropTypes.bool,
-  HandleMenuIconClick:PropTypes.func
+  onMenuIconClick:PropTypes.func
 };
 
 export default MenuIcon;

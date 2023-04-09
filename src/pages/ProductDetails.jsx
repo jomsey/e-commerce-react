@@ -17,7 +17,7 @@ function ProductDetails(){
         const [product,setProduct] = useState({})
         const  formatToCurrencyFormat= Intl.NumberFormat()
         const [addingToCart,setAddingToCart] = useState(false)
-        const {cartProducts,setCartProducts,products}= useContext(ShopContext)
+        const {cartProducts,setCartProducts,products,setAlertMessage}= useContext(ShopContext)
         const  [loadingProduct,setLoadingProduct] = useState(true)
 
         
@@ -30,7 +30,9 @@ function ProductDetails(){
                       setLoadingProduct(false)
                     }
 
-                } catch (error) {}
+                } catch (error) {
+                  setAlertMessage({message:"Oops , Something is Wrong !",isError:true})
+                }
           }
 
           getProduct()
@@ -46,7 +48,9 @@ function ProductDetails(){
                   try {
                     const response = await cartService.createCart()
                     localStorage.setItem("cartId",response.data.cart_uuid)
-                    } catch (error) {}
+                    } catch (error) {
+                      console.log(error);
+                    }
               }
                   
               try {
@@ -54,16 +58,20 @@ function ProductDetails(){
                   if (status === 201){
                     setCartProducts([product,...cartProducts])
                     setAddingToCart(false)
+                    setAlertMessage({message:"Product successfully added  to cart!"})
+
                 }
                 setAddingToCart(false)
                   
               } catch (error) {
                 setAddingToCart(false)
+                setAlertMessage({message:"Oops , Couldn't Add Product !",isError:true})
               }
         };
 
         const AddProductToWishList = (product) => {
           console.log("added to wishlist");
+          setAlertMessage({message:"Product successfully saved!"})
         };
 
         return (

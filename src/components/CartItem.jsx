@@ -12,7 +12,7 @@ function CartItem({product,item_count,product_uuid}) {
       const [deleteDialogVisible,setDeleteDialogVisible] = useState(false)
       const  formatToCurrencyFormat= Intl.NumberFormat()
       const  [productRemove,setProductRemoved] = useState(false)
-      const {cartProducts,setCartProducts,cartId,setCartPriceTotal} = useContext(ShopContext);
+      const {cartProducts,setCartProducts,cartId,setCartPriceTotal,setAlertMessage} = useContext(ShopContext);
       const [updatingItemCount,setUpdatingItemItemCount] = useState(false)
 
 
@@ -28,10 +28,17 @@ function CartItem({product,item_count,product_uuid}) {
       };
 
       const handleConfirmCartItemDelete = async (product_uuid) =>{
-            setDeleteDialogVisible(false);//remove dialog after confirming
-            setProductRemoved(true);//display deleting 
-            const {status} = await cartService.removeFromCart(cartId,product_uuid)
-            if(status === 204)setCartProducts(cartProducts.filter(product=>product.product_uuid!==product_uuid));
+            try {
+                  setDeleteDialogVisible(false);//remove dialog after confirming
+                  setProductRemoved(true);//display deleting 
+                  const {status} = await cartService.removeFromCart(cartId,product_uuid)
+                  if(status === 204){
+                        setCartProducts(cartProducts.filter(product=>product.product_uuid!==product_uuid));
+                        setAlertMessage({message:"Product removed successfully"})
+                  }
+            } catch (error) {
+                  setAlertMessage({message:"Oops couldn't remove item", isError:true})
+            }
       }
       
 
@@ -46,6 +53,7 @@ function CartItem({product,item_count,product_uuid}) {
                 setUpdatingItemItemCount(false)
             } catch (error) {
               setUpdatingItemItemCount(false)
+              setAlertMessage({message:"Oops Something Is Wrong !"})
             }
       }
 
@@ -62,6 +70,8 @@ function CartItem({product,item_count,product_uuid}) {
                   setUpdatingItemItemCount(false)
             } catch (error) {
               setUpdatingItemItemCount(false)
+              setAlertMessage({message:"Oops Something Is Wrong !"})
+
             }
             
       }

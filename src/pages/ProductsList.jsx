@@ -3,19 +3,22 @@ import TopBar from "./../components/TopBar";
 import Filters from "./../components/Filters";
 import NoContent from "./../components/NoContent"
 import Pagination from "../components/Pagination";
-import { useContext,useState} from "react";
+import { useContext, useEffect} from "react";
 import { ShopContext } from "../shop-context/ShopState";
 import productsService from "../services/productsService";
 import ProductsContainer from "../components/ProductsContainer";
 import ComponentIsLoading from "../components/ComponentIsLoading";
 import RecentlyViewedProducts from "../components/RecentlyViewedProducts";
+import OffCanvas from "../components/OffCanvas";
+import CategoryList from "../components/CategoryList";
 
 
 function ProductsList() {
 
   const {products,productsCount,
-         setProducts,productsResultsName,productsLoading,setProductsLoading} = useContext(ShopContext);
-  const [currentPage,setCurrentPage] = useState(1)
+         setProducts,productsResultsName,
+         productsLoading,setProductsLoading,categoryName,
+         currentPage,setCurrentPage,setAlertMessage,setProductsCount} = useContext(ShopContext);
   
  
   const handlePageChange=async(page)=>{
@@ -33,18 +36,41 @@ function ProductsList() {
         setProductsLoading(false)
   }
 
+
+  useEffect(()=>{
+            const getProducts = async()=>{
+                  try {
+                      const  response = await productsService.getProducts()
+                      const{results,count}=response.data
+                      setProducts(results)
+                      setProductsCount(count)
+                      setProductsLoading(false)
+                      
+                  } catch (error) {
+                        setAlertMessage({message:"Oops Something Is Wrong !",isError:true})
+                  }
+            }
+           !productsResultsName && getProducts() //display default results list if no filters applied
+            
+   },[])
+      
+
+
   return (
     <>
-      <TopBar showToggler={true} />
+      <OffCanvas>
+            <CategoryList/>
+            <Filters/>
+      </OffCanvas>
+      <TopBar showToggler={true} useMobileSideNav={true} />
       <div className="group products">
             <Filters />
 
-          <div className="group-right">
-          
-                 {productsLoading  ? <ComponentIsLoading/>:<ProductsContainer products={products}/>}
-                
-            
-          </div>
+            <div className="group-right">
+                  {productsLoading?<ComponentIsLoading/>:<ProductsContainer products={products}/>}
+                  {products.length<1 && <NoContent message="No Products To Show"/>}
+
+            </div>
       </div>
 
      {

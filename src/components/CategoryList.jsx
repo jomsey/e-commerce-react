@@ -7,23 +7,29 @@ import { categories } from "./../utils/product_categories";
 import productsService from "../services/productsService";
 
 
+
 function CategoryList() {
-      const {setProducts,setProductsCount,setProductsResultsName,setCategoryName,setProductsLoading} = React.useContext(ShopContext)
+      const {setProducts,setProductsCount,
+             setProductsResultsName,setCategoryName,
+             setProductsLoading,setCurrentPage,setMobileOffCanvasOpen} = React.useContext(ShopContext)
       const navigate = useNavigate()
       
-     
       const HandleItemClick=async(name)=> {
+            setCurrentPage(1)//reset pagination to initial page
             navigate("/products")
-            setProductsLoading(true)
-        
-            //get products for specific category name , else return full products list
+            setMobileOffCanvasOpen(false) //close sidebar nav if open
+            setProductsLoading(true) // display loader 
+            // window.document.title=`${siteName} | ${name}` //set the page title
+            
+            //get products for specific category name , else return full products lis
             const response  = name === "All products"?
                               await productsService.getProducts():
                               await productsService.getCategoryProducts(name);
             
-            const{results,count,status}=response.data
+            const{results,count}=response.data
+        
             
-            if (status === 200){
+            if (response.status === 200){
                 setCategoryName(name)
                 setProducts(results)
                 setProductsResultsName("category")
