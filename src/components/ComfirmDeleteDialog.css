@@ -7,7 +7,7 @@
     z-index: 10000;
     bottom: 32px;
     right: 32px;
-    border: 1px solid #e8edea;
+    border: 1px solid var(--badge);
 }
 
 .confirm-delete h5 {

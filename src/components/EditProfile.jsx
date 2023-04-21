@@ -1,5 +1,6 @@
 import "./EditProfile.css";
 import Icon from "../ui/Icon";
+import Spinner from "./Spinner";
 
 
 function EditProfile({visible,onModalClose}) {
@@ -80,7 +81,7 @@ function EditProfile({visible,onModalClose}) {
                               {formErrors.address && <small className="form-error">{formErrors.address}</small>}
 
                             </div>
-                            <button type="submit">Save changes<Icon iconName={"spinner"} extra={"submit-spinner"} /></button>
+                            <button type="submit">Save changes <Spinner/></button>
                           </form>
                     </div>
             </div>

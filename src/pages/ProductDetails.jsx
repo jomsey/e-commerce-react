@@ -20,6 +20,7 @@ function ProductDetails(){
         const {cartProducts,setCartProducts,products,setAlertMessage}= useContext(ShopContext)
         const  [loadingProduct,setLoadingProduct] = useState(true)
 
+
         
         useEffect(()=>{
           async function getProduct(){
@@ -110,14 +111,14 @@ function ProductDetails(){
                      product.description.length >600 ? (product.description).slice(0,600)+" .....":product.description
                   }
                   </p>
-                  <RatingRack rate={4} />
+                  <RatingRack rate={3} />
                   <div className="buttons">
-                    <button onClick={()=>AddProductToCart(product)} className="add-to-cart btn">
+                    <button  onClick={()=>AddProductToCart(product)} className="add-to-cart btn button-overlay">
                      {addingToCart?<>Adding To Cart  <Spinner/></>:"Add To Cart" }
                     </button>
                     <button
                       onClick={()=>AddProductToWishList("product")}
-                      className="add-to-wishlist btn"
+                      className="add-to-wishlist btn button-overlay"
                     >
                       Add To Wishlist
                     </button>

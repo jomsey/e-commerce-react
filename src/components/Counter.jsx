@@ -8,7 +8,7 @@ function Counter({count,onCountIncrease,onCountDecrease,updating}) {
     <div className="counter">
         <Icon
           iconName={"minus"}
-          extra={"count-icon"}
+          extra={"count-icon button-overlay"}
           onIconClick={onCountDecrease}/>
 
         <div className="count">
@@ -20,7 +20,7 @@ function Counter({count,onCountIncrease,onCountDecrease,updating}) {
         </div>
         <Icon
           iconName={"plus"}
-          extra={"count-icon"}
+          extra={"count-icon button-overlay"}
           onIconClick={onCountIncrease}/>
       
     </div>

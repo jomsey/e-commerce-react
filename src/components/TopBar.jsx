@@ -16,10 +16,9 @@ import Alert from './Alert';
 function TopBar({ showToggler,useMobileSideNav}) {
           const [autoCompleteList,setAutoCompleteList] = useState([])
           const {setProducts,setProductsCount,
-                setProductsResultsName,searchQuery,alertMessage,setAlertMessage,
+                setProductsResultsName,searchQuery,alertMessage,isMobilePhone,
                 setSearchQuery,mobileOffCanvasOpen,setMobileOffCanvasOpen} = useContext(ShopContext)
           const [offCanvasVisible, setOffCanvasVisibility] = useState(false);
-          const [isMobilePhone,setIsMobilePhone] = useState(false)
           const navigate = useNavigate()
         
           const HandleMenuIconClick=() => {
@@ -51,7 +50,6 @@ function TopBar({ showToggler,useMobileSideNav}) {
                 } catch (error) {}
           }
           
-          useEffect(()=>window.screen.width<=480?setIsMobilePhone(true):setIsMobilePhone(false))//always show toggler button on mobile screens
           
           return (
             <div className="top-bar-container"> 

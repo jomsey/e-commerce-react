@@ -36,8 +36,8 @@ function CartItem({product,item_count,product_uuid}) {
                         setCartProducts(cartProducts.filter(product=>product.product_uuid!==product_uuid));
                         setAlertMessage({message:"Product removed successfully"})
                   }
-            } catch (error) {
-                  setAlertMessage({message:"Oops couldn't remove item", isError:true})
+            } catch (error) { 
+                  setAlertMessage({message:"Oops couldn't remove item !", isError:true})
             }
       }
       

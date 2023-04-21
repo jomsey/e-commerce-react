@@ -14,16 +14,16 @@
         flex-direction: column;
     }
     
-    .profile-container aside .cluster {
+    aside .cluster {
         margin-top: 8px;
         width: 100%;
     }
     
     .profile-container .avatar {
-        width: 120px;
-        height: 120px;
+        width: 100px;
+        height: 100px;
         overflow: hidden;
-        margin: 0 auto 24px auto;
+        margin: 0 auto;
         background-color: var(--lightgray);
         box-shadow: 5px 5px 20px var(--lightgray);
         border-radius: 50%;
@@ -58,23 +58,30 @@
         background-color: var(--tertiary-shade);
         height: 40px;
         color: var(--light-shade);
+        align-items: center;
+        justify-content: space-between;
+        font-size: .85rem;
         border-bottom: 1px solid var(--light-shade);
     }
     
     .profile-container main .general-view .view-navs .nav {
-        width: 200px;
+        height: 100%;
         display: flex;
+        width: 100%;
+        justify-content: center;
         align-items: center;
-        padding: 0 24px;
         transition: all 0.3s linear;
         cursor: pointer;
-        font-weight: 600;
+        font-weight: 400;
     }
     
-    .profile-container main .general-view .view-navs .nav:hover,
-    .profile-container main .general-view .view-navs .active {
-        background-color: var(--light);
+    .profile-container main .general-view .view-navs .nav:hover {
         color: var(--primary);
+    }
+    
+    .profile-container main .general-view .view-navs .active {
+        background-color: var(--light) !important;
+        color: var(--primary) !important;
     }
     
     .profile-edit {
@@ -83,23 +90,134 @@
         margin-top: 24px;
         padding: 6px 0;
         cursor: pointer;
-        color: var(--primary);
-        border: 1px solid var(--primary);
+        color: var(--badge);
+        border: 1px solid var(--badge);
         border-radius: 10px;
+    }
+    
+    .view-navs .fa {
+        margin-right: 16px;
+        top: 2px;
+    }
+    
+    .fa .count-badge {
+        width: 15px;
+        height: 15px;
+        position: absolute;
+        border-radius: 50%;
+        font-size: 10px;
+        font-weight: lighter;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--primary);
+        top: 0;
+        left: 90%;
+        color: var(--light) !important;
+        box-shadow: 0px 0px 0px 2px var(--tertiary-shade);
+        transition: none!important;
+    }
+    
+    .profile-container main .general-view .view-navs .active .fa .count-badge {
+        box-shadow: 0px 0px 0px 2px var(--light);
+    }
+    
+    .profile-container .logout,
+    .off-canvas .logout {
+        color: var(--badge);
+        margin-top: 16px;
+        display: flex;
+        gap: 24px;
+        align-items: center;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 500;
+    }
+    
+    .display {
+        height: 100%;
+        min-height: 300px;
+    }
+    
+    .upload-image-overlay {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: 4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--badge);
+        font-size: 2rem;
+        transition: all .5s linear;
+        visibility: hidden;
+        background-color: rgba(9, 9, 10, .8);
+        cursor: pointer;
+    }
+    
+    .avatar:hover .upload-image-overlay {
+        visibility: visible;
     }
     
     @media screen and (max-width:480px) {
         .profile-container {
             margin: 170px auto 0 auto;
             gap: 32px;
-            width: 95%;
+            width: 90%;
         }
         .profile-container aside {
             display: none;
         }
     }
     
-    .display {
-        height: 100%;
-        min-height: 300px;
+    @media screen and (max-width:1000px) {
+        .profile-container main .general-view {
+            height: 100%;
+            padding: 0;
+            padding-left: 70px;
+        }
+        .profile-container main .general-view .view-navs {
+            position: absolute;
+            height: 100%;
+            width: 60px;
+            z-index: 4;
+            flex-direction: column;
+            justify-content: unset;
+            left: 0;
+            padding-top: 16px;
+        }
+        .profile-container main .general-view .view-navs .nav {
+            height: 60px;
+            overflow: hidden;
+            left: 0;
+            position: absolute;
+            padding-left: 10px;
+            text-align: center;
+            border-radius: 10px;
+        }
+        .profile-container main .general-view .view-navs .nav:nth-child(2) {
+            transform: translateY(60px);
+        }
+        .profile-container main .general-view .view-navs .nav:nth-child(3) {
+            transform: translateY(120px);
+        }
+        .profile-container main .general-view .view-navs .nav:nth-child(4) {
+            transform: translateY(180px);
+        }
+        .profile-container main .general-view .view-navs .nav .nav-title {
+            display: none;
+        }
+        .profile-container main .general-view .view-navs .nav:hover:not(.active) .nav-title {
+            display: flex;
+        }
+        .profile-container main .general-view .view-navs .nav:hover:not(.active) {
+            color: var(--primary);
+            width: 150px;
+            border: 3px solid var(--tertiary-shade);
+            background-color: inherit;
+            justify-content: start;
+        }
+        .view-navs .fa {
+            font-size: 18px
+        }
     }

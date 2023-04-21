@@ -1,8 +1,15 @@
 .rack .fa-star {
     color: var(--lightgray);
-    margin: 2px;
+    margin: 5px;
+    cursor: pointer;
+    transition: all .5s ease-in;
 }
 
 .rack .star-full {
-    color: tomato;
+    color: var(--badge);
+}
+
+.rack .fa-star:hover {
+    opacity: .6;
+    rotate: 45deg;
 }

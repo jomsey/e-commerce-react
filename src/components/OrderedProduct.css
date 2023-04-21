@@ -2,9 +2,10 @@
     display: flex;
     height: 70px;
     margin: 16px 24px;
-    box-shadow: 2px 2px 5px rgb(209, 228, 244);
     column-gap: 20px;
     overflow: hidden;
+    background-color: var(--light);
+    border-radius: 8px;
 }
 
 .ordered-product span {

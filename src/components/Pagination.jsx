@@ -1,6 +1,5 @@
 import "./Pagination.css"
 import PropTypes  from 'prop-types';
-
 export default function Pagination({pageSize,itemsCount,onPageChange,currentPage}) {
   const numberOfPages= Math.ceil(itemsCount/pageSize)
   if (numberOfPages<=1)return null;

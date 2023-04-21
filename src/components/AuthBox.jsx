@@ -9,8 +9,8 @@ function AuthBox({user,onUserLogout}){
             {(user.is_authenticated) && <small><b>Hello , {user.username}</b></small>}
             <span onClick={()=>navigate("/profile")}>My Account</span>
             {user.is_authenticated?
-            <button onClick={onUserLogout}>LOGOUT</button>:
-            <button onClick={()=>navigate("/auth/login")}>LOGIN</button>}
+            <button className="button-overlay" onClick={onUserLogout}>LOGOUT</button>:
+            <button className="button-overlay"  onClick={()=>navigate("/auth/login")}>LOGIN</button>}
         </div>
     );
 }

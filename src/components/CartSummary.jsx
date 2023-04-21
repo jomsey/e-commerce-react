@@ -15,7 +15,7 @@ function CartSummary({products}) {
                     <div className="summary">
                       <div className="group1">
                         <h5>ITEMS</h5>
-                        inp
+                      
                         <small>{products.length}</small>
                       </div>
 
@@ -44,7 +44,7 @@ function CartSummary({products}) {
                         </select>
                       </form>
                     </div>
-                    <button className="checkout-btn" onClick={()=>navigate("/checkout")}>CHECKOUT</button>
+                    <button className="checkout-btn button-overlay" onClick={()=>navigate("/checkout")}>CHECKOUT</button>
                   </div>
       )
 }

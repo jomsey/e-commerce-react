@@ -6,6 +6,7 @@ import { useNavigate ,Link} from "react-router-dom";
 import { ShopContext} from "../shop-context/ShopState"
 import authService from "../services/authService";
 import useToken from "../customHooks/useToken";
+import Spinner from "../components/Spinner";
 
 
 
@@ -14,8 +15,8 @@ export default function CreateAccount() {
   const [formData,setFormData] = useState({})
   const [formErrors,setFormErrors] = useState({})
   const [isSigningUp,setIsSigningUp]=useState(false)
-  const {setUser} = useContext(ShopContext)
-  const {setToken,token} = useToken()
+  const {setUser,setAlertMessage} = useContext(ShopContext)
+  const {setToken} = useToken()
 
 
   
@@ -29,6 +30,7 @@ export default function CreateAccount() {
          
          //login user after successful account creation
          if (status === 201) {
+          setAlertMessage({message:"Successfully created account !"})
            try {
                 const {username,password} = formData
                 const {data}= await authService.getToken({username:username,password:password});
@@ -46,6 +48,7 @@ export default function CreateAccount() {
         if (error.response?.status==401 ||error.response?.status==400){
            setFormErrors(error.response.data)
          }
+         else  setAlertMessage({message:"Oops something is wrong",isError:true});
       }
     
      
@@ -128,7 +131,7 @@ export default function CreateAccount() {
             </div>
             <small>Have account ? Login <Link to="/auth/login">Here</Link></small>
           </div>
-          <button type="submit">SIGN UP {isSigningUp && <Icon iconName={"spinner"} extra={"submit-spinner"} />}</button>
+          <button type="submit">SIGN UP {isSigningUp && <Spinner/>}</button>
           <div className="auth-options">
             <p>or sign up with</p>
             <div className="auth-icons">

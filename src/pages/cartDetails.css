@@ -52,12 +52,7 @@ h4,
     color: #fff;
     left: 50%;
     transform: translateX(-50%);
-    transition: all 0.3s ease;
     border-radius: 8px;
-}
-
-.cart-details .cart-summary .checkout-btn:hover {
-    opacity: .6;
 }
 
 .cart-details .cart-summary .group1 {
@@ -82,7 +77,7 @@ h4,
 
 .cart-details .cart-summary form select {
     width: 100%;
-    border: none;
+    border: kk;
     outline: none;
     padding: 8px;
 }

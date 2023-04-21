@@ -21,12 +21,16 @@ function ProductCard({product}) {
 
          const AddItemToCart = async(product_id)=>{
                setAddingToCart(true) //display loader
+               
                const cartId = localStorage.getItem("cartId")   
                try {
                    if (cartId !== null){
                        const  {status} = await cartService.addToCart({"product":product_id},cartId)
+                       
+                       
                        if (status === 201){
                            setCartProducts([product,...cartProducts])
+                         
                            setAddingToCart(false)
                            setAlertMessage({message:"Product successfully added  to cart!"})
 
@@ -55,7 +59,9 @@ function ProductCard({product}) {
                  </div>
              }
              <div className="product-image">
-               <img src={product.image_url} alt={product.name} />
+               {/* <img src={product.image_url} alt={product.name} /> */}
+               <img src="/KE_Clearance_Electronics_0423_S.jpg" alt={product.name} />
+
              </div>
              <div className="container">
                <span className="product-name">
@@ -69,7 +75,7 @@ function ProductCard({product}) {
                </small>
 
                <div className="buttons">
-                 <span onClick={()=>handleProductDetailClick(product.id)} className="detail-btn">DETAILS</span>
+                 <span onClick={()=>handleProductDetailClick(product.id)} className="detail-btn button-overlay">DETAILS</span>
                  <div className="add-btns">
                    <Icon
                      extra={"wish-icon"}

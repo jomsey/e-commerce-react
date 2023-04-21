@@ -15,51 +15,48 @@ import NoContent from './NoContent';
 
 
 const OrderItems = ({loading}) => {
-  const [orderProducts,setOrderProducts] = useState([])
-  const {token} = useToken()
-  const [ordersLoading,setOrdersLoading] = useState(true)
-  const navigate = useNavigate()
-  const {showOrderProducts,setShowOrderProducts,orderItems,setOrderItems} = useContext(ShopContext)
-  const instance = axios.create({headers: {"Authorization": `Bearer ${token}`}});
+      const [orderProducts,setOrderProducts] = useState([])
+      const {token} = useToken()
+      const [ordersLoading,setOrdersLoading] = useState(true)
+      const navigate = useNavigate()
+      const {showOrderProducts,setShowOrderProducts,orderItems,setOrderItems} = useContext(ShopContext)
+      const instance = axios.create({headers: {"Authorization": `Bearer ${token}`}});
 
 
-  const HandleViewOrderProducts=async(cartId)=>{
-        setShowOrderProducts(true);
-        try {
-            const {data } = await cartService.getCartProducts(cartId)
-            setOrderProducts(data.results)
-        } catch (error){}  
-  }
+      const HandleViewOrderProducts=async(cartId)=>{
+            setShowOrderProducts(true);
+            try {
+                const {data } = await cartService.getCartProducts(cartId)
+                setOrderProducts(data.results)
+            } catch (error){}  
+      }
 
-  useEffect(() => {
-    const getUserOrders=async()=>{
-        const response = await instance.get(`${apiEndPoint}/orders/`)
-        setOrderItems(response.data.results)
-        setOrdersLoading(false)
-      
-    } 
-    getUserOrders()  
-  }, [orderItems]);
+      useEffect(() => {
+            const getUserOrders=async()=>{
+                const response = await instance.get(`${apiEndPoint}/orders/`)
+                setOrderItems(response.data.results)
+                setOrdersLoading(false)
+              
+            } 
+            getUserOrders()  
+      }, []);
 
-  return (
-    <div className="orders">
-      {ordersLoading
-              ?<ComponentIsLoading/>
-              :(orderItems.length>0? orderItems.map(order=>
-                <Order 
-                  orderItem={order}
-                  key={order.order_id}  
-                  onViewOrderProducts={()=>HandleViewOrderProducts(order.cart)}
-    
-                  /> ):
-<NoContent message="You don't have any orders">
-
-                  <button onClick={()=>navigate("/products")}>Continue Shopping</button>
-</NoContent>)
-     }
-     <OrderProducts showItems={showOrderProducts} productsList={orderProducts}/>
-    </div>
-  );
+      return (
+        <div className="orders">
+          {ordersLoading
+                  ?<ComponentIsLoading/>
+                  :(orderItems.length>0? orderItems.map(order=>
+                    <Order 
+                      orderItem={order}
+                      key={order.order_id}  
+                      onViewOrderProducts={()=>HandleViewOrderProducts(order.cart)}
+        
+                      /> ):
+                      <NoContent message="You don't have any orders"><button onClick={()=>navigate("/products")}>Continue Shopping</button></NoContent>)
+        }
+        <OrderProducts showItems={showOrderProducts} productsList={orderProducts}/>
+        </div>
+      );
 };
 
 export default OrderItems;

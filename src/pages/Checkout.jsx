@@ -146,8 +146,8 @@ function CheckOut() {
                 }
 
                 <div className="action-btns">
-                      <button onClick={()=>navigate("/cart")}>Update Cart</button>
-                      <button onClick={placeOrder}>{placingOrder?<>Processing  <Spinner/></>:"Confirm Order"}</button>
+                      <button className="button-overlay" onClick={()=>navigate("/cart")}>Update Cart</button>
+                      <button className="button-overlay" onClick={placeOrder}>{placingOrder?<>Processing  <Spinner/></>:"Confirm Order"}</button>
                 </div>
                 
               </div>

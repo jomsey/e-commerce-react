@@ -42,8 +42,12 @@ function App() {
   const [mobileOffCanvasOpen,setMobileOffCanvasOpen]=useState(false)
   const [currentPage,setCurrentPage] = useState(1)
   const [alertMessage,setAlertMessage] = useState(null)
+  const [isMobilePhone,setIsMobilePhone] = useState(false)
+
 
   
+  useEffect(()=>window.screen.width<=480?setIsMobilePhone(true):setIsMobilePhone(false))//always show toggler button on mobile screens
+
  
 useEffect(()=>{
    const getProductCollections = async()=>{
@@ -119,7 +123,7 @@ useEffect(()=>{
                                      cartItemsLoading,setCartItemsLoading,
                                      productsCount,cartNumber,setCartNumber,
                                      setCollections,products,setProducts,cartId,
-                                     productsResultsName,setProductsResultsName,
+                                     productsResultsName,setProductsResultsName,isMobilePhone,setIsMobilePhone,
                                      categoryName,setCategoryName,orderItems,setOrderItems,alertMessage,setAlertMessage,
                                      productsLoading,setProductsLoading,mobileOffCanvasOpen,setMobileOffCanvasOpen
                                     }}>

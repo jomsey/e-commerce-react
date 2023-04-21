@@ -24,9 +24,10 @@
     transition: all .5s ease;
 }
 
-.count-icon:hover {
+
+/* .count-icon:hover {
     box-shadow: 0 0 10px 3px var(--badge);
-}
+} */
 
 * {
     user-select: none;

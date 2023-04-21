@@ -11,7 +11,7 @@ import "./TopBarIcons.css"
 function TopBarIcons() {
   
   const navigate = useNavigate()
-  const { cartNumber,user ,setUser,setAuthenticated} = useContext(ShopContext);
+  const { cartNumber,user ,setUser} = useContext(ShopContext);
   const [authBoxVisible,setAuthBoxVisible]= useState(false)
   const {setToken} = useToken()
   

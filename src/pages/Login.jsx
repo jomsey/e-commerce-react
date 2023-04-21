@@ -13,17 +13,17 @@ import Spinner from  './../components/Spinner';
 
 
 export default function Login() {
-   const {setUser} = useContext(ShopContext)
+   const {setUser,setAlertMessage} = useContext(ShopContext)
    const [formData,setFormData] = useState({})
    const [formErrors,setFormErrors] = useState({})
-   const {setToken,token} = useToken()
-   const [isLoggingIn,setIsLogingIn]=useState(false)
+   const {setToken} = useToken()
+   const [isLoggingIn,setIsLoggingIn]=useState(false)
    const navigate = useNavigate()
 
 
   const HandleFormSubmit=async(e)=>{
         e.preventDefault()
-        setIsLogingIn(true) //show the log in progress loader
+        setIsLoggingIn(true) //show the log in progress loader
 
         try { 
             const {status,data}= await authService.getToken(formData);
@@ -33,15 +33,18 @@ export default function Login() {
                 setToken(data.access)
                 setUser(user=>({...user,username:user_id,is_authenticated:true}))
                 navigate("/profile")
-                setIsLogingIn(false) //stop the login progress loader
+                setIsLoggingIn(false) //stop the login progress loader
             }        
         }
 
         catch (error) {
-            setIsLogingIn(false) //stop the login progress loader
+            setIsLoggingIn(false) //stop the login progress loader
 
             if (error.response?.status==401 ||error.response?.status==400){
                 setFormErrors(error.response.data)
+            }
+            else{
+              setAlertMessage({message:"Oops something is wrong",isError:true})
             }
         }  
   }
@@ -91,7 +94,7 @@ export default function Login() {
             <small>No account ? Signup <Link to="/auth/register">Here</Link></small>
           </div>
           <button type="submit">
-              LOGIN  
+              Sign in
               {isLoggingIn && <Spinner/>}
           </button>
         

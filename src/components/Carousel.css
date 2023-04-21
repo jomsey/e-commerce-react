@@ -1,6 +1,6 @@
 .carousel {
-    height: 100%;
-    width: 50%;
+    height: 350px;
+    width: 60%;
     overflow: hidden;
     background-color: var(--light);
     border-radius: 5px;

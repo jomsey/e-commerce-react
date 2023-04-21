@@ -11,7 +11,6 @@ import NoContent from './../components/NoContent';
 
 function CartDetails() {
   const {cartProducts,cartItemsLoading} = useContext(ShopContext);
-  
   return (
     <>
       <TopBar showToggler={true} />
