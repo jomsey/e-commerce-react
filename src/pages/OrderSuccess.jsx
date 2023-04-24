@@ -13,7 +13,7 @@ function OrderSuccess() {
 
           <h1>Order Successful</h1>
           <p>You have successfully placed your order</p>
-          <button onClick={()=>navigate("/products")}>Continue Shopping</button>
+          <button className="button-overlay" onClick={()=>navigate("/products")}>Continue Shopping</button>
         </div>
     </>
   )

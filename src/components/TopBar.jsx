@@ -13,7 +13,7 @@ import SearchItemForm from "./SearchItemForm";
 import Alert from './Alert';
 
 
-function TopBar({ showToggler,useMobileSideNav}) {
+function TopBar({ showToggler,useMobileSideNav,onTogglerIconClick=null}) {
           const [autoCompleteList,setAutoCompleteList] = useState([])
           const {setProducts,setProductsCount,
                 setProductsResultsName,searchQuery,alertMessage,isMobilePhone,
@@ -59,7 +59,7 @@ function TopBar({ showToggler,useMobileSideNav}) {
                 <div className="left">
                       <MenuIcon
                           visible={showToggler || isMobilePhone }
-                          onMenuIconClick={HandleMenuIconClick}
+                          onMenuIconClick={onTogglerIconClick?onTogglerIconClick:HandleMenuIconClick}
                       />
  
                       {showToggler && 

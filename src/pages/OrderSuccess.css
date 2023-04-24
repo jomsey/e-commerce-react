@@ -12,19 +12,15 @@
 }
 
 .success-container button {
-    background-color: var(--primary);
+    background-color: var(--badge);
     border: none;
     color: #fff;
     padding: 12px 0;
     width: 240px;
     border-radius: 8px;
-    box-shadow: 4px 4px 10px var(--primary);
+    box-shadow: 0 0 10px var(--primary);
     cursor: pointer;
     transition: all .3 ease;
-}
-
-.success-container button:hover {
-    opacity: .9;
 }
 
 .success-container p {

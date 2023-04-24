@@ -9,6 +9,7 @@
     overflow: hidden;
     margin-top: 32px;
     top: 100%;
+    z-index: 1000;
 }
 
 .footer .division {

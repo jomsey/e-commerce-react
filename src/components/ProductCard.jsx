@@ -59,8 +59,7 @@ function ProductCard({product}) {
                  </div>
              }
              <div className="product-image">
-               {/* <img src={product.image_url} alt={product.name} /> */}
-               <img src="/KE_Clearance_Electronics_0423_S.jpg" alt={product.name} />
+               <img src={product.image_url} alt={product.name} />
 
              </div>
              <div className="container">
