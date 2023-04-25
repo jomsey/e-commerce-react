@@ -1,1 +1,1 @@
-{ "apiEndPoint": "http://127.0.0.1:8000/api", "siteName": "JEcomm" }
+{ "apiEndPoint": "https:jomsey2.pythonanywhere.com/api", "siteName": "JEcomm" }

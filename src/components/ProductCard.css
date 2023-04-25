@@ -39,7 +39,7 @@
 
 .product-card .product-name {
     color: var(--tertiary);
-    font-size: 14px;
+    font-size: .8rem;
     transition: all 1s ease;
     text-transform: capitalize;
     display: block;
@@ -65,7 +65,6 @@
 }
 
 .product-card .detail-btn {
-    border: 1px solid var(--badge);
     background: transparent;
     border-radius: 8px;
     background-color: var(--badge);
@@ -103,7 +102,8 @@
     color: var(--badge);
     display: block;
     margin-top: 8px;
-    font-size: smaller;
+    font-size: .8rem;
+    font-weight: 700;
 }
 
 strike {
@@ -115,7 +115,7 @@ strike {
     height: 100%;
     position: absolute;
     z-index: 20;
-    background-color: rgba(207, 179, 179, 0.521);
+    background-color: rgba(15, 15, 15, 0.521);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -125,13 +125,14 @@ strike {
 
 @media screen and (min-width:320px) and (max-width:480px) {
     .product-card {
-        width: 150px;
+        width: 150px !important;
         min-width: 150px !important;
         overflow: hidden;
-        height: 275px;
+        height: 220px !important;
     }
     .product-card .product-image {
-        height: 43%;
+        height: 50% !important;
+        background-color: var(--lightgray);
     }
     .product-card .buttons {
         margin: 0;
@@ -141,7 +142,6 @@ strike {
     }
     .product-card .detail-btn {
         border-radius: 12px;
-        color: var(--badge);
         font-size: 10px;
         width: 100%;
         margin-right: 0;
@@ -149,6 +149,21 @@ strike {
     .product-card .buttons .add-btns {
         width: 100%;
         justify-content: space-between;
+        margin-top: 16px;
+    }
+    .product-card .product-name {
+        color: var(--tertiary);
+        font-size: .7rem;
+        position: absolute;
+        top: -20px;
+        background-color: rgba(255, 255, 255);
+        padding: 5px;
+        border-radius: 5px;
+    }
+    .product-card .product-price {
+        font-size: .73rem;
+        font-weight: 500;
+        top: 16px;
     }
 }
 
