@@ -7,6 +7,12 @@ const SavedItems = () => {
            <SavedProduct/>
            <SavedProduct/>
            <SavedProduct/>
+           <SavedProduct/>
+           <SavedProduct/>
+           <SavedProduct/>
+           <SavedProduct/>
+           <SavedProduct/>
+           <SavedProduct/>
         </div>
     );
 } 

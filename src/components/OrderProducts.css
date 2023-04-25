@@ -32,3 +32,9 @@
     z-index: 1000;
     padding: 16px;
 }
+
+@media screen and (max-width:600px) {
+    .orders-off-canvas-visible {
+        width: 70%;
+    }
+}

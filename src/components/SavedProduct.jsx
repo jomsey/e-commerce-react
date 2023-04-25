@@ -4,11 +4,10 @@ function SavedProduct () {
     return (
         <div className="saved-product">
             <div className="prod-image">
-                <img src="https://api.lorem.space/image/fashion" alt="...." />
+                <img src="./KE_Clearance_Electronics_0423_S.jpg" alt="...." />
             </div>
             <div className="prod-info">
-                <span>Product Name</span>
-                <br />
+                <span className="product-name">Lorem ipsum dolor sit ...</span>
                 <small>KES: 400</small>
             </div>
             <div className="buttons">
