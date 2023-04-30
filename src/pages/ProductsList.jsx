@@ -63,6 +63,10 @@ function ProductsList() {
             <Filters/>
       </OffCanvas>
       <TopBar showToggler={true} useMobileSideNav={true} />
+      <div className="products-list-header">
+            <div className="bread-crumb">
+            </div>
+      </div>
       <div className="group products">
             <Filters />
 

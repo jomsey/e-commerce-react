@@ -14,6 +14,7 @@ function EditProfile({visible,onModalClose}) {
             <div className="overlay"></div>
             <Icon iconName="close" extra="close-modal-btn" onIconClick={onModalClose}/>
             <div className="edit-profile-modal">
+              
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam ipsum laboriosam perferendis culpa necessitatibus expedita? Cupiditate sed provident excepturi ratione?</p>
                   <div className="edit-profile ">
                     <div className="auth-container ">

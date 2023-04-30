@@ -1,4 +1,3 @@
-import UserInfo from "./UserInfo";
 import jwtDecode from "jwt-decode"
 import EditProfile from "./EditProfile";
 import {useState,useEffect,useContext} from "react"
@@ -7,11 +6,13 @@ import axios from "axios";
 import {apiEndPoint} from "../config.json"
 import Icon from "../ui/Icon";
 import { ShopContext } from "../shop-context/ShopState";
+import UserInfo from './UserInfo';
 
 
 
 
-const ProfileSideBar = () => {
+
+const UserInfoGroup = () => {
       const [profile,setUserprofile]=useState({});
       const {token,setToken} = useToken()
       const {setUser} = useContext(ShopContext);
@@ -71,4 +72,4 @@ const ProfileSideBar = () => {
 
 
 
-export default ProfileSideBar;
+export default UserInfoGroup;

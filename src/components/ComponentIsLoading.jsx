@@ -1,11 +1,11 @@
 import "./ComponentIsLoading.css";
-import loaderImage from "../assets/loader.gif"
+import Spinner from "./Spinner";
 
 const ComponentIsLoading = () => {
     return (
         <div className="placeholder-filler">
             <div className="loader">
-                <img src={loaderImage}/>
+                <Spinner/>
                 <h3>Loading ...</h3>
             </div>
         </div>

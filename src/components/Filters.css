@@ -89,6 +89,9 @@
     border-bottom: 1px solid var(--lightgray);
     margin-bottom: 24px;
     padding-bottom: 8px;
+    color: var(--secondary);
+    font-weight: 600;
+    font-size: 1rem;
 }
 
 .filters-container .discount {

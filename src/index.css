@@ -7,7 +7,7 @@
 }
 
 :root {
-    --primary: rgb(231, 70, 134);
+    --primary: rgb(231, 70, 110);
     --secondary: rgb(153, 149, 149);
     --tertiary: rgb(27, 27, 27);
     --tertiary-shade: rgb(43, 42, 42);
@@ -18,6 +18,7 @@
     --bg-place: rgb(235, 235, 235);
     --error: rgb(212, 37, 37);
     --red-shade: rgb(230, 74, 74);
+    --badge-light: rgba(20, 194, 142, 0.235);
 }
 
 html,

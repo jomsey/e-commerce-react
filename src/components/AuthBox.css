@@ -10,6 +10,7 @@
     border-radius: 5px;
     left: -25px;
     top: 55px;
+    font-size: .9rem;
 }
 
 .auth-box button {
@@ -17,7 +18,7 @@
     color: var(--light);
     border: none;
     padding: 5px 0;
-    border-radius: 3px;
+    border-radius: 8px;
     cursor: pointer;
 }
 

@@ -12,6 +12,7 @@
     z-index: 1000;
 }
 
+
 .footer .division {
     padding: 16px;
 }
@@ -38,7 +39,8 @@
 }
 
 .division p {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+    line-height: 1.4rem;
 }
 
 .division .sub-form form {
