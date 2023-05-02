@@ -1,13 +1,16 @@
 .collection {
     width: 90%;
     margin: 32px auto;
-    background-color: var(--light);
+    background-color: blanchedalmond;
     border-radius: 8px;
     overflow: hidden;
 }
 
 .collection .swiper-wrapper {
-    padding-bottom: 16px;
+    padding-left: 8px;
+    width: 100%!important;
+    padding-bottom: 24px;
+    gap: 16px !important;
 }
 
 .collection .collection-top {

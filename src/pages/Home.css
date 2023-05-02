@@ -15,14 +15,64 @@
             margin-top: 0;
         }
         
+        .landing .hero {
+            width: 100%;
+            height: 100%;
+            padding: 0 32px;
+            background-size: contain;
+        }
+        
+        .landing .hero .hero-text {
+            z-index: 4;
+            height: auto;
+            display: flex;
+            width: 50%;
+            flex-direction: column;
+            justify-content: center;
+            background-color: rgba(51, 50, 50, 0.705);
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 32px;
+            border-radius: 8px;
+        }
+        
+        .landing .hero h1 {
+            font-size: 2.2rem;
+            color: var(--light);
+        }
+        
+        .landing .hero span {
+            color: var(--primary);
+        }
+        
+        .landing .hero .carousel {
+            width: 70%;
+            height: 100%;
+            -webkit-clip-path: polygon(100% 100%, 0 100%, 30% 0%, 100% 0%);
+            clip-path: polygon(100% 100%, 0 100%, 30% 0%, 100% 0%);
+            background-color: var(--light);
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+        
+        .hero-image {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+        }
+        
+        .landing .hero p {
+            width: 90%;
+            margin-top: 24px;
+            line-height: 1.5rem;
+            color: var(--badge);
+            font-size: .9rem;
+            /* font-weight: 200; */
+        }
+        
         @media screen and (min-width:320px) and (max-width:480px) {
-            .landing {
-                width: 95%;
-                margin-top: 170px;
-                gap: 16px;
-                height: auto;
-                flex-direction: column;
-            }
             .landing .categories-container {
                 position: fixed;
                 z-index: 300;
@@ -44,6 +94,37 @@
             .landing .close-categories-canvas {
                 width: 0;
             }
+            .landing {
+                width: 95%;
+                margin-top: 200px;
+                margin-bottom: 32px;
+                gap: 0;
+                height: 200px;
+            }
+            .landing .hero {
+                padding: 0 16px;
+                background-size: contain;
+            }
+            .landing .hero .hero-text {
+                width: 80%;
+                padding: 16px;
+                left: -16px;
+            }
+            .landing .hero h1 {
+                font-size: 1.2rem;
+                color: var(--light);
+            }
+            .landing .hero p {
+                margin-top: 16px;
+                line-height: 1.3rem;
+                color: var(--badge);
+                font-size: .8rem;
+                width: 100%;
+            }
         }
         
-        @media screen and (min-width:480px) and (max-width:768px) {}
+        @media screen and (min-width:480px) and (max-width:900px) {
+            .landing .hero .hero-text {
+                width: 80%;
+            }
+        }

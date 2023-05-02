@@ -1,60 +1,97 @@
-        .group {
-            margin: auto;
-            margin-top: 135px;
-            margin-bottom: 0;
-            display: flex;
-            gap: 32px;
-            width: 90%;
-        }
-        
-        .products-list-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-            width: max-content;
-            gap: 32px;
-        }
-        
-        .group-right {
-            width: 100%;
-            position: relative;
-            overflow: hidden;
-            border-radius: 8px;
-        }
-        
-        .product-pagination {
-            width: 90%;
-            margin: auto;
-            position: relative;
-            height: 37px;
-        }
-        
-        .product-pagination .pagination {
-            position: absolute;
-            right: 0;
-            margin: 16px 0;
-        }
-        
-        @media screen and (min-width:320px) and (max-width:480px) {
             .group {
                 margin: auto;
-                margin-top: 159px;
                 margin-bottom: 0;
                 display: flex;
                 gap: 32px;
-                width: 95%;
+                width: 90%;
             }
+            
+            .products-list-header {
+                margin: auto;
+                margin-top: 135px;
+                width: 90%;
+                display: block;
+                margin-bottom: 24px;
+            }
+            
+            .products-list-header .products-category-banner {
+                height: 200px;
+                width: 100%;
+                background-color: var(--light);
+            }
+            
+            .products-list-header .bread-crumb {
+                margin-top: 8px;
+            }
+            
+            .products-list-header .bread-crumb small {
+                color: var(--light);
+                font-weight: 500;
+                text-transform: lowercase;
+            }
+            
+            .products-list-header .bread-crumb .link {
+                transition: all .2s ease;
+            }
+            
+            .products-list-header .bread-crumb .link:hover {
+                color: var(--primary);
+                cursor: pointer;
+            }
+            
             .products-list-container {
                 display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 16px;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+                width: max-content;
+                gap: 32px;
+                margin: 16px auto;
+            }
+            
+            .group-right {
                 width: 100%;
+                position: relative;
+                overflow: hidden;
+                border-radius: 8px;
+                background-color: blanchedalmond;
             }
-            .products-list-container .product-card {
-                width: auto !important;
-                height: 300px;
+            
+            .product-pagination {
+                width: 90%;
+                margin: auto;
+                position: relative;
+                height: 37px;
             }
+            
             .product-pagination .pagination {
-                left: 50%;
-                transform: translateX(-50%);
+                position: absolute;
+                right: 0;
+                margin: 16px 0;
             }
-        }
+            
+            @media screen and (min-width:320px) and (max-width:480px) {
+                .group {
+                    margin: auto;
+                    margin-bottom: 0;
+                    display: flex;
+                    gap: 32px;
+                    width: 95%;
+                }
+                .products-list-container {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 16px;
+                    width: 100%;
+                }
+                .products-list-container .product-card {
+                    width: auto !important;
+                    height: 300px;
+                }
+                .product-pagination .pagination {
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+                .products-list-header {
+                    margin-top: 175px;
+                    width: 95%;
+                }
+            }

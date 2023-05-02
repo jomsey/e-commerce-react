@@ -11,11 +11,12 @@ import productsService from "../services/productsService";
 function CategoryList() {
       const {setProducts,setProductsCount,
              setProductsResultsName,setCategoryName,
-             setProductsLoading,setCurrentPage,setMobileOffCanvasOpen} = React.useContext(ShopContext)
+             setProductsLoading,setCurrentPage,setMobileOffCanvasOpen,setCategory} = React.useContext(ShopContext)
       const navigate = useNavigate()
       
       const HandleItemClick=async(name)=> {
             setCurrentPage(1)//reset pagination to initial page
+            setCategory(name)
             navigate("/products")
             setMobileOffCanvasOpen(false) //close sidebar nav if open
             setProductsLoading(true) // display loader 

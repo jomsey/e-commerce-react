@@ -95,7 +95,6 @@
 @media screen and (max-width:480px) {
     .cart-group button {
         padding: 6px 16px;
-        color: var(--primary);
         width: 150px;
     }
     .cart-item .counter {

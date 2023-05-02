@@ -40,10 +40,6 @@ h4,
     border-bottom: 2px solid #e8edea;
 }
 
-.cart-details .cart-summary h4 {
-    border-bottom: 2px solid #fff;
-}
-
 .cart-details .cart-summary .checkout-btn {
     width: 100%;
     padding: 8px 0;
@@ -90,7 +86,6 @@ h4,
 @media screen and (max-width:768px) {
     .cart-details {
         width: 95%;
-        background-color: var(--light);
         margin: 170px auto 16px auto;
         flex-direction: column;
     }
@@ -98,11 +93,11 @@ h4,
         flex-grow: 1;
         padding: 16px;
         position: unset;
+        padding-bottom: 24px;
     }
     .cart-details .cart-summary {
         width: 100%;
-        padding: 32px;
-        background-color: #e8edea;
+        padding: 24px;
         min-width: unset;
     }
 }

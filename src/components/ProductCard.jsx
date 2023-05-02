@@ -1,17 +1,21 @@
 import "./ProductCard.css";
 import Icon from "../ui/Icon";
-import {useContext,useState} from "react"
+import {useContext,useState,useRef, useEffect} from "react"
 import { useNavigate } from "react-router-dom";
 import cartService from "../services/cartService";
-import { ShopContext} from "../shop-context/ShopState"
-import Spinner from "./Spinner"
+import { ShopContext} from "../shop-context/ShopState";
+import Spinner from "./Spinner";
 
 
-function ProductCard({product}) {
+function ProductCard({product}) {;
+         const productCardContainer = useRef()
+         const navigate = useNavigate();
          const [addingToCart,setAddingToCart] = useState(false)
-         const navigate = useNavigate()
-         const  formatToCurrencyFormat= Intl.NumberFormat()
-         const {cartProducts,setCartProducts,setAlertMessage} = useContext(ShopContext);
+         const  formatToCurrencyFormat= Intl.NumberFormat();
+         const {cartProducts,setCartProducts,setAlertMessage,setProductCardContainerWidth} = useContext(ShopContext);
+
+         setProductCardContainerWidth(productCardContainer.current && productCardContainer.current.clientWidth)
+       
          
          const handleProductDetailClick=(product_id)=>{
                navigate(`/products/${product_id}`)
@@ -22,7 +26,15 @@ function ProductCard({product}) {
          const AddItemToCart = async(product_id)=>{
                setAddingToCart(true) //display loader
                
-               const cartId = localStorage.getItem("cartId")   
+               const cartId = localStorage.getItem("cartId")  
+               
+              //  //check if product already in the cart
+              //  if(cartProducts && cartProducts.length > 0){
+              //     cartProducts.forEach(({product}) => {
+              //     console.log(product.id);
+              //    });
+              //  }
+
                try {
                    if (cartId !== null){
                        const  {status} = await cartService.addToCart({"product":product_id},cartId)
@@ -52,7 +64,7 @@ function ProductCard({product}) {
        
        return (
        
-           <div className="product-card">
+           <div className="product-card" ref={productCardContainer}>
              {addingToCart && 
                  <div className="add-to-cart-processing">
                    <Spinner/>

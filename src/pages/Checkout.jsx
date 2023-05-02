@@ -63,12 +63,12 @@ function CheckOut() {
                                 <img src={product.image_url} alt="....." />
                             </div>
                         <div>
-                            <small>{(product.name).length > 40?`${product.name.slice(0,40)} ...`:product.name}</small><br />
+                            <small className="prod-name">{(product.name).length > 40?`${product.name.slice(0,40)} ...`:product.name}</small><br />
                         </div>
 
                           </div>
                           <span className="product-count">{product_count}</span>
-                          <span><small>KE</small> { formatToCurrencyFormat.format(Math.floor(product_count*product.discounted_price))}</span>
+                          <span className="prod-price"><small>KE</small> { formatToCurrencyFormat.format(Math.floor(product_count*product.discounted_price))}</span>
                         
                     </div>
                     

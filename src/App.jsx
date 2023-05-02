@@ -43,6 +43,8 @@ function App() {
   const [currentPage,setCurrentPage] = useState(1)
   const [alertMessage,setAlertMessage] = useState(null)
   const [isMobilePhone,setIsMobilePhone] = useState(false)
+  const [category,setCategory] = useState("")
+  const [productCardContainerWidth,setProductCardContainerWidth]=useState(null);
 
 
   
@@ -122,10 +124,10 @@ useEffect(()=>{
                                      setCartProducts,showOrderProducts,
                                      cartItemsLoading,setCartItemsLoading,
                                      productsCount,cartNumber,setCartNumber,
-                                     setCollections,products,setProducts,cartId,
+                                     setCollections,products,setProducts,cartId,productCardContainerWidth,setProductCardContainerWidth,
                                      productsResultsName,setProductsResultsName,isMobilePhone,setIsMobilePhone,
                                      categoryName,setCategoryName,orderItems,setOrderItems,alertMessage,setAlertMessage,
-                                     productsLoading,setProductsLoading,mobileOffCanvasOpen,setMobileOffCanvasOpen
+                                     productsLoading,setProductsLoading,mobileOffCanvasOpen,setMobileOffCanvasOpen,category,setCategory
                                     }}>
    
       <Routes>
@@ -167,3 +169,46 @@ useEffect(()=>{
 }
 
 export default App;
+
+
+// import React, { useState } from 'react';
+
+// function debounce(fn, delay) {
+//   let timerId;
+//   return function (...args) {
+//     if (timerId) {
+//       clearTimeout(timerId);
+//     }
+//     timerId = setTimeout(() => {
+//       fn.apply(this, args);
+//     }, delay);
+//   };
+// }
+
+// function AutocompleteInput(props) {
+//   const [inputValue, setInputValue] = useState('');
+//   const [suggestions, setSuggestions] = useState([]);
+
+//   const handleInputChange = debounce((event) => {
+//     setInputValue(event.target.value);
+//     // Call the API to get autocomplete suggestions based on the input value
+//     fetch(`https://api.example.com/suggestions?q=${event.target.value}`)
+//       .then(response => response.json())
+//       .then(data => setSuggestions(data));
+//   }, 500);
+
+//   return (
+//     <div>
+//       <input type="text" value={inputValue} onChange={handleInputChange} />
+//       {suggestions.length > 0 && (
+//         <ul>
+//           {suggestions.map((suggestion) => (
+//             <li key={suggestion.id}>{suggestion.name}</li>
+//           ))}
+//         </ul>
+//       )}
+//     </div>
+//   );
+// }
+
+// export default AutocompleteInput;

@@ -140,6 +140,12 @@
         margin-top: 170px;
         margin-bottom: 0;
     }
+    .check-out .info h4 {
+        border-bottom: 1px solid rgb(221, 219, 219);
+        padding: 0 0 5px 0;
+        margin: 8px 0 16px 0;
+        font-size: .85rem;
+    }
     .check-out .info {
         grid-template-columns: 1fr;
         margin-top: 16px;
@@ -155,8 +161,22 @@
     }
     .ordered-items .heading-row {
         grid-template-columns: 2fr 1fr 1fr;
+        gap: 5px;
     }
     .ordered-items .product-count {
         text-align: center;
+    }
+    .ordered-items .prod-name {
+        display: block;
+        width: 100px;
+        font-size: .9rem;
+        display: none;
+    }
+    .ordered-items .prod-price {
+        font-size: .9rem;
+    }
+    .ordered-items .heading-row h5 {
+        font-size: .68rem;
+        font-weight: 500;
     }
 }

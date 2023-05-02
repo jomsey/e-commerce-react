@@ -112,7 +112,7 @@ function CartItem({product,item_count,product_uuid}) {
                         message="Do you really want to remove this item from cart?" 
                         title="Remove From Cart"
                         visible={deleteDialogVisible}
-                        onCloseDialog={()=>setDeleteDialogVisible(false)}
+                        onCloseDialog={()=> setDeleteDialogVisible(false)}
                         onConfirm={()=>handleConfirmCartItemDelete(product_uuid)}/>
                         
             </>

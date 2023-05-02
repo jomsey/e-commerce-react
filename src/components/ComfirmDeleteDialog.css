@@ -1,5 +1,5 @@
 .confirm-delete {
-    background-color: var(--light);
+    background-color: var(--light-shade);
     width: 400px;
     padding: 32px;
     border-radius: 8px;
@@ -7,7 +7,7 @@
     z-index: 10000;
     bottom: 32px;
     right: 32px;
-    border: 1px solid var(--badge);
+    border: 1px solid aliceblue;
 }
 
 .confirm-delete h5 {
@@ -37,12 +37,12 @@
 
 .confirm-delete-close-btn {
     position: absolute;
-    top: 10px;
-    right: 32px;
+    top: 0;
+    right: 0;
     font-size: 24px;
     cursor: pointer;
     color: var(--primary);
-    padding: 2px;
+    padding: 32px;
 }
 
 .confirm-delete-close-btn:hover {
@@ -53,6 +53,6 @@
     .confirm-delete {
         width: 300px;
         padding: 16px;
-        border: 1px solid #cfcece;
+        background-color: var(--light-shade);
     }
 }

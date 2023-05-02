@@ -18,7 +18,7 @@ function ProductsList() {
   const {products,productsCount,
          setProducts,productsResultsName,
          productsLoading,setProductsLoading,categoryName,
-         currentPage,setCurrentPage,setAlertMessage,setProductsCount} = useContext(ShopContext);
+         currentPage,setCurrentPage,setAlertMessage,setProductsCount,category} = useContext(ShopContext);
   
  
   const handlePageChange=async(page)=>{
@@ -64,8 +64,13 @@ function ProductsList() {
       </OffCanvas>
       <TopBar showToggler={true} useMobileSideNav={true} />
       <div className="products-list-header">
+            <div className="products-category-banner"></div>
+           {
+            category &&
             <div className="bread-crumb">
-            </div>
+            <small>products{"<"}<span className="link">{category}</span></small>
+      </div>
+           }
       </div>
       <div className="group products">
             <Filters />
