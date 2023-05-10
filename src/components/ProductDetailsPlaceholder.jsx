@@ -11,7 +11,7 @@ function ProductDetailsPlaceholder() {
             </div>
             <div className="product-description">
             <div className="placeholder-text placeholder"></div>
-                <div className="placeholder-text placeholder"></div>
+                <div className="placeholder-text placeholder "></div>
                 <div className="placeholder-text placeholder"></div>
                 <div className="placeholder-text placeholder"></div>
                  <div className="placeholder-text placeholder"></div>

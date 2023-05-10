@@ -24,8 +24,8 @@
     height: auto;
     background-color: var(--light);
     border-radius: 0;
-    border: none;
     padding: 0;
+    box-shadow: none;
 }
 
 .off-canvas .filters-container {

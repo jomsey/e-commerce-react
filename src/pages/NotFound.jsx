@@ -13,7 +13,7 @@ export default function NotFound() {
       <p>The <strong>LINK</strong> you followed may be broken or the <strong>PAGE</strong> has been removed</p>
 
       <Link to={"/"}>
-        <button className="home-btn" type="button">
+        <button className="home-btn button-overlay" type="button">
           <Icon iconName="arrow-left" extra="fa-thin" />
           Back To Home Page
         </button>

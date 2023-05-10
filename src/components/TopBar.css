@@ -14,7 +14,7 @@
           justify-content: space-around;
           background-color: var(--light);
           transition: all 0.5s ease;
-          box-shadow: 4px 4px 10px aliceblue;
+          box-shadow: 4px 0 10px rgb(185, 199, 211);
       }
       
       .displace-bar {
@@ -34,13 +34,12 @@
       
       .top-bar form {
           width: 700px;
-          border: 1px solid var(--primary);
           height: 40px;
           border-radius: 10px;
-          overflow: hidden;
       }
       
       .top-bar form input[type="search"] {
+          box-shadow: 0 0 0 1px var(--primary);
           width: 75%;
           height: 100%;
           color: var(--primary);
@@ -61,6 +60,8 @@
           border: none;
           background-color: var(--primary);
           color: var(--light);
+          box-shadow: 0 0 0 1px var(--primary);
+          cursor: pointer;
       }
       
       .search-icon {
@@ -88,8 +89,8 @@
       .category-off-canvas::before {
           content: " ";
           background-color: var(--light);
-          border-top: 1px solid var(--secondary);
-          border-left: 1px solid var(--secondary);
+          border-top: .002rem solid var(--secondary);
+          border-left: .002rem solid var(--secondary);
           width: 20px;
           height: 20px;
           display: block;
@@ -97,7 +98,7 @@
           position: absolute;
           left: 20px;
           z-index: 10;
-          top: -10px;
+          top: -11px;
       }
       
       .category-off-canvas .categories-container {
@@ -138,7 +139,8 @@
           }
           .top-bar form {
               width: 100%;
-              height: 35px;
+              height: 30px;
+              margin-top: 6px;
           }
           .logo {
               width: 85px;
@@ -165,6 +167,10 @@
               left: 0;
               padding: 36px 0;
               border-bottom: 3px solid var(--primary);
+          }
+          .top-bar form button[type="submit"] {
+              font-size: smaller;
+              text-transform: lowercase;
           }
       }
       

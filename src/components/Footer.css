@@ -9,9 +9,8 @@
     overflow: hidden;
     margin-top: 32px;
     top: 100%;
-    z-index: 1000;
+    z-index: 5;
 }
-
 
 .footer .division {
     padding: 16px;
@@ -96,7 +95,7 @@
     position: absolute;
     bottom: 5px;
     text-align: center;
-    color: aliceblue;
+    color: var(--badge);
     width: 100%;
 }
 

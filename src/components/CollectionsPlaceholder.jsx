@@ -10,7 +10,7 @@ const CollectionsPlaceholder = () => {
     const {isMobilePhone} = useContext(ShopContext)
     const slidesNumberOnSmallScreens = 2
     const slidesNumberBigScreens = 5
-
+   
     return (
         <div className="collection collection-placeholder">
             <div className="collection-top">
@@ -19,7 +19,6 @@ const CollectionsPlaceholder = () => {
             </div>
             <Swiper  
                 slidesPerView={isMobilePhone?slidesNumberOnSmallScreens:slidesNumberBigScreens}
-                modules={Navigation}
              >
             <div className="collection-container">
                <SwiperSlide>  <ProductPlaceholderCard/></SwiperSlide>

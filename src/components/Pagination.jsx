@@ -1,52 +1,36 @@
+import React from 'react'
 import "./Pagination.css"
-import PropTypes  from 'prop-types';
-export default function Pagination({pageSize,itemsCount,onPageChange,currentPage}) {
-  const numberOfPages= Math.ceil(itemsCount/pageSize)
-  if (numberOfPages<=1)return null;
- 
-  let pages = paginate(currentPage,numberOfPages, 7);
+
+function Pagination({currentPage=1,onPageClick,maxPages=8,
+                     totalPages,usePageControls=true,onNextClick,onPreviousClick}) {
+  const pages = pagination(totalPages,maxPages,currentPage)
 
   return (
-    <div className="pagination">
-       {pages.map(page=> <span className={currentPage===page?"page active":"page"} 
-                               key={page} 
-                               onClick={()=>onPageChange(page)}>{page}</span>)}
+    <div className='pagination'>
+       { currentPage >1 && usePageControls &&<>
+        <span className='control' onClick={onPreviousClick}>Previous</span></> }
+        {pages.map(page=><span onClick={page !== '..' && (()=>onPageClick(page))}
+         className={currentPage===page?'page active':'page'}
+         key={page}>{page}</span>)}
+       {currentPage < totalPages && usePageControls && <span className='control' onClick={onNextClick}>Next</span>}
     </div>
   )
 }
 
-function paginate(_currentPage, totalPages, maxPages) {
-          let _pages = [];
-          // Determine the range of pages to display
-          let startPage = 1;
-          let endPage = totalPages;
-          
-          if (totalPages > maxPages) {
-              let halfMaxPages = Math.floor(maxPages / 2);
-              startPage = Math.max(_currentPage - halfMaxPages, 1);
-              endPage = startPage + maxPages - 1;
-              if (endPage > totalPages) {
-                endPage = totalPages;
-                startPage = endPage - maxPages + 1;
-              }
-          }
 
-          // Add "..." before and/or after the truncated pages
-          if (startPage > 1) _pages.push('...');
-          
-          for (let i = startPage; i <= endPage; i++) {
-            _pages.push(i);
-          }
-          if (endPage < totalPages) {
-            _pages.push('...');
-          }
+function pagination(totalPages,maxPages,currentPage){
+    let pages = [];
+    let startPage = 1;
+    let moveStartPage = 3; //pages before the  current page
+  
+    if(currentPage>=maxPages && maxPages !== totalPages ){
+      startPage = currentPage-moveStartPage
+      maxPages = (currentPage+maxPages)-(moveStartPage+1)
+    }
 
-          return _pages;
+    for (let page = startPage; page <maxPages+1; page++)page<=totalPages && pages.push(page);
+    if(totalPages>maxPages && currentPage !== totalPages) pages.push("..");
+   
+    return pages
 }
-
-Pagination.prototype={
-        pageSize:PropTypes.number.isRequired,
-        itemsCount:PropTypes.number.isRequired,
-        onPageChange:PropTypes.func,
-        currentPage:PropTypes.number
-}
+export default Pagination 

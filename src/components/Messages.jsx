@@ -1,18 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./Messages.css"
+import Message from './Message';
+
 
 const Messages = () => {
     return (
         <div className='messages-container'>
-           <div className="single-message-container">
-            <div className="message-header">
-                <small className="time">2012-49-4</small>
-            </div>
-            <p className="message-text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos ratione, voluptatum quisquam inventore, nihil nemo maiores mollitia placeat optio error aspernatur. Est magnam obcaecati corrupti molestiae nulla aspernatur dignissimos numquam.
-            </p>
-           </div>
-         
+           <Message/>
+           <Message/>
+           <Message/>
         </div>
     );
 }

@@ -33,11 +33,13 @@ h4,
     padding-bottom: 16px;
     margin-bottom: 16px;
     border-bottom: 2px solid #fff;
-    font-size: 1rem;
+    font-size: .85rem;
 }
 
 .cart-details .cart-items h4 {
-    border-bottom: 2px solid #e8edea;
+    border-bottom: 1px solid #e8edea;
+    z-index: 2;
+    font-size: 1rem;
 }
 
 .cart-details .cart-summary .checkout-btn {
@@ -56,11 +58,13 @@ h4,
     display: flex;
     justify-content: space-between;
     margin-top: 16px;
+    font-size: .86rem;
 }
 
 .cart-details .cart-summary .group h5,
 .payment-methods h5 {
-    font-weight: 450;
+    font-weight: 500;
+    font-size: .78rem;
 }
 
 .cart-details .cart-summary form {
@@ -74,13 +78,18 @@ h4,
 
 .cart-details .cart-summary form select {
     width: 100%;
-    border: kk;
     outline: none;
     padding: 8px;
+    border: none;
+    color: var(--badge);
 }
 
 .cart-empty-text {
     color: grey;
+}
+
+.cart-items .component-loading {
+    top: -25px;
 }
 
 @media screen and (max-width:768px) {
@@ -100,6 +109,8 @@ h4,
         padding: 24px;
         min-width: unset;
     }
+    .cart-items .component-loading {
+        top: unset;
+        min-height: 300px;
+    }
 }
-
-@media screen and (min-width:768px) and (max-width:1024px) {}

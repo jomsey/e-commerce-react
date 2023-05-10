@@ -1,0 +1,25 @@
+.tool-tip {
+    background-color: var(--secondary);
+    padding: 8px 16px;
+    color: var(--light);
+    font-size: .7rem;
+    display: block;
+    width: max-content;
+    border-radius: 5px;
+    position: absolute;
+    z-index: 20;
+}
+
+.tool-tip::before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    background-color: var(--secondary);
+    position: absolute;
+    display: block;
+    top: -8px;
+    margin: auto;
+    rotate: 45deg;
+    translate: -50%;
+    left: 50%;
+}

@@ -18,32 +18,33 @@ import { ShopContext} from "./shop-context/ShopState"
 import getCollections from "./services/collectionsService";
 import UserAuthenticated from "./tools/UserAuthenticated";
 import OrderSuccess from "./pages/OrderSuccess";
+import About from "./pages/About";
 
 
 
 function App() {
-  const [cartItemsLoading,setCartItemsLoading] = useState(true)
   const {token,setToken}=useToken()
-  const [orderItems,setOrderItems] = useState([])
+  const [category,setCategory] = useState("")
   const [products,setProducts] = useState([])
   const cartId = localStorage.getItem("cartId")
   const [priceRange,setPriceRange]= useState({})
   const [cartNumber,setCartNumber] =  useState(0)
+  const [orderItems,setOrderItems] = useState([])
+  const [currentPage,setCurrentPage] = useState(1)
   const [searchQuery,setSearchQuery] = useState("")
   const [collections,setCollections] = useState([])
   const [cartProducts,setCartProducts] = useState([])
   const [productsCount,setProductsCount] = useState(0)
-  const [showOrderProducts,setShowOrderProducts] = useState(false)
-  const [productsResultsName,setProductsResultsName] = useState("")
-  const [user,setUser]=useState({username:null,is_authenticated:false})
+  const [alertMessage,setAlertMessage] = useState(null)
   const [categoryName,setCategoryName] = useState(null)
   const [cartTotalPrice,setCartPriceTotal] = useState(0)
-  const [productsLoading,setProductsLoading]=useState(true)
-  const [mobileOffCanvasOpen,setMobileOffCanvasOpen]=useState(false)
-  const [currentPage,setCurrentPage] = useState(1)
-  const [alertMessage,setAlertMessage] = useState(null)
   const [isMobilePhone,setIsMobilePhone] = useState(false)
-  const [category,setCategory] = useState("")
+  const [productsLoading,setProductsLoading]=useState(true)
+  const [cartItemsLoading,setCartItemsLoading] = useState(true)
+  const [showOrderProducts,setShowOrderProducts] = useState(false)
+  const [productsResultsName,setProductsResultsName] = useState("")
+  const [mobileOffCanvasOpen,setMobileOffCanvasOpen]=useState(false)
+  const [user,setUser]=useState({username:null,is_authenticated:false})
   const [productCardContainerWidth,setProductCardContainerWidth]=useState(null);
 
 
@@ -100,8 +101,12 @@ useEffect(()=>{
               const {status,data} = await cartService.getCartProducts(cartId);
               setCartProducts(data.results);
               if(status === 200)setCartItemsLoading(false);
-            } catch (error) {}
-        }
+            } catch (error) {
+              setCartItemsLoading(false)
+            }
+            
+          }
+          setCartItemsLoading(false)
 
     }
     getCartProducts()
@@ -152,14 +157,15 @@ useEffect(()=>{
           <Route path="/profile"
                  element={<PrivateRoute user={user}>
                                 <UserProfile/>
-                             </PrivateRoute>} />
+                             </PrivateRoute>} 
+                             />
                              
           <Route path="/auth/register"
                  element ={<UserAuthenticated user={user}>
                             <CreateAccount/>
                         </UserAuthenticated>}/>
+          <Route path="/about" element={<About/>}/>
       </Routes>
-      
       <Footer />
     
       </ShopContext.Provider>
@@ -171,44 +177,4 @@ useEffect(()=>{
 export default App;
 
 
-// import React, { useState } from 'react';
 
-// function debounce(fn, delay) {
-//   let timerId;
-//   return function (...args) {
-//     if (timerId) {
-//       clearTimeout(timerId);
-//     }
-//     timerId = setTimeout(() => {
-//       fn.apply(this, args);
-//     }, delay);
-//   };
-// }
-
-// function AutocompleteInput(props) {
-//   const [inputValue, setInputValue] = useState('');
-//   const [suggestions, setSuggestions] = useState([]);
-
-//   const handleInputChange = debounce((event) => {
-//     setInputValue(event.target.value);
-//     // Call the API to get autocomplete suggestions based on the input value
-//     fetch(`https://api.example.com/suggestions?q=${event.target.value}`)
-//       .then(response => response.json())
-//       .then(data => setSuggestions(data));
-//   }, 500);
-
-//   return (
-//     <div>
-//       <input type="text" value={inputValue} onChange={handleInputChange} />
-//       {suggestions.length > 0 && (
-//         <ul>
-//           {suggestions.map((suggestion) => (
-//             <li key={suggestion.id}>{suggestion.name}</li>
-//           ))}
-//         </ul>
-//       )}
-//     </div>
-//   );
-// }
-
-// export default AutocompleteInput;

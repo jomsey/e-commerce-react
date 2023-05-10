@@ -3,8 +3,9 @@
     height: 400px;
     background-color: var(--light);
     border-radius: 5px;
-    border: 1px solid var(--secondary);
     padding: 10px;
+    box-shadow: 0 0 0 .04rem var(--secondary);
+    z-index: 8;
 }
 
 .categories .category-item {
@@ -16,5 +17,3 @@
 .categories .category-item:hover {
     color: var(--primary);
 }
-
-@media screen and (max-width:480px) {}

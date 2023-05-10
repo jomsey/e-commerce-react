@@ -1,6 +1,6 @@
 import "./ProductCard.css";
 import Icon from "../ui/Icon";
-import {useContext,useState,useRef, useEffect} from "react"
+import {useContext,useState,useRef} from "react"
 import { useNavigate } from "react-router-dom";
 import cartService from "../services/cartService";
 import { ShopContext} from "../shop-context/ShopState";
@@ -24,33 +24,43 @@ function ProductCard({product}) {;
 
 
          const AddItemToCart = async(product_id)=>{
-               setAddingToCart(true) //display loader
-               
-               const cartId = localStorage.getItem("cartId")  
-               
-              //  //check if product already in the cart
-              //  if(cartProducts && cartProducts.length > 0){
-              //     cartProducts.forEach(({product}) => {
-              //     console.log(product.id);
-              //    });
-              //  }
-
-               try {
+              const productAlreadyInCart = cartProducts.find(({product})=>product.id === product_id);
+              const cartId = localStorage.getItem("cartId")  
+                  
+              setAddingToCart(true) //display loader
+                 
+              try {
                    if (cartId !== null){
-                       const  {status} = await cartService.addToCart({"product":product_id},cartId)
-                       
-                       
-                       if (status === 201){
-                           setCartProducts([product,...cartProducts])
-                         
-                           setAddingToCart(false)
-                           setAlertMessage({message:"Product successfully added  to cart!"})
+                        if (!productAlreadyInCart){
+                            
+                            const  {status} = await cartService.addToCart({"product":product_id},cartId)
+    
+                            if (status === 201){
+                                setCartProducts([product,...cartProducts])
+                                setAddingToCart(false)
+                                setAlertMessage({message:"Product successfully added  to cart!"})
 
-                       }
-                       setAddingToCart(false)
-                   }
+                            }
+                            setAddingToCart(false)
+                      }
+                      else{ 
+                            let {product_uuid,product_count} = productAlreadyInCart
+                            product_count+=1
+                             
+                            const {status} = await cartService.updateCart(cartId,product_uuid,{product_count:product_count+1})
+
+
+                            if (status === 200){
+                                  setCartProducts([{...product,["product_count"]:product_count},...cartProducts])
+                                  setAddingToCart(false)
+                                  setAlertMessage({message:"Product successfully added  to cart!"})
+                            }
+
+                      }
+                  }
                      
                } catch (error) {
+                 console.log(error);
                    setAddingToCart(false)
                    setAlertMessage({message:"Oops , Couldn't Add Product !",isError:true})
 

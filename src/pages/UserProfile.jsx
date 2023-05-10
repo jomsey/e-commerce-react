@@ -86,7 +86,6 @@ export default function UserProfile() {
                             <li className={billingInfoVisible?`nav toggle-btn active`:"nav toggle-btn"} onClick={handleShowBullingInfoButtonClick}><Icon iconName="map"/><span className="nav-title">Billing Information</span></li>
                             <li className={"nav toggle-btn sm-visible btn-logout logout"}><Icon iconName="sign-out"/><span className="nav-title">Logout</span></li>   
                             <li className={"nav toggle-btn"} ><Icon iconName="gears"/><span className="nav-title">Settings</span></li>
-   
                       </ul>
                       <div className="display">
                           {ordersVisible && <OrderItems/> }

@@ -44,7 +44,7 @@ function CategoryList() {
       }
 
       return (
-        <div className="categories">
+        <div className="categories  main-categories">
           {categories.map(({id,name,icon}) => (
           
               <ListItem

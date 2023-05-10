@@ -3,10 +3,10 @@ import Spinner from "./Spinner";
 
 const ComponentIsLoading = () => {
     return (
-        <div className="placeholder-filler">
+        <div className="placeholder-filler component-loading">
             <div className="loader">
                 <Spinner/>
-                <h3>Loading ...</h3>
+                <h3>Loading <span></span><span></span><span></span></h3>
             </div>
         </div>
     );

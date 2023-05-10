@@ -3,16 +3,19 @@
     display: flex;
     width: 100%;
     justify-content: center;
-    align-items: center;
+    align-items: end;
     height: 100%;
+    padding-bottom: 24px;
 }
 
 .placeholder-filler h3 {
     color: var(--primary);
-    font-weight: 600;
+    font-weight: 700;
     text-align: center;
     font-size: .95rem;
     letter-spacing: .2rem;
+    transition: all .5s linear;
+    opacity: .6;
 }
 
 .placeholder-filler .loader {
@@ -24,7 +27,46 @@
 
 .loader .spinner {
     display: block;
-    font-size: 4rem;
+    font-size: 2rem;
     margin-bottom: 24px;
     color: var(--primary);
+}
+
+.component-loading {
+    background-image: url(../assets/logo.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    backdrop-filter: 30px;
+}
+
+.component-loading::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    backdrop-filter: 20px;
+    background-color: #fff;
+    opacity: .9;
+}
+
+.component-loading * {
+    z-index: 2;
+}
+
+@media screen and ( max-width:480px) {
+    .component-loading {
+        background-size: 230px;
+    }
+}
+
+.component-loading h3 span {
+    padding: 3px;
+    background-color: var(--primary);
+    margin: 0 2px;
+    height: 2px;
+    width: 2px;
+    display: inline-block;
 }

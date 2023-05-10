@@ -44,6 +44,7 @@ function TopBarIcons() {
       <Icon
         extra="icon"
         iconName="question"
+        onIconClick={()=>navigate("/about")}
       />
      {authBoxVisible &&  <AuthBox user={user} onUserLogout={handleLogout}/>}
     </>

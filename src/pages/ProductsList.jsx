@@ -14,6 +14,7 @@ import CategoryList from "../components/CategoryList";
 
 
 function ProductsList() {
+  const pageSize = 30
 
   const {products,productsCount,
          setProducts,productsResultsName,
@@ -21,7 +22,9 @@ function ProductsList() {
          currentPage,setCurrentPage,setAlertMessage,setProductsCount,category} = useContext(ShopContext);
   
  
-  const handlePageChange=async(page)=>{
+  const handlePageClick=async(page)=>{
+        setCurrentPage(page)
+
         setProductsLoading(true)
 
         const responseObject = productsResultsName === "bySearch"?productsService.getPageSearchResults(page,searchQuery):
@@ -48,6 +51,8 @@ function ProductsList() {
                       
                   } catch (error) {
                         setAlertMessage({message:"Oops Something Is Wrong !",isError:true})
+                        setProductsLoading(false)
+
                   }
             }
            !productsResultsName && getProducts() //display default results list if no filters applied
@@ -64,7 +69,10 @@ function ProductsList() {
       </OffCanvas>
       <TopBar showToggler={true} useMobileSideNav={true} />
       <div className="products-list-header">
-            <div className="products-category-banner"></div>
+            <div className="products-category-banner">
+                  <h1>{category}</h1>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi omnis quos aspernatur nulla iste vel ex numquam perferendis, libero, eos vero optio molestias, delectus et?</p>
+            </div>
            {
             category &&
             <div className="bread-crumb">
@@ -76,20 +84,18 @@ function ProductsList() {
             <Filters />
 
             <div className="group-right">
-                  {productsLoading?<ComponentIsLoading/>:<ProductsContainer products={products}/>}
+                  {productsLoading ?<ComponentIsLoading/>:<ProductsContainer products={products}/>}
                   {products.length<1 && <NoContent message="No Products To Show"/>}
-
             </div>
       </div>
 
      {
-        !productsLoading && 
+       !productsLoading && productsCount &&
         <div className="product-pagination">
         <Pagination 
                 currentPage={currentPage}
-                pageSize={30} 
-                itemsCount={productsCount}
-                onPageChange={handlePageChange}/>
+                totalPages={Math.floor(productsCount/pageSize)}
+                onPageClick={handlePageClick}/>
          </div>
       } 
       <RecentlyViewedProducts/>

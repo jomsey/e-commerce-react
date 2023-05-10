@@ -18,15 +18,15 @@ function Collection({ title, productsList,showLink=true }) {
         
         useEffect(() => {
                     // calculate slide items number depending on th collections container width
+                    const collectionContainerWidth = collectionContainer.current && collectionContainer.current.clientWidth
+                    setSlidePerPage( Math.floor(collectionContainerWidth/productCardContainerWidth))
                     window.addEventListener("resize",()=>{
                     const collectionContainerWidth = collectionContainer.current && collectionContainer.current.clientWidth
                     setSlidePerPage( Math.floor(collectionContainerWidth/productCardContainerWidth))
         })
         
-        return () => {
         
-        }
-        }, [])
+        }, [collectionContainer])
         
         return (
             <div className="collection"  ref={collectionContainer } >
