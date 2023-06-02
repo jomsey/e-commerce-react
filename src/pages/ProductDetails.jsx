@@ -32,7 +32,7 @@ function ProductDetails(){
                     }
 
                 } catch (error) {
-                  setAlertMessage({message:"Oops , Something is Wrong !",isError:true})
+                  setAlertMessage({message:"Oops , Something is Wrong !",type:"error"})
                 }
           }
 

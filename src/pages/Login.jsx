@@ -1,24 +1,22 @@
 import "./Auth.css";
 import Icon from "../ui/Icon";
 import jwtDecode from "jwt-decode"
-import {apiEndPoint} from "../config.json"
+import {useState,useContext} from "react"
 import TopBar from './../components/TopBar';
-import APIService from "../services/apiService";
 import useToken from "../customHooks/useToken";
+import Spinner from  './../components/Spinner';
 import authService from "../services/authService";
 import { useNavigate,Link} from "react-router-dom";
-import {useState,useEffect,useContext} from "react"
 import { ShopContext} from "../shop-context/ShopState"
-import Spinner from  './../components/Spinner';
 
 
 export default function Login() {
-   const {setUser,setAlertMessage} = useContext(ShopContext)
-   const [formData,setFormData] = useState({})
-   const [formErrors,setFormErrors] = useState({})
-   const {setToken} = useToken()
-   const [isLoggingIn,setIsLoggingIn]=useState(false)
-   const navigate = useNavigate()
+  const {setToken} = useToken()
+  const navigate = useNavigate()
+  const [formData,setFormData] = useState({})
+  const [formErrors,setFormErrors] = useState({})
+  const [isLoggingIn,setIsLoggingIn]=useState(false)
+  const {setUser,setAlertMessage} = useContext(ShopContext)
 
 
   const HandleFormSubmit=async(e)=>{

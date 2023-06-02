@@ -1,42 +1,24 @@
-import jwtDecode from "jwt-decode"
-import EditProfile from "./EditProfile";
-import {useState,useEffect,useContext} from "react"
-import useToken from "../customHooks/useToken";
-import axios from "axios";
-import {apiEndPoint} from "../config.json"
 import Icon from "../ui/Icon";
-import { ShopContext } from "../shop-context/ShopState";
 import UserInfo from './UserInfo';
-
-
-
+import EditProfile from "./EditProfile";
+import {useState,useContext} from "react"
+import useToken from "../customHooks/useToken";
+import { ShopContext } from "../shop-context/ShopState";
+import { ProfileContext } from "../shop-context/useProfileState";
 
 
 const UserInfoGroup = () => {
-      const [profile,setUserprofile]=useState({});
-      const {token,setToken} = useToken()
+      const {setToken} = useToken()
       const {setUser} = useContext(ShopContext);
-      const instance = axios.create({headers: {"Authorization": `Bearer ${token}`}});
-      const {email,username,first_name,last_name,phone_number,address} = profile
+      const {profile} = useContext(ProfileContext)
       const [editModalVisible,setEditModalVisible] = useState(false)
+      const {email,username,first_name,last_name,phone_number,address} = profile
 
       const handleLogout=()=>{
-        setUser({username:null,is_autheticated:false})
+        setUser({username:null,is_authenticated:false})
         setToken(null)
       }
 
-      useEffect(() => {
-        const getUserProfile=async()=>{
-          if (token){
-            const {user_id} = jwtDecode(token)
-            const response = await instance.get(`${apiEndPoint}/user/${user_id}/`)
-            setUserprofile(response.data)
-          }
-        }
-        
-        getUserProfile()
-      }, [])
-      
       return (
         <>
          <aside>

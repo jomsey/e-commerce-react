@@ -5,7 +5,7 @@ import { useContext,useState } from "react";
 import AuthBox from "./AuthBox";
 import useToken from "../customHooks/useToken";
 import "./TopBarIcons.css"
-
+import ToolTip from "./ToolTip";
 
 
 function TopBarIcons() {
@@ -27,7 +27,10 @@ function TopBarIcons() {
             <Icon 
                 extra="icon i-user" 
                 iconName="user"
-                onIconClick={()=> authBoxVisible?setAuthBoxVisible(false):setAuthBoxVisible(true)} />
+                onIconClick={()=> authBoxVisible?setAuthBoxVisible(false):setAuthBoxVisible(true)} >
+                          <ToolTip message="profile"/>
+
+                </Icon>
        </div>
      
         <Icon
@@ -37,6 +40,7 @@ function TopBarIcons() {
         >
           
         {cartNumber>0 && <span className="items-number">{cartNumber }</span>}
+        <ToolTip message="cart"/>
 
         </Icon>
      
@@ -45,7 +49,9 @@ function TopBarIcons() {
         extra="icon"
         iconName="question"
         onIconClick={()=>navigate("/about")}
-      />
+      >
+        <ToolTip message="about"/>
+      </Icon>
      {authBoxVisible &&  <AuthBox user={user} onUserLogout={handleLogout}/>}
     </>
   );

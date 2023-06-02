@@ -7,12 +7,17 @@ import RecentlyViewedProducts from "../components/RecentlyViewedProducts";
 import CartSummary from "../components/CartSummary";
 import ComponentIsLoading from './../components/ComponentIsLoading';
 import NoContent from './../components/NoContent';
+import {useNavigate} from "react-router-dom"
+import { CartContext } from "../shop-context/cartState";
 
 
 function CartDetails() {
   const {cartProducts,cartItemsLoading} = useContext(ShopContext);
+  const navigate = useNavigate()
+
+
   return (
-    <>
+    <CartContext.Provider value={{}}>
       <TopBar showToggler={true} />
       <div className="cart-details">
         <div className="cart-items">
@@ -28,8 +33,11 @@ function CartDetails() {
                                            key={product_uuid}
                                            item_count={product_count}
                                            product_uuid={product_uuid}/>
-             ))
-             :<NoContent  message="No Items To Display"/>)
+             )):
+             <NoContent message="Your cart is empty">
+                    <button className="button-overlay"  onClick={()=>navigate("/products")}>Continue Shopping</button>
+              </NoContent>)
+
           }
 
         </div>
@@ -40,7 +48,7 @@ function CartDetails() {
 
      <RecentlyViewedProducts/>
 
-    </>
+    </CartContext.Provider>
   );
 }
 

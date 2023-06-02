@@ -7,8 +7,7 @@
     left: 0;
     z-index: 10;
     top: 0;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: auto;
     padding: 170px 16px 16px 16px;
     transition: width .3s linear;
     visibility: hidden;

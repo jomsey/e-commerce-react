@@ -4,16 +4,118 @@
     background-color: var(--light);
     border-radius: 5px;
     padding: 10px;
-    box-shadow: 0 0 0 .04rem var(--secondary);
     z-index: 8;
+    box-shadow: 0 0 0 .04rem rgb(218, 216, 216);
 }
 
-.categories .category-item {
-    margin: 8px;
+.categories .category-item,
+.sub-list .category-item {
+    margin: 0 8px;
     font-size: 12px;
     color: var(--tertiary);
+    padding: 4px 0;
 }
 
 .categories .category-item:hover {
     color: var(--primary);
+}
+
+.sub-list-container {
+    width: 500px;
+    height: max-content;
+    min-height: 400px;
+    position: absolute;
+    left: 98%;
+    background-color: var(--light);
+    box-shadow: 0 0 0 .04rem rgb(218, 216, 216);
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 16px;
+    top: 0;
+    z-index: 50;
+    transition: all .5s ease;
+}
+
+.sub-list-container h5 {
+    font-size: .9rem;
+    margin-bottom: 8px;
+    padding-bottom: 3px;
+    border-bottom: .006rem solid rgb(218, 216, 216);
+    color: rgb(61, 62, 63);
+}
+
+.sub-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+.sub-list .category-item {
+    margin: 0 !important;
+}
+
+.sub-list * {
+    z-index: 2;
+}
+
+.drop-down::after {
+    background-color: var(--light);
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: -8px;
+    z-index: 100;
+    transform: rotate(45deg);
+    border-left: 1px solid rgb(218, 216, 216);
+    border-bottom: 1px solid rgb(218, 216, 216);
+    visibility: hidden;
+}
+
+.category-item-container:hover .category-item::after,
+.active::after {
+    visibility: visible;
+}
+
+.sub-list .active::after {
+    display: none;
+}
+
+.active::after {
+    visibility: visible;
+}
+
+.categories .sub-list-group:not(.sub-list-group:nth-child(1)) {
+    margin-top: 16px;
+}
+
+.categories .sub-list .category-item {
+    padding: 0;
+}
+
+.sub-list-container-hidden {
+    visibility: hidden !important;
+}
+
+.sub-list-container:hover {
+    visibility: visible !important;
+}
+
+.category-chevron {
+    padding: 6px;
+    background: blue;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: block;
+    cursor: pointer;
+}
+
+@media screen and (max-width:480px) {
+    .sub-list-container {
+        display: none;
+    }
+    .drop-down::after {
+        display: none;
+    }
 }

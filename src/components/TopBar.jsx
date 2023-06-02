@@ -1,7 +1,7 @@
 import "./TopBar.css";
 import logo from "../assets/logo.jpg";
 import TopBarIcons from "./TopBarIcons";
-import { useState, useContext,useEffect, la} from "react";
+import { useState, useContext,useEffect} from "react";
 import { Link} from "react-router-dom";
 import MenuIcon from "../ui/MenuIcon";
 import PropTypes from "prop-types";
@@ -10,12 +10,12 @@ import { ShopContext } from "../shop-context/ShopState";
 import productsService from "../services/productsService";
 import { useNavigate } from "react-router-dom";
 import SearchItemForm from "./SearchItemForm";
-import Alert from './Alert';
+import AlertUsable from './AlertUsable';
 
 
 function TopBar({ showToggler,useMobileSideNav,onTogglerIconClick=null}) {
           const [autoCompleteList,setAutoCompleteList] = useState([])
-          const {setProducts,setProductsCount,
+          const {setProducts,setProductsCount,setAlertMessage,
                 setProductsResultsName,searchQuery,alertMessage,isMobilePhone,
                 setSearchQuery,mobileOffCanvasOpen,setMobileOffCanvasOpen} = useContext(ShopContext)
           const [offCanvasVisible, setOffCanvasVisibility] = useState(false);
@@ -50,11 +50,15 @@ function TopBar({ showToggler,useMobileSideNav,onTogglerIconClick=null}) {
                 } catch (error) {}
           }
           
-          
+          useEffect(()=>{
+                  setTimeout(()=>{
+                  setAlertMessage(null)//remove message after display
+                  },7000); 
+          },[alertMessage])
+
           return (
             <div className="top-bar-container"> 
-  
-              {alertMessage && <Alert  message={alertMessage.message} isError={alertMessage.isError}/>}
+              {alertMessage && <AlertUsable message={alertMessage.message} type={alertMessage.type}/>}
               <div className="top-bar">
                 <div className="left">
                       <MenuIcon

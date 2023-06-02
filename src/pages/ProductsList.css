@@ -22,7 +22,8 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-image: linear-gradient(rgba(233, 90, 161, 0.53), rgba(0, 0, 0, 0.253), transparent);
+    background-image: linear-gradient(rgba(81, 110, 109, 0.53), rgba(0, 0, 0, 0.253), transparent);
+    border-radius: 20px;
 }
 
 .products-category-banner p {
@@ -105,6 +106,7 @@
     .product-pagination .pagination {
         left: 50%;
         transform: translateX(-50%);
+        width: 95%;
     }
     .products-list-header {
         margin-top: 175px;

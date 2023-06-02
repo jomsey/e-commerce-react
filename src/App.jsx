@@ -15,16 +15,19 @@ import cartService from "./services/cartService";
 import CreateAccount from "./pages/CreateAccount";
 import ProductDetails from "./pages/ProductDetails";
 import { ShopContext} from "./shop-context/ShopState"
-import getCollections from "./services/collectionsService";
 import UserAuthenticated from "./tools/UserAuthenticated";
 import OrderSuccess from "./pages/OrderSuccess";
 import About from "./pages/About";
+import collectionsService from "./services/collectionsService";
+
 
 
 
 function App() {
   const {token,setToken}=useToken()
+  const [username,setUsername] = useState(null)
   const [category,setCategory] = useState("")
+  const [subCategory,setSubCategory] = useState("")
   const [products,setProducts] = useState([])
   const cartId = localStorage.getItem("cartId")
   const [priceRange,setPriceRange]= useState({})
@@ -47,15 +50,14 @@ function App() {
   const [user,setUser]=useState({username:null,is_authenticated:false})
   const [productCardContainerWidth,setProductCardContainerWidth]=useState(null);
 
-
   
-  useEffect(()=>window.screen.width<=480?setIsMobilePhone(true):setIsMobilePhone(false))//always show toggler button on mobile screens
+useEffect(()=>window.screen.width<=480?setIsMobilePhone(true):setIsMobilePhone(false))//always show toggler button on mobile screens
 
  
 useEffect(()=>{
    const getProductCollections = async()=>{
           try {
-              const  response = await getCollections()
+              const  response = await collectionsService.getCollections()
               const{results}=response.data
               setCollections(results)
           } catch (error) {}
@@ -110,12 +112,11 @@ useEffect(()=>{
 
     }
     getCartProducts()
-    setCartNumber(prev=>(prev=cartProducts.length))
+    setCartNumber(cartProducts.length,cartTotalPrice)
+    
 
   },[cartProducts.length]);
  
- 
-
   return (
     <div className="App">
       <ShopContext.Provider value={{
@@ -127,8 +128,8 @@ useEffect(()=>{
                                      cartTotalPrice,setCartPriceTotal,
                                      setShowOrderProducts,collections,
                                      setCartProducts,showOrderProducts,
-                                     cartItemsLoading,setCartItemsLoading,
-                                     productsCount,cartNumber,setCartNumber,
+                                     cartItemsLoading,setCartItemsLoading,subCategory,setSubCategory,
+                                     productsCount,cartNumber,setCartNumber,username,setUsername,
                                      setCollections,products,setProducts,cartId,productCardContainerWidth,setProductCardContainerWidth,
                                      productsResultsName,setProductsResultsName,isMobilePhone,setIsMobilePhone,
                                      categoryName,setCategoryName,orderItems,setOrderItems,alertMessage,setAlertMessage,
@@ -174,7 +175,16 @@ useEffect(()=>{
   );
 }
 
-export default App;
 
+function getCartItemsTotalNumber(cart){
+         if(cart.length>0){
+              let productsCounts = []
+              cart.forEach(({product_count} )=>productsCounts.push(product_count));
+              return productsCounts.reduce((m,n)=>m+n,0)
+         }
+         return 0;
+}
+      
+ export default App;
 
 

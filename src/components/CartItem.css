@@ -1,14 +1,15 @@
 .cart-item {
     height: 120px;
     width: 100%;
-    margin-top: 16px;
+    margin-top: 24px;
     overflow: hidden;
     display: flex;
     justify-content: space-between;
     align-items: start;
-    box-shadow: 2px 2px 8px lightgray;
+    box-shadow: 2px 2px 20px var(--light-shade);
     padding: 16px;
     border-radius: 8px;
+    background-color: rgb(250, 249, 249);
 }
 
 .cart-item .counter {

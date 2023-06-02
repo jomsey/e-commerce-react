@@ -1,0 +1,21 @@
+.edit-done-check {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%);
+    background-color: var(--light-shade);
+    color: var(--badge);
+    border-radius: 50%;
+    border: 1px solid var(--light);
+}
+
+.edit-done-check span {
+    font-weight: 600;
+}

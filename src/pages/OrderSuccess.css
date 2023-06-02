@@ -17,14 +17,17 @@
     color: #fff;
     padding: 12px 0;
     width: 240px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px var(--primary);
     cursor: pointer;
     transition: all .3 ease;
 }
 
 .success-container p {
     color: var(--secondary);
+}
+
+.success-container h1 {
+    color: rgb(89, 90, 90);
+    font-size: 1.8rem;
 }
 
 @media screen and (max-width:480px) {

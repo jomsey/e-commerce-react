@@ -1,16 +1,16 @@
-import Carousel from "../components/Carousel";
-import Collection from "../components/Collection";
-import ProductCategories from "../components/ProductCategoryContainer";
 import "./Home.css";
-import Billboard from "./../components/Billboard";
-import {posters} from "../utils/posters";
-import TopBar from './../components/TopBar';
 import {useContext} from "react";
+import {posters} from "../utils/posters";
+import Carousel from "../components/Carousel";
+import TopBar from './../components/TopBar';
+import OffCanvas from "../components/OffCanvas";
+import Billboard from "./../components/Billboard";
+import Collection from "../components/Collection";
 import {ShopContext} from "../shop-context/ShopState";
+import CategoryList from "../components/CategoryList";
+import ProductCategories from "../components/ProductCategoryContainer";
 import CollectionsPlaceholder from "../components/CollectionsPlaceholder";
 import RecentlyViewedProducts from "../components/RecentlyViewedProducts";
-import OffCanvas from "../components/OffCanvas";
-import CategoryList from "../components/CategoryList";
   
 
 function Home() {
@@ -42,7 +42,8 @@ function Home() {
                          ?collections.map(({title,products,id})=> 
                                           <Collection title={title}
                                                       productsList={products}
-                                                      key={id}/>)
+                                                      key={id}
+                                                      id={id}/>)
                         :
                         <div>
                            <CollectionsPlaceholder/>

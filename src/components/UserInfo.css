@@ -1,48 +1,59 @@
-.info-cluster .p-edit-icon{
+.info-cluster .p-edit-icon {
     position: absolute;
     top: 0;
-    right:16px;
+    right: 16px;
     font-size: .7rem;
     color: var(--primary);
     cursor: pointer;
 }
+
+.info-cluster .p-edit-icon .tool-tip {
+    position: absolute;
+    left: 50%;
+    top: 20px;
+    transform: translate(-50%);
+    visibility: hidden;
+}
+
+.info-cluster .p-edit-icon:hover .tool-tip {
+    visibility: visible;
+}
+
 .info-cluster {
-    position:relative;
-
+    position: relative;
 }
-   .edit-user-info-form{
-    position:absolute;
-    width:100%;
-    top:0;
-    left:0;
 
-   }
+.edit-user-info-form {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
 
-   .edit-user-info-form input{
-    width:100%;
-    outline:none !important;
-    border:1px solid var(--light-shade);
-    padding :3px;
-    padding-left:30px;
-    font-size:.75rem;
-    color:var(--secondary)
+.edit-user-info-form input {
+    width: 100%;
+    outline: none !important;
+    border: 1px solid var(--light-shade);
+    padding: 3px;
+    padding-left: 30px;
+    font-size: .75rem;
+    color: var(--secondary)
+}
 
-   }
-
-   .edit-user-info-form button{
+.edit-user-info-form button {
     position: absolute;
     top: 0;
-    left:0;
-    padding:0 5px;
-    height:100%;
+    left: 0;
+    padding: 0 5px;
+    height: 100%;
     font-size: .7rem;
     color: var(--primary);
     cursor: pointer;
-    border:none;
-    transition:all .5s ease;
-   }
+    border: none;
+    transition: all .5s ease;
+}
 
-   .edit-user-info-form button:hover{
-    color:var(--light);
-    background-color:var(--primary)
-   }
+.edit-user-info-form button:hover {
+    color: var(--light);
+    background-color: var(--primary)
+}

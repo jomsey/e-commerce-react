@@ -1,23 +1,58 @@
+import axios from "axios";
 import "./UserProfile.css";
-import {useState} from "react"
+import Icon from './../ui/Icon';
+import jwtDecode from "jwt-decode"
 import TopBar from "../components/TopBar";
+import {apiEndPoint} from "../config.json"
+import Messages from "../components/Messages";
+import useToken from "../customHooks/useToken";
+import {useState,useEffect,useContext} from "react"
 import OrderItems from "../components/OrderItems";
 import SavedItems from "../components/SavedItems";
+import { ShopContext } from "../shop-context/ShopState";
 import UserInfoGroup  from "../components/ProfileSideBar";
-import Icon from './../ui/Icon';
-import Messages from "../components/Messages";
+import {ProfileContext} from './../shop-context/useProfileState';
 import BillingInformation from "../components/BillingInformation";
 
 
-
 export default function UserProfile() {
+        const {token} = useToken()
+        const [userId,setUserId]=useState(null)
+        const {setUsername,username} = useContext(ShopContext)
+        const [profile,setUserProfile]=useState({});
+        const [orderItems,setOrderItems] = useState([])
+        const [ordersLoading,setOrdersLoading] = useState(true)
+        const [navCanvasFull,setNavCanvasFull] = useState(false)
         const [ordersVisible, setOrdersVisible] = useState(true);
+        const [messagesVisible, setMessagesVisible] = useState(false);
+        const [userProfileVisible,setUserProfileVisible] = useState(false)
         const [billingInfoVisible, setBillingInfoVisible] = useState(false);
         const [savedProductsVisible, setSavedProductsVisible] = useState(false);
-        const [messagesVisible, setMessagesVisible] = useState(false);
-        const [navCanvasFull,setNavCanvasFull] = useState(false)
-        const [userProfileVisible,setUserProfileVisible] = useState(false)
+        const instance = axios.create({headers: {"Authorization": `Bearer ${token}`}});
 
+
+        useEffect(() => {
+            const getUserProfile=async()=>{
+               if (token){
+                  const {user_id} = jwtDecode(token)
+                  setUserId(user_id)
+                  const response = await instance.get(`${apiEndPoint}/user/${user_id}/`)
+                  setUserProfile(response.data)
+            }
+        }
+             setUsername(profile.username)
+             getUserProfile()
+        }, [token,profile])
+
+
+        useEffect(() => {
+            const getUserOrders=async()=>{
+                  const response = await instance.get(`${apiEndPoint}/orders/`)
+                  setOrderItems(response.data.results)
+                  setOrdersLoading(false)
+            } 
+            getUserOrders()  
+         }, [orderItems]);
       
         
         const handleShowOrdersButtonClick=()=>{
@@ -36,18 +71,14 @@ export default function UserProfile() {
             messagesVisible && setMessagesVisible(false)
             billingInfoVisible && setBillingInfoVisible(false)
             ordersVisible && setOrdersVisible(false)
-
-      }
+        }
 
         const handleShowSavedProductsButtonClick=()=>{
               setSavedProductsVisible(true)
               ordersVisible && setOrdersVisible(false)
               messagesVisible && setMessagesVisible(false)
               billingInfoVisible && setBillingInfoVisible(false)
-              userProfileVisible && setUserProfileVisible(false)
-
-
-              
+              userProfileVisible && setUserProfileVisible(false)    
         }
 
         const handleShowMessagesButtonClick=()=>{
@@ -56,28 +87,26 @@ export default function UserProfile() {
               savedProductsVisible && setSavedProductsVisible(false)
               billingInfoVisible && setBillingInfoVisible(false)
               userProfileVisible && setUserProfileVisible(false)
-
-
         }
 
-        const handleShowBullingInfoButtonClick=()=>{
+      const handleShowBullingInfoButtonClick=()=>{
             setBillingInfoVisible(true)
             ordersVisible && setOrdersVisible(false)
             savedProductsVisible && setSavedProductsVisible(false)
             messagesVisible && setMessagesVisible(false)
-
       }
 
 
         return (
           
-          <> 
-            <TopBar showToggler={true} onTogglerIconClick={()=>navCanvasFull?setNavCanvasFull(false):setNavCanvasFull(true)}/>
+          <ProfileContext.Provider value={{profile,setUserProfile,ordersLoading,orderItems,setOrderItems,userId}}> 
+            <TopBar showToggler={true} />
 
             <section className="profile-container" >
                   <UserInfoGroup />
                   <main>
                     <div className="general-view">
+
                       <ul className={navCanvasFull?"view-navs  view-navs-full":"view-navs"}>
                             <li className={userProfileVisible?"nav toggle-btn sm-visible active":"nav toggle-btn sm-visible"}  onClick={handleShowProfileButtonClick}><Icon iconName="user"/><span className="nav-title">Profile</span></li>
                             <li className={ordersVisible?`nav toggle-btn active`:"nav toggle-btn"} onClick={handleShowOrdersButtonClick}><Icon iconName="plus"/><span className="nav-title">Orders</span></li>
@@ -87,19 +116,20 @@ export default function UserProfile() {
                             <li className={"nav toggle-btn sm-visible btn-logout logout"}><Icon iconName="sign-out"/><span className="nav-title">Logout</span></li>   
                             <li className={"nav toggle-btn"} ><Icon iconName="gears"/><span className="nav-title">Settings</span></li>
                       </ul>
+
                       <div className="display">
                           {ordersVisible && <OrderItems/> }
                           {savedProductsVisible &&  <SavedItems/>}
                           {messagesVisible && <Messages/>}
                           {billingInfoVisible && <BillingInformation/>}
                           {userProfileVisible && <UserInfoGroup />}
-                        
-                          </div>
+                     </div>
+
                     </div>
                 
               </main>
             </section>
-          </>
+          </ProfileContext.Provider>
         );
 }
            

@@ -19,6 +19,7 @@
         position: absolute;
         top: 0;
         left: 0;
+        backdrop-filter: blur(2px);
     }
     
     .edit-profile-modal {
@@ -62,6 +63,7 @@
         padding: 10px;
         color: var(--primary);
         top: 32px;
+        z-index: 100;
     }
     
     .close-modal-btn:hover {
@@ -132,4 +134,11 @@
         .edit-profile-modal form {
             width: 100% !important;
         }
+    }
+    
+    .save-success {
+        color: rgb(240, 139, 67);
+        font-size: .8rem;
+        font-weight: 600;
+        margin-bottom: 5px;
     }

@@ -1,6 +1,6 @@
 .tool-tip {
     background-color: var(--secondary);
-    padding: 8px 16px;
+    padding: 5px 16px;
     color: var(--light);
     font-size: .7rem;
     display: block;
@@ -8,16 +8,17 @@
     border-radius: 5px;
     position: absolute;
     z-index: 20;
+    transition: all .3s ease;
 }
 
 .tool-tip::before {
     content: "";
-    width: 16px;
-    height: 16px;
+    width: 12px;
+    height: 12px;
     background-color: var(--secondary);
     position: absolute;
     display: block;
-    top: -8px;
+    top: -4px;
     margin: auto;
     rotate: 45deg;
     translate: -50%;

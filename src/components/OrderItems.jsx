@@ -3,25 +3,18 @@ import Order from "./Order";
 import {useNavigate} from "react-router-dom"
 import OrderProducts from "./OrderProducts";
 import cartService from "../services/cartService";
-import { useState,useContext,useEffect,} from "react";
+import { useState,useContext} from "react";
 import { ShopContext } from "../shop-context/ShopState";
 import ComponentIsLoading from "./ComponentIsLoading";
-import axios from "axios";
-import {apiEndPoint} from "../config.json"
-import useToken from "../customHooks/useToken";
 import NoContent from './NoContent';
+import { ProfileContext } from "../shop-context/useProfileState";
 
 
-
-
-const OrderItems = ({loading}) => {
+const OrderItems = () => {
       const [orderProducts,setOrderProducts] = useState([])
-      const {token} = useToken()
-      const [ordersLoading,setOrdersLoading] = useState(true)
       const navigate = useNavigate()
-      const {showOrderProducts,setShowOrderProducts,orderItems,setOrderItems} = useContext(ShopContext)
-      const instance = axios.create({headers: {"Authorization": `Bearer ${token}`}});
-     
+      const {showOrderProducts,setShowOrderProducts} = useContext(ShopContext)
+      const {orderItems,ordersLoading} = useContext(ProfileContext)
 
       const HandleViewOrderProducts=async(cartId)=>{
             setShowOrderProducts(true);
@@ -31,16 +24,7 @@ const OrderItems = ({loading}) => {
             } catch (error){}  
       }
 
-      useEffect(() => {
-            const getUserOrders=async()=>{
-                const response = await instance.get(`${apiEndPoint}/orders/`)
-                setOrderItems(response.data.results)
-                setOrdersLoading(false)
-              
-            } 
-            getUserOrders()  
-      }, []);
-
+    
       return (
         <div className="orders">
           {ordersLoading
@@ -52,9 +36,13 @@ const OrderItems = ({loading}) => {
                       onViewOrderProducts={()=>HandleViewOrderProducts(order.cart)}
         
                       /> ):
-                      <NoContent message="You don't have any orders"><button onClick={()=>navigate("/products")}>Continue Shopping</button></NoContent>)
+                      <NoContent message="You don't have any orders"><button className="button-overlay"  onClick={()=>navigate("/products")}>Continue Shopping</button></NoContent>)
         }
-        <OrderProducts showItems={showOrderProducts} productsList={orderProducts}/>
+        
+        <OrderProducts 
+             showItems={showOrderProducts}
+             productsList={orderProducts}
+         />
         </div>
       );
 };

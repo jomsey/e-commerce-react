@@ -4,7 +4,7 @@ import cartService from "../services/cartService"
 import { useContext,useState} from "react";
 import { ShopContext } from "../shop-context/ShopState";
 import Spinner  from "./Spinner"
-import ConfirmDeleteDialog from "./ComfirmDeleteDialog";
+import ConfirmDeleteDialog from "./ConfirmDeleteDialog";
 
 
 function CartItem({product,item_count,product_uuid}) {

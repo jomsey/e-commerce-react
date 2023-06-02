@@ -7,7 +7,7 @@ import { ShopContext} from "../shop-context/ShopState"
 import authService from "../services/authService";
 import useToken from "../customHooks/useToken";
 import Spinner from "../components/Spinner";
-
+import jwtDecode from "jwt-decode"
 
 
 
@@ -17,7 +17,7 @@ export default function CreateAccount() {
   const [isSigningUp,setIsSigningUp]=useState(false)
   const {setUser,setAlertMessage} = useContext(ShopContext)
   const {setToken} = useToken()
-
+  const [isLoggingInUser,setIsLoggingInUser] = useState(false)
 
   
   const navigate = useNavigate()
@@ -31,14 +31,18 @@ export default function CreateAccount() {
          //login user after successful account creation
          if (status === 201) {
           setAlertMessage({message:"Successfully created account !"})
+          setIsSigningUp(false)
+          setIsLoggingInUser(true)
            try {
                 const {username,password} = formData
                 const {data}= await authService.getToken({username:username,password:password});
                 const {user_id} = jwtDecode(data.access)
+
                 setToken(data.access)
                 setUser(user=>({...user,username:user_id,is_authenticated:true}))
+                setIsLoggingInUser(false) //user is now done logging in
                 navigate("/profile")
-           } catch (error) {}
+           } catch (error) {setIsLoggingInUser(false)}
           
          }
          setIsSigningUp(false)
@@ -131,7 +135,7 @@ export default function CreateAccount() {
             </div>
             <small>Have account ? Login <Link to="/auth/login">Here</Link></small>
           </div>
-          <button type="submit">SIGN UP {isSigningUp && <Spinner/>}</button>
+          <button type="submit">{!isLoggingInUser?(!isSigningUp?"SIGN UP": <>Signing up <Spinner/></>):<>Logging in <Spinner/></>} </button>
           <div className="auth-options">
             <p>or sign up with</p>
             <div className="auth-icons">

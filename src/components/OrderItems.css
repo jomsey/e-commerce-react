@@ -42,9 +42,8 @@
        background-color: var(--primary);
        border: none;
        color: var(--light);
-       border-radius: 5px;
-       width: 300px;
-       margin-top: 72px;
+       width: 250px;
+       margin-top: 32px;
        cursor: pointer;
    }
    
@@ -83,8 +82,8 @@
        }
        .no-content-container button {
            padding: 10px 0;
-           width: 300px;
-           margin-top: 72px;
+           width: 200px;
+           margin-top: 48px;
        }
        .orders {
            padding: 16px;

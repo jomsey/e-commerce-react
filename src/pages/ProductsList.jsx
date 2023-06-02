@@ -18,10 +18,11 @@ function ProductsList() {
 
   const {products,productsCount,
          setProducts,productsResultsName,
-         productsLoading,setProductsLoading,categoryName,
+         productsLoading,setProductsLoading,categoryName,subCategory,
          currentPage,setCurrentPage,setAlertMessage,setProductsCount,category} = useContext(ShopContext);
   
- 
+  const totalPages = Math.floor(productsCount/pageSize)
+
   const handlePageClick=async(page)=>{
         setCurrentPage(page)
 
@@ -38,6 +39,7 @@ function ProductsList() {
         setCurrentPage(page)
         setProductsLoading(false)
   }
+  
 
 
   useEffect(()=>{
@@ -69,14 +71,14 @@ function ProductsList() {
       </OffCanvas>
       <TopBar showToggler={true} useMobileSideNav={true} />
       <div className="products-list-header">
-            <div className="products-category-banner">
-                  <h1>{category}</h1>
+            {/* <div className="products-category-banner">
+                  <h1>{category?category:"All products"}</h1>
                   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi omnis quos aspernatur nulla iste vel ex numquam perferendis, libero, eos vero optio molestias, delectus et?</p>
-            </div>
+            </div> */}
            {
             category &&
             <div className="bread-crumb">
-            <small>products{"<"}<span className="link">{category}</span></small>
+            <small>products{"<"}<span className="link">{category}</span>{subCategory && `<${subCategory}`}</small>
       </div>
            }
       </div>
@@ -90,12 +92,13 @@ function ProductsList() {
       </div>
 
      {
-       !productsLoading && productsCount &&
+        productsCount && totalPages>1 &&
         <div className="product-pagination">
         <Pagination 
                 currentPage={currentPage}
-                totalPages={Math.floor(productsCount/pageSize)}
-                onPageClick={handlePageClick}/>
+                totalPages={totalPages}
+                onPageClick={handlePageClick} 
+                usePageControls={false}/>
          </div>
       } 
       <RecentlyViewedProducts/>

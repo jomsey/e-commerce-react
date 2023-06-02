@@ -44,14 +44,13 @@ function ProductCard({product}) {;
                             setAddingToCart(false)
                       }
                       else{ 
-                            let {product_uuid,product_count} = productAlreadyInCart
-                            product_count+=1
-                             
-                            const {status} = await cartService.updateCart(cartId,product_uuid,{product_count:product_count+1})
-
+                            //increment product count in cart by 1                        
+                            let {product_uuid,product_count} = productAlreadyInCart 
+                            const newCount = product_count+1
+                            const {status} = await cartService.updateCart(cartId,product_uuid,{product_count:newCount})
 
                             if (status === 200){
-                                  setCartProducts([{...product,["product_count"]:product_count},...cartProducts])
+                                  setCartProducts([{...productAlreadyInCart,product_count:newCount},...cartProducts])
                                   setAddingToCart(false)
                                   setAlertMessage({message:"Product successfully added  to cart!"})
                             }
@@ -60,15 +59,14 @@ function ProductCard({product}) {;
                   }
                      
                } catch (error) {
-                 console.log(error);
                    setAddingToCart(false)
-                   setAlertMessage({message:"Oops , Couldn't Add Product !",isError:true})
+                   setAlertMessage({message:"Oops , Couldn't Add Product !",type:"error"})
 
                }
        }
 
        function addProductToWishList() {
-               console.log( " added to wishList");
+           setAlertMessage({message:"Saving Functionality Not Yet Implemented",type:"info"})
        }
 
        

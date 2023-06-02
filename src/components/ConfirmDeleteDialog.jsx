@@ -9,7 +9,7 @@ function ConfirmDeleteDialog({title,message,onConfirm,visible,onCloseDialog}) {
           <Icon iconName="close" extra="confirm-delete-close-btn" onIconClick={onCloseDialog}/>
           <h5>{title}</h5>
           <p>{message}</p>
-          <button onClick={onConfirm}><Icon iconName="trash"/> Remove Item </button>
+          <button onClick={onConfirm} ><Icon iconName="trash"/> Remove Item </button>
      </div>
     }
    </>

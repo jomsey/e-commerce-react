@@ -18,7 +18,7 @@ function Message({messageObj}) {
                             <div className="toggle-message-close-state-icons">
                             <Icon iconName={messagesFullyVisible?"chevron-up":"chevron-down" }extra="chevron" onIconClick={()=>messagesFullyVisible ?setMessageFullyVisible(false):setMessageFullyVisible(true)}/>
                             </div>
-                            <Icon iconName="trash" onIconClick={()=>setAlertMessage({message:"Delete Functionality Not Yet Implemented"})}/>
+                            <Icon iconName="trash" onIconClick={()=>setAlertMessage({message:"Delete Functionality Not Yet Implemented",type:"info"})}/>
                             </div>
                             {
                                 !messagesFullyVisible?

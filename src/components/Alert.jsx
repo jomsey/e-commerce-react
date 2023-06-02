@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { ShopContext } from "../shop-context/ShopState";
 
 
-function Alert({message,isError}) {
+function Alert({message,isError,type}) {
         const [alertVisible,setAlertVisible] = useState(true);
         const {setAlertMessage} = useContext(ShopContext)
 
@@ -17,7 +17,7 @@ function Alert({message,isError}) {
         
 
         return alertVisible? 
-                <div className={isError?'alert-message alert-error':'alert-message'}>
+                <div className={type==="info"?"alert-message alert-info":(isError?'alert-message alert-error':'alert-message')}>
                      <span className='message'>{message}</span>
                 </div>:null;
 }

@@ -4,7 +4,7 @@
     border-radius: 5px;
     height: 310px;
     background-color: var(--light);
-    box-shadow: 4px 4px 10px var(--lightgray);
+    /* box-shadow: 4px 4px 10px var(--lightgray); */
     transition: all 0.3s ease;
     overflow: hidden;
 }

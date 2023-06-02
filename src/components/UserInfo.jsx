@@ -2,6 +2,7 @@ import "./UserInfo.css"
 import Icon from "../ui/Icon"
 import TextPlaceholder from "./TextPlaceholder";
 import {useState} from "react"
+import ToolTip from "./ToolTip";
 
 
 function UserInfo({title,info,editable=true}) {
@@ -18,7 +19,11 @@ function UserInfo({title,info,editable=true}) {
     return(
       <div className="info-cluster">
                   <h4>{title}</h4>
-                  {(editable && info  !==undefined)  && <Icon iconName="pen" extra={"p-edit-icon"} onIconClick={handleEditUserInfo}/>}
+                  {(editable && info  !==undefined) &&
+                   <Icon iconName="pen" extra={"p-edit-icon"} onIconClick={handleEditUserInfo}>
+                       <ToolTip message="edit"/>
+                   </Icon>
+                  }
                   {info  !== undefined && !editorVisible &&
                   <small>{info}</small>}
                   {info === undefined  && <TextPlaceholder/>}

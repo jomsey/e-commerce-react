@@ -38,3 +38,18 @@
         width: 70%;
     }
 }
+
+@media screen and (max-width:480px) {
+    .canvas {
+        right: -40px;
+    }
+    .orders-off-canvas-visible {
+        width: 100%;
+        padding-top: 30px;
+    }
+    .canvas .close-icon {
+        left: 20px;
+        right: unset;
+        top: 8px;
+    }
+}

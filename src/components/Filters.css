@@ -8,7 +8,6 @@
 
 .slider {
     -webkit-appearance: none;
-    /* Override default CSS styles */
     appearance: none;
     width: 100%;
     height: 6px;
