@@ -60,6 +60,12 @@ function CategoryList() {
           
           {categories.map((category) => (
               <div className={isMobilePhone?"category-item-container mobile-dropdown-expand":"category-item-container"}>
+                {category.subCategories && 
+                <Icon 
+                      iconName="chevron-down" 
+                      extra="category-chevron"
+                      onIconClick={()=>HandleItemMouseHover(category)}
+                />}
                 <ListItem
                     key={category.id}
                     icon={category.icon}
@@ -69,16 +75,15 @@ function CategoryList() {
                     handleMouseOver={() => HandleItemMouseHover(category)}
                     handleMouseOut={()=>setSubListVisible(false)}
                   />
-                  <div className="mobile-drop-down"></div>
               </div>   
           ))}
 
           {subCategoryList.length>0 &&
           <div className={subListClasses}>
-             <Icon 
-                   iconName="chevron-down" 
-                   extra="category-chevron"
-                   onIconClick={()=>setSubListVisible(false)}/>
+            <div className="sub-category-header">
+               <h3>Category Title</h3>
+              <small onClick={()=>setSubListVisible(false)} >Back to main categories</small>
+            </div>
           {
             subCategoryList.map(({title,categories})=>
               <div className="sub-list-group">
