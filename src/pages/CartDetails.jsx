@@ -9,16 +9,19 @@ import ComponentIsLoading from './../components/ComponentIsLoading';
 import NoContent from './../components/NoContent';
 import {useNavigate} from "react-router-dom"
 import { CartContext } from "../shop-context/cartState";
+import OffCanvas from "../components/OffCanvas";
+import CategoryList from './../components/CategoryList';
 
 
 function CartDetails() {
   const {cartProducts,cartItemsLoading} = useContext(ShopContext);
   const navigate = useNavigate()
-
-
   return (
     <CartContext.Provider value={{}}>
-      <TopBar showToggler={true} />
+      <OffCanvas>
+            <CategoryList/>
+      </OffCanvas>
+      <TopBar useMobileSideNav={true} />
       <div className="cart-details">
         <div className="cart-items">
           <h4>Shopping Cart</h4>

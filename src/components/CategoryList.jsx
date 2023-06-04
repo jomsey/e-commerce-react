@@ -9,6 +9,7 @@ import productsService from "../services/productsService";
 
 
 function CategoryList() {
+      const [currentCategory,setCurrentCategory] = useState("")
       const [subCategoryList,setSubCategoryList] = useState([])
       const [subListVisible,setSubListVisible] = React.useState(true)
       const {setProducts,setProductsCount,isMobilePhone,
@@ -32,8 +33,7 @@ function CategoryList() {
                               await productsService.getCategoryProducts(name);
             
             const{results,count}=response.data
-        
-            
+                
             if (response.status === 200){
                 setCategoryName(name)
                 setProducts(results)
@@ -44,17 +44,20 @@ function CategoryList() {
       }
       
       function HandleItemMouseHover(item) {
-           setSubListVisible(true) 
-           setSubCategoryList([]) //empty previous content
-           item.subCategories  && setSubCategoryList(item.subCategories)
+               setSubListVisible(true) 
+               setSubCategoryList([]) //empty previous content
+               item.subCategories  && setSubCategoryList(item.subCategories)
       }
 
-      const handleSubCategoriesItemClick = item =>{
-        setSubCategory(item)
+      function ViewSubCategories(item) {
+               setSubListVisible(true) 
+               setSubCategoryList([]) //empty previous content
+               item.subCategories  && setSubCategoryList(item.subCategories)
+               setCurrentCategory(item.name)
       }
 
-    
-
+      const handleSubCategoriesItemClick = item =>setSubCategory(item)
+      
       return (
         <div className="categories  main-categories">
           
@@ -64,7 +67,7 @@ function CategoryList() {
                 <Icon 
                       iconName="chevron-down" 
                       extra="category-chevron"
-                      onIconClick={()=>HandleItemMouseHover(category)}
+                      onIconClick={()=>ViewSubCategories(category)}
                 />}
                 <ListItem
                     key={category.id}
@@ -81,7 +84,7 @@ function CategoryList() {
           {subCategoryList.length>0 &&
           <div className={subListClasses}>
             <div className="sub-category-header">
-               <h3>Category Title</h3>
+               <h3>{currentCategory}</h3>
               <small onClick={()=>setSubListVisible(false)} >Back to main categories</small>
             </div>
           {

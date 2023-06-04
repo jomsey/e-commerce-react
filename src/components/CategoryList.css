@@ -110,23 +110,25 @@
 
 .sub-category-header {
     position: absolute;
-    top: 0;
+    top: -5px;
     left: 0;
     width: 100%;
-    background-color: rgb(41, 40, 40);
+    background-color: rgb(54, 53, 54);
     z-index: 10;
-    padding: 8px 12px;
+    padding: 24px 16px;
     color: var(--light);
+    display: none;
 }
 
 .sub-category-header h3 {
     font-size: 1.1rem;
-    margin-bottom: 5px;
+    margin-bottom: 12px;
     font-weight: 400;
 }
 
-.sub-category-header span {
-    color: rgb(219, 220, 221);
+.sub-category-header small {
+    color: var(--badge);
+    display: block;
 }
 
 @media screen and (max-width:480px) {
@@ -143,14 +145,20 @@
         display: block;
     }
     .sub-list-container {
-        padding-top: 60px;
-        width: 240px;
+        padding-top: 100px;
+        width: 100%;
         left: 0;
-        margin: auto;
-        overflow: hidden;
         border-radius: none;
+        z-index: 15;
+        height: 100%;
     }
     .categories {
         border: none;
+    }
+    .sub-list-container h5 {
+        font-size: .8rem;
+    }
+    .sub-category-header {
+        display: block;
     }
 }
