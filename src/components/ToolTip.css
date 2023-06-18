@@ -24,3 +24,9 @@
     translate: -50%;
     left: 50%;
 }
+
+@media screen and (max-width:480px) {
+    .tool-tip {
+        display: none;
+    }
+}

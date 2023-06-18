@@ -6,26 +6,47 @@ export default function About() {
     <><TopBar showToggler={true}/>
     <div className="about-container">
         <div className="details">
-           <div className="project-description info">
-            <h2>About Project</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam, error ex dolorum hic quibusdam nesciunt quisquam placeat doloribus nemo voluptate ipsum eos nisi! Enim, maxime placeat expedita laboriosam autem ea repudiandae porro repellat illo voluptas voluptatibus, molestiae ab, officia quis!</p>
-
-           </div>
+          
             <div className="about-me info">
                 <h2>About Me</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit ipsum quidem mollitia deleniti? Nobis commodi aspernatur eum laboriosam itaque, quod asperiores, placeat voluptatem unde molestiae est fugit delectus optio, rem error quam harum voluptates. Architecto facere libero animi ratione tempora veritatis accusamus. Minima quaerat explicabo magni ipsa accusantium fuga, accusamus fugiat culpa possimus laborum debitis, rerum distinctio optio, dolor quas?</p>
+                <table>
+                    <tbody>
+                        <tr>
+                          <td>Name</td>
+                          <td>Muwanguzi Joseph</td>
+                        </tr>
+                        <tr>
+                          <td>Nationality</td>
+                          <td>Ugandan</td>
+                        </tr>
+                        <tr>
+                          <td>Hobbies</td>
+                          <td>Coding , Photography , Movies</td>
+                        </tr>
+                        <tr>
+                          <td>Languages</td>
+                          <td>Python , JavaScript</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <div className="credits info">
-                <h2>Disclaimer</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit ipsum quidem mollitia deleniti? Nobis commodi aspernatur eum laboriosam itaque, quod asperiores, placeat voluptatem unde molestiae est fugit delectus optio, rem error quam harum voluptates. Architecto facere libero animi ratione tempora veritatis accusamus. Minima quaerat explicabo magni ipsa accusantium fuga, accusamus fugiat culpa possimus laborum debitis, rerum distinctio optio, dolor quas?</p>
-            </div>
+            
             <div className="technologies-used info">
-                <h2>Technologies used</h2>
+               <h2>Tech used</h2>
+
                  <ul>
                     <li>React</li>
                     <li>Django</li>
                  </ul>
             </div>
+            <div className="code info">
+                <h2>Source Code</h2>
+                 <ul>
+                    <li><a href="http://" target="_blank" rel="noopener noreferrer">Front End</a></li>
+                    <li><a href="http://" target="_blank" rel="noopener noreferrer">Back End</a></li>
+                 </ul>
+            </div>
+          
         </div>
     </div>
     </>

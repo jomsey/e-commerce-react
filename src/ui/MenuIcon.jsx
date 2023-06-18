@@ -15,8 +15,8 @@ function MenuIcon({ visible = true,onMenuIconClick }) {
 }
 
 MenuIcon.propTypes = {
-  visible: PropTypes.bool,
-  onMenuIconClick:PropTypes.func
+        visible: PropTypes.bool,
+        onMenuIconClick:PropTypes.func
 };
 
 export default MenuIcon;

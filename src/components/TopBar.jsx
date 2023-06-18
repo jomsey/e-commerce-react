@@ -14,7 +14,7 @@ import AlertUsable from './AlertUsable';
 
 
 function TopBar({ showToggler,useMobileSideNav,onTogglerIconClick=null}) {
-          const [autoCompleteList,setAutoCompleteList] = useState([])
+          // const [autoCompleteList,setAutoCompleteList] = useState([])
           const {setProducts,setProductsCount,setAlertMessage,
                 setProductsResultsName,searchQuery,alertMessage,isMobilePhone,
                 setSearchQuery,mobileOffCanvasOpen,setMobileOffCanvasOpen} = useContext(ShopContext)
@@ -86,14 +86,14 @@ function TopBar({ showToggler,useMobileSideNav,onTogglerIconClick=null}) {
                             onChange={handleSearchInputChange}
                    /> 
 
-                  {
+                  {/* {
                     autoCompleteList.length>0 &&
                     <div className="auto-complete-container">
                           <ul>
                           {autoCompleteList.slice(0,5).map(({name})=><li key={name} onClick={()=>{setSearchQuery(name);setAutoCompleteList([])}}>{name}</li>)}
                           </ul>                     
                     </div>
-                  }
+                  } */}
 
                 <div className="top-bar-icons">
                       <TopBarIcons />

@@ -20,3 +20,22 @@
     border: none;
     border-radius: 3px;
 }
+
+@media screen and (max-width:480px) {
+    .product-placeholder .product-name {
+        width: 100%;
+        top: 1px;
+    }
+    .product-placeholder .buttons .add-btns .btn {
+        margin: 5px 0;
+        padding: 5px;
+    }
+    .product-placeholder .product-name,
+    .product-placeholder .product-price {
+        padding: 2px;
+    }
+    .product-placeholder .detail-btn {
+        width: 70%;
+        margin: auto;
+    }
+}

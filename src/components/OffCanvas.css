@@ -76,4 +76,7 @@
     .off-canvas-close-icon {
         display: none;
     }
+    .category-off-canvas::before {
+        display: none !important;
+    }
 }

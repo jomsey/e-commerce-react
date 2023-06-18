@@ -11,7 +11,7 @@ import productsService from "../services/productsService";
 function CategoryList() {
       const [currentCategory,setCurrentCategory] = useState("")
       const [subCategoryList,setSubCategoryList] = useState([])
-      const [subListVisible,setSubListVisible] = React.useState(true)
+      const [subListVisible,setSubListVisible] = useState(true)
       const {setProducts,setProductsCount,isMobilePhone,
             setProductsResultsName,setCategoryName,setSubCategory,
             setProductsLoading,setCurrentPage,setMobileOffCanvasOpen,setCategory} = React.useContext(ShopContext)

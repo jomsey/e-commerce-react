@@ -74,17 +74,16 @@ function ProductsList() {
             {/* <div className="products-category-banner">
                   <h1>{category?category:"All products"}</h1>
                   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi omnis quos aspernatur nulla iste vel ex numquam perferendis, libero, eos vero optio molestias, delectus et?</p>
-            </div> */}
+            </div> 
            {
             category &&
             <div className="bread-crumb">
             <small>products{"<"}<span className="link">{category}</span>{subCategory && `<${subCategory}`}</small>
       </div>
-           }
+           } */}
       </div>
       <div className="group products">
             <Filters />
-
             <div className="group-right">
                   {productsLoading ?<ComponentIsLoading/>:<ProductsContainer products={products}/>}
                   {products.length<1 && <NoContent message="No Products To Show"/>}

@@ -51,9 +51,34 @@
             margin-top: 24px;
         }
         
-        .technologies-used ul li {
+        .info ul li {
             list-style-type: none;
             text-align: center;
+        }
+        
+        .info a {
+            font-size: .8rem;
+        }
+        
+        .info table {
+            margin: 32px auto;
+            width: 65%;
+        }
+        
+        .info table tr td:first-child {
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        
+        .info table td {
+            padding: 4px 16px;
+            font-size: .9rem;
+        }
+        
+        .info table tr:nth-child(odd) {
+            background-color: var(--light-shade);
+            width: 100%;
+            margin: 0;
         }
         
         @media screen and (max-width:480px) {
@@ -63,5 +88,9 @@
             .about-container .details {
                 padding-top: 200px;
                 padding-bottom: 70px;
+            }
+            .info table {
+                margin: 24px auto;
+                width: 95%;
             }
         }

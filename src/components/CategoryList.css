@@ -93,12 +93,8 @@
     padding: 0;
 }
 
-.sub-list-container-hidden {
-    visibility: hidden !important;
-}
-
 .sub-list-container:hover {
-    visibility: visible !important;
+    display: visible !important;
 }
 
 .category-chevron {
@@ -161,4 +157,8 @@
     .sub-category-header {
         display: block;
     }
+}
+
+.sub-list-container-hidden {
+    display: none !important;
 }
