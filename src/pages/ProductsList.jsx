@@ -97,7 +97,8 @@ function ProductsList() {
                 currentPage={currentPage}
                 totalPages={totalPages}
                 onPageClick={handlePageClick} 
-                usePageControls={false}/>
+                usePageControls={true}/>
+            
          </div>
       } 
       <RecentlyViewedProducts/>

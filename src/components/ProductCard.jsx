@@ -132,4 +132,4 @@ function saveViewedProduct(product,product_id) {
           localStorage.setItem('previouslyViewedProducts', JSON.stringify(previousViewedProducts.slice(0,6)));
 }
 
-export default ProductCard;
+export default  ProductCard;

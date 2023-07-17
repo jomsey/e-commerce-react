@@ -7,6 +7,16 @@ export const categories = [{
         id: 2,
         name: "Home & Office",
         icon: "house",
+        subCategories: [{
+            title: "Some Heading",
+            categories: ["Item", "Item", "Item", "Item", "Item", "Item", "Item", "Item", "Item", "Item"]
+        }, {
+            title: "Some Heading",
+            categories: ["Item", "Item", "Item", "Item", "Item", "Item", "Item", "Item", "Item", "Item"]
+        }, {
+            title: "Some Heading",
+            categories: ["Item", "Item", "Item", "Item", "Item", "Item", "Item", "Item", "Item", "Item"]
+        }]
 
     },
     {
@@ -91,6 +101,16 @@ export const categories = [{
         id: 11,
         name: "Gardening",
         icon: "trowel",
+        subCategories: [{
+            title: "Some Heading",
+            categories: ["Item", "Item", "Item", "Item", "Item", "Item", "Item", "Item", "Item", "Item"]
+        }, {
+            title: "Some Heading",
+            categories: ["Item", "Item", "Item", "Item", "Item", "Item", "Item", "Item", "Item", "Item"]
+        }, {
+            title: "Some Heading",
+            categories: ["Item", "Item", "Item", "Item", "Item", "Item", "Item", "Item", "Item", "Item"]
+        }]
 
     },
     {
@@ -99,11 +119,35 @@ export const categories = [{
         icon: "basketball",
 
     },
-    { id: 13, name: "Stationary", icon: "book" },
+    {
+        id: 13,
+        name: "Stationary",
+        icon: "book",
+        subCategories: [{
+            title: "Some Heading",
+            categories: ["Item", "Item", "Item", "Item", "Item", "Item", "Item", "Item", "Item", "Item"]
+        }, {
+            title: "Some Heading",
+            categories: ["Item", "Item", "Item", "Item", "Item", "Item", "Item", "Item", "Item", "Item"]
+        }, {
+            title: "Some Heading",
+            categories: ["Item", "Item", "Item", "Item", "Item", "Item", "Item", "Item", "Item", "Item"]
+        }]
+    },
     {
         id: 14,
         name: "Drinks",
         icon: "beer",
+        subCategories: [{
+            title: "Some Heading",
+            categories: ["Item", "Item", "Item", "Item", "Item", "Item", "Item", "Item", "Item", "Item"]
+        }, {
+            title: "Some Heading",
+            categories: ["Item", "Item", "Item", "Item", "Item", "Item", "Item", "Item", "Item", "Item"]
+        }, {
+            title: "Some Heading",
+            categories: ["Item", "Item", "Item", "Item", "Item", "Item", "Item", "Item", "Item", "Item"]
+        }]
 
     },
     {

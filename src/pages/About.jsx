@@ -21,7 +21,7 @@ export default function About() {
                         </tr>
                         <tr>
                           <td>Hobbies</td>
-                          <td>Coding , Photography , Movies</td>
+                          <td>Coding , Photography</td>
                         </tr>
                         <tr>
                           <td>Languages</td>
@@ -42,8 +42,8 @@ export default function About() {
             <div className="code info">
                 <h2>Source Code</h2>
                  <ul>
-                    <li><a href="http://" target="_blank" rel="noopener noreferrer">Front End</a></li>
-                    <li><a href="http://" target="_blank" rel="noopener noreferrer">Back End</a></li>
+                    <li><a href="https://github.com/jomsey/e-commerce-react" target="_blank" rel="noopener noreferrer">Front End</a></li>
+                    <li><a href="https://github.com/jomsey/ecommerce-api" target="_blank" rel="noopener noreferrer">Back End</a></li>
                  </ul>
             </div>
           
